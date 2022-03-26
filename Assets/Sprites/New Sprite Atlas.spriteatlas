@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 5658781864977752136, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 328056999903988223, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -4032752705614328921, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 52223881583292665, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 1942658580278854645, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 6516465113127462949, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 5023225828585338039, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 3246792787386233627, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -8351912458575111850, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -5862627439253646039, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 9058822660989661298, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 1670679116868395324, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -1400070130308293167, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 3418873060242904884, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -906021573413111463, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -7626348988197198589, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -7063403058836991687, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 7148013115713942494, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -5397999960270960932, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -6304367829943975507, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -7199932314770546759, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 2970102780737232822, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 6079304858319419815, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 8810467295780256326, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -8239208900809810017, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -5341372224317194623, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -8763151315069058174, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 7820223792649709418, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -6016757964723247666, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: -4542281513685558674, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - WallSet_22
+  - WallSet_23
+  - WallSet_20
+  - WallSet_21
+  - WallSet_26
+  - WallSet_27
+  - WallSet_24
+  - WallSet_25
+  - WallSet_28
+  - WallSet_29
+  - WallSet_4
+  - WallSet_5
+  - WallSet_6
+  - WallSet_7
+  - WallSet_0
+  - WallSet_1
+  - WallSet_2
+  - WallSet_3
+  - WallSet_8
+  - WallSet_9
+  - WallSet_19
+  - WallSet_18
+  - WallSet_17
+  - WallSet_16
+  - WallSet_15
+  - WallSet_14
+  - WallSet_13
+  - WallSet_12
+  - WallSet_11
+  - WallSet_10
+  m_RenderDataMap: {}
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0
