@@ -43,7 +43,9 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
+    - {fileID: 2800000, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
     - {fileID: 2800000, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+    - {fileID: 2800000, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -79,6 +81,16 @@ SpriteAtlas:
   - {fileID: 7820223792649709418, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: -6016757964723247666, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: -4542281513685558674, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
+  - {fileID: 21300000, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+  - {fileID: -7287732061954022656, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: -3990983241478422898, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: 4959321751987732891, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: -8997556237901668778, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: -8567568232183186765, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: 577539966537276145, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: -512265628096823119, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: 1986394952384275652, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: 1494582489817834251, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   m_PackedSpriteNamesToIndex:
   - WallSet_22
   - WallSet_23
@@ -110,6 +122,16 @@ SpriteAtlas:
   - WallSet_12
   - WallSet_11
   - WallSet_10
+  - Floor
+  - Crocoman_8
+  - Crocoman_2
+  - Crocoman_3
+  - Crocoman_0
+  - Crocoman_1
+  - Crocoman_6
+  - Crocoman_7
+  - Crocoman_4
+  - Crocoman_5
   m_RenderDataMap: {}
   m_Tag: New Sprite Atlas
   m_IsVariant: 0
