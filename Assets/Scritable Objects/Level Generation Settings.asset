@@ -19,4 +19,4 @@ MonoBehaviour:
   _walkerRotate180Chance: 40
   _minRoomSizePercent: 40
   _maxRoomSizePercent: 60
-  _corridorsThickness: 4
+  _corridorsThickness: 2
