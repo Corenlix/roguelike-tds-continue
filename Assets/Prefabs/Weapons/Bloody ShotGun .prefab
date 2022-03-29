@@ -96,8 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1fa339fa5c651e4d894bd461cc3acd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPrefab: {fileID: 9201063168984684233, guid: 421ae448bb801e34ba878d218adacc99, type: 3}
-  firePoint: {fileID: 3743273190665022211}
+  _bulletPrefab: {fileID: -8651145964778396903, guid: 421ae448bb801e34ba878d218adacc99, type: 3}
+  _delay: 0.25
+  _ammoType: 0
+  _shootPoint: {fileID: 3743273190665022211}
+  _interactiveLayers:
+    serializedVersion: 2
+    m_Bits: 257
 --- !u!1 &3743273190665022208
 GameObject:
   m_ObjectHideFlags: 0

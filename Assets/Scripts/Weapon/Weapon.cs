@@ -1,52 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace Weapon
 {
-    [SerializeField] private Bullet bulletPrefab;
-    [SerializeField] private Ammo.AmmoTypes _ammoTypes;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private int maxCountAmmo;
-    [SerializeField] private int currentCountAmmo;
-    
-    private void AddAmmo()
+    public class Weapon : MonoBehaviour
     {
-        currentCountAmmo += 1;
-    }
-    private void FullCharge()
-    {
-        if (Input.GetKey(KeyCode.R))
+        [SerializeField] private Bullet _bulletPrefab;
+        [SerializeField] private float _delay;
+        [SerializeField] private AmmoType _ammoType;
+        [SerializeField] private Transform _shootPoint;
+        [SerializeField] private LayerMask _interactiveLayers;
+
+        private Vector3 _targetPosition;
+        private float _timeRemainToShoot;
+
+        public void Shoot()
         {
-            currentCountAmmo = maxCountAmmo;
+            _timeRemainToShoot -= Time.deltaTime;
+            if (_timeRemainToShoot > 0)
+                return;
+
+            SpawnBullet();
+            _timeRemainToShoot = _delay;
         }
-    }
-    private void Shoot(Ammo.AmmoTypes ammoType, ref int currentCountAmmo)
-    {
-        if (Input.GetMouseButton(0))
+
+        private void SpawnBullet()
         {
-            if (currentCountAmmo != 0)
-            {
-                var bullet =  Instantiate(bulletPrefab, firePoint.position, transform.rotation);
-                bullet.Move(AimToTarget().normalized);
-                currentCountAmmo -= 1;
-            }
+            Bullet bullet =  Instantiate(_bulletPrefab, _shootPoint.position, transform.rotation);
+            bullet.Init(_interactiveLayers, _targetPosition);
         }
-    }
-    private Vector2 AimToTarget()
-    {
-        Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotateZ = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
-        return target;
-    }
-    private void FixedUpdate()
-    {
-        AimToTarget();
-        FullCharge();
-        Shoot(_ammoTypes, ref currentCountAmmo);
+        
+        public void AimTo(Vector3 targetPosition)
+        {
+            _targetPosition = targetPosition;
+            transform.rotation = transform.LookAt2DWithFlip(_targetPosition);
+        }
     }
 }
 
