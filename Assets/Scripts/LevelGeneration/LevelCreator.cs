@@ -24,23 +24,23 @@ namespace LevelGeneration
             var rootDungeon = new Dungeon(new RectInt(0, 0, _levelSize - 1, _levelSize - 1), _splitTimes, new RoomCreator(_minRoomSizePercent, _maxRoomSizePercent), new CorridorCreator(_corridorsThickness));
             
             var dungeonToTableConverter =
-                new DungeonToTableConverter(CellType.RoomFloor, CellType.Wall, CellType.CorridorFloor);
+                new DungeonToTableConverter(CellType.Floor, CellType.Wall, CellType.Floor);
             _levelTable = dungeonToTableConverter.Convert(rootDungeon);
             
-            var walker = new Walker(CellType.RoomFloor, _walkerRotate90Chance, _walkerRotate180Chance);
-            _levelTable = walker.Walk(rootDungeon, _levelTable, _walkerRoomPart / 100f);
+            var walker = new Walker(CellType.Floor, _walkerRotate90Chance, _walkerRotate180Chance);
+            walker.Walk(rootDungeon, _levelTable, _walkerRoomPart / 100f);
 
-            var singeCellReplacer = new LevelSingleCellsReplacer(CellType.RoomFloor);
-            _levelTable = singeCellReplacer.Replace(_levelTable);
+            var singeCellReplacer = new LevelSingleCellsReplacer(CellType.Floor);
+            singeCellReplacer.Replace(_levelTable);
             
-            return new Level(_levelTable);
+            return new Level(_levelTable, rootDungeon);
         }
     }
     
     public enum CellType
     {
         Wall,
-        RoomFloor,
-        CorridorFloor,
+        Floor,
+        Empty,
     }
 }

@@ -1,13 +1,16 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 namespace LevelGeneration
 {
     public class LevelDrawer : MonoBehaviour
     {
-        [SerializeField] private Tilemap floorsTilemap, wallsTilemap;
-        [SerializeField] private RuleTile floorTale, wallTile;
-        [SerializeField] private int offset;
+        [SerializeField] private Tilemap _floorsTilemap;
+        [SerializeField] private Tilemap _wallsTilemap;
+        [FormerlySerializedAs("_floorTale")] [SerializeField] private RuleTile _floorTile;
+        [SerializeField] private RuleTile _wallTile;
+        [SerializeField] private int _offset;
         
         public void DrawLevel(CellType[,] level)
         {
@@ -26,16 +29,16 @@ namespace LevelGeneration
 
         private void DrawLevelBackground(int levelWidth, int levelHeight)
         {
-            floorsTilemap.ClearAllTiles();
-            wallsTilemap.ClearAllTiles();
-            for (int i = -offset; i < levelWidth + offset; i++)
+            _floorsTilemap.ClearAllTiles();
+            _wallsTilemap.ClearAllTiles();
+            for (int i = -_offset; i < levelWidth + _offset; i++)
             {
-                for (int j = -offset; j < levelHeight + offset; j++)
+                for (int j = -_offset; j < levelHeight + _offset; j++)
                 {
                     if(i < 0 || i >= levelWidth || j < 0 || j >= levelHeight)
                         GetTilemapFromCellType(CellType.Wall).SetTile(new Vector3Int(i, j, 0), GetTileFromCellType(CellType.Wall));
                     else
-                        GetTilemapFromCellType(CellType.RoomFloor).SetTile(new Vector3Int(i, j, 0), GetTileFromCellType(CellType.CorridorFloor));
+                        GetTilemapFromCellType(CellType.Floor).SetTile(new Vector3Int(i, j, 0), GetTileFromCellType(CellType.Floor));
                 }
             }
         }
@@ -45,8 +48,9 @@ namespace LevelGeneration
         {
             return cellType switch
             {
-                CellType.Wall => wallTile,
-                _ => floorTale,
+                CellType.Wall => _wallTile,
+                CellType.Empty => null,
+                _ => _floorTile,
             };
         }
 
@@ -54,8 +58,8 @@ namespace LevelGeneration
         {
             return cellType switch
             {
-                CellType.Wall => wallsTilemap,
-                _ => floorsTilemap,
+                CellType.Wall => _wallsTilemap,
+                _ => _floorsTilemap,
             };
         }
         

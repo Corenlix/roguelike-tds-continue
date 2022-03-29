@@ -24,7 +24,7 @@ namespace LevelGeneration
             InitTable();
             FillCorridors();
             FillRooms();
-            
+
             return _tableCells;
         }
 
@@ -37,7 +37,7 @@ namespace LevelGeneration
             {
                 for(int j = 0; j < dungeonHeight; j++) 
                 {
-                    _tableCells[i, j] = CellType.Wall;
+                    _tableCells[i, j] = _wallCell;
                 }
             }
         }
