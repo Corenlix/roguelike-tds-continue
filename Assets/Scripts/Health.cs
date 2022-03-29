@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int _maxHealth;
     private int _health;
 
-    public void DealDamage(int damage)
+    public void DealDamaged(int damage)
     {
         _health -= damage;
         
