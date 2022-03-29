@@ -10,4 +10,13 @@ public class EntityView : MonoBehaviour
     {
         _animator.SetBool(Run, state);
     }
+
+    public void LookAt(Vector2 point)
+    {
+        var aimDirection = point - (Vector2)transform.position;
+        Vector3 rotationEuler = transform.rotation.eulerAngles;
+        int xScaleModifier = aimDirection.x < 0 ? -1 : 1;
+        transform.localScale = new Vector3(xScaleModifier * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        transform.rotation = Quaternion.Euler(rotationEuler);   
+    }
 }

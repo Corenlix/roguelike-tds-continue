@@ -1,10 +1,11 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private RigidbodyMover _mover;
-
+    [SerializeField] private EntityView _playerView;
+    [SerializeField] private Crosshair _crosshair;
+    
     private PlayerInput _input;
 
     private void Start()
@@ -15,5 +16,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         _input.ReadInput();
+        _playerView.LookAt(_crosshair.transform.position);
     }
 }
