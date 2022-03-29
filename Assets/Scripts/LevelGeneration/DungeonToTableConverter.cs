@@ -24,7 +24,7 @@ namespace LevelGeneration
             InitTable();
             FillCorridors();
             FillRooms();
-            
+
             return _tableCells;
         }
 

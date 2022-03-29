@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 namespace LevelGeneration
@@ -7,7 +8,7 @@ namespace LevelGeneration
     {
         [SerializeField] private Tilemap _floorsTilemap;
         [SerializeField] private Tilemap _wallsTilemap;
-        [SerializeField] private RuleTile _floorTale;
+        [FormerlySerializedAs("_floorTale")] [SerializeField] private RuleTile _floorTile;
         [SerializeField] private RuleTile _wallTile;
         [SerializeField] private int _offset;
         
@@ -48,7 +49,8 @@ namespace LevelGeneration
             return cellType switch
             {
                 CellType.Wall => _wallTile,
-                _ => _floorTale,
+                CellType.Empty => null,
+                _ => _floorTile,
             };
         }
 

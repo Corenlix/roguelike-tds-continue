@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace LevelGeneration
 {
@@ -15,7 +19,7 @@ namespace LevelGeneration
         public Corridor Create(Dungeon first, Dungeon second)
         {
             Corridor bestCorridor = null;
-            var bestCorridorSize = 0;
+            var bestCorridorSize = Int32.MaxValue;
 
             var firstRooms = first.Rooms;
             var secondRooms = second.Rooms;
@@ -27,7 +31,7 @@ namespace LevelGeneration
                     var corridor = GetCorridorBetweenRooms(firstRoom.Rect, secondRoom.Rect);
 
                     int corridorSize = corridor.GetEstimatedSize();
-                    if(corridorSize > bestCorridorSize) 
+                    if(corridorSize < bestCorridorSize) 
                     {
                         bestCorridorSize = corridorSize;
                         bestCorridor = corridor;
@@ -40,16 +44,26 @@ namespace LevelGeneration
         
         private Corridor GetCorridorBetweenRooms(RectInt firstRoom, RectInt secondRoom) 
         {
-            var firstPoint = new Vector2Int(Random.Range(firstRoom.x, firstRoom.xMax), Random.Range(firstRoom.y, firstRoom.yMax));
-            var secondPoint = new Vector2Int(Random.Range(secondRoom.x, secondRoom.xMax), Random.Range(secondRoom.y, secondRoom.yMax));
-
+            var firstRoomPoint = new Vector2Int(Random.Range(firstRoom.x, firstRoom.xMax), Random.Range(firstRoom.y, firstRoom.yMax));
+            var secondRoomPoint = new Vector2Int(Random.Range(secondRoom.x, secondRoom.xMax), Random.Range(secondRoom.y, secondRoom.yMax));
+            
             var horizontalRect = new RectInt();
-            horizontalRect.SetMinMax(new Vector2Int(Mathf.Min(firstPoint.x, secondPoint.x), secondPoint.y),
-                new Vector2Int(Mathf.Max(firstPoint.x, secondPoint.x), secondPoint.y + _corridorThickness - 1));
+            int horizontalRectX = Mathf.Min(firstRoomPoint.x, secondRoomPoint.x);
+            int horizontalRectY = secondRoomPoint.y;
+            int horizontalRectXMax = Mathf.Max(firstRoomPoint.x, secondRoomPoint.x);
+            int horizontalRectYMax = secondRoomPoint.y + _corridorThickness - 1;
+            
+            horizontalRect.SetMinMax(new Vector2Int(horizontalRectX, horizontalRectY),
+                new Vector2Int(horizontalRectXMax, horizontalRectYMax));
 
             var verticalRect = new RectInt();
-            verticalRect.SetMinMax(new Vector2Int(firstPoint.x, Mathf.Min(firstPoint.y, secondPoint.y)),
-                new Vector2Int(firstPoint.x + _corridorThickness - 1, Mathf.Max(firstPoint.y, secondPoint.y) + 1));
+            int verticaRectX = firstRoomPoint.x;
+            int verticaRectY = Mathf.Min(firstRoomPoint.y, secondRoomPoint.y);
+            int verticaRectXMax = firstRoomPoint.x + _corridorThickness - 1;
+            int verticaRectYMax = Mathf.Max(firstRoomPoint.y, secondRoomPoint.y);
+            
+            verticalRect.SetMinMax(new Vector2Int(verticaRectX, verticaRectY),
+                new Vector2Int(verticaRectXMax, verticaRectYMax));
 
             return new Corridor( new List<RectInt> { horizontalRect, verticalRect } );
         }

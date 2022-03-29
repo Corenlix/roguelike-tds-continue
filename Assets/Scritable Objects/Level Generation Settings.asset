@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelSize: 128
   _splitTimes: 5
-  _walkerRoomPart: 130
+  _walkerRoomPart: 0
   _walkerRotate90Chance: 75
   _walkerRotate180Chance: 25
   _minRoomSizePercent: 40
   _maxRoomSizePercent: 80
-  _corridorsThickness: 2
+  _corridorsThickness: 1
