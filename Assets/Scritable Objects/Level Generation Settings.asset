@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Level Generation Settings
   m_EditorClassIdentifier: 
   _levelSize: 128
-  _splitTimes: 4
-  _walkerRoomPart: 2040
-  _walkerRotate90Chance: 60
-  _walkerRotate180Chance: 40
+  _splitTimes: 5
+  _walkerRoomPart: 130
+  _walkerRotate90Chance: 75
+  _walkerRotate180Chance: 25
   _minRoomSizePercent: 40
-  _maxRoomSizePercent: 60
+  _maxRoomSizePercent: 80
   _corridorsThickness: 2

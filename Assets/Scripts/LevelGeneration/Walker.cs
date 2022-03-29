@@ -24,7 +24,7 @@ namespace LevelGeneration
             _rotate180Chance = rotate180Chance;
         }
 
-        public CellType[,] Walk(Dungeon dungeon, CellType[,] levelTable, float roomPart)
+        public void Walk(Dungeon dungeon, CellType[,] levelTable, float roomPart)
         {
             var rooms = dungeon.Rooms;
             foreach (var room in rooms)
@@ -36,8 +36,6 @@ namespace LevelGeneration
                 int stepsCount = (int) (roomSquare * roomPart);
                 levelTable = Walk(levelTable, new Vector2Int((int) roomRect.center.x, (int) roomRect.center.y), stepsCount);
             }
-
-            return levelTable;
         }
         
         private CellType[,] Walk(CellType[,] levelTable, Vector2Int startPosition, int steps) 
@@ -50,7 +48,10 @@ namespace LevelGeneration
             {
                 Move();
                 if (ChangeCell())
+                {
                     steps -= 1;
+                    RandomRotate();
+                }
             }
 
             return levelTable;
@@ -59,10 +60,6 @@ namespace LevelGeneration
         private void Move()
         {
             _position += GetMoveDelta();
-            if (Random.Range(0, 100) < _rotate90Chance)
-                Rotate90();
-            else if (Random.Range(0, 100) < _rotate180Chance)
-                Rotate180();
 
             if (_position.x >= _level.GetLength(0) || _position.y >= _level.GetLength(1) || _position.x < 0 || _position.y < 0)
             {
@@ -82,6 +79,15 @@ namespace LevelGeneration
             return true;
         }
 
+        private void RandomRotate()
+        {
+            float random = Random.Range(0, 200);
+            if (random < _rotate90Chance)
+                Rotate90();
+            else if (random-100 < _rotate180Chance)
+                Rotate180();
+        }
+        
         private void Rotate90() 
         {
             var leftOrRight = Random.Range(0, 100);

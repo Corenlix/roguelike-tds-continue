@@ -15,7 +15,7 @@ namespace LevelGeneration
         public Corridor Create(Dungeon first, Dungeon second)
         {
             Corridor bestCorridor = null;
-            var bestCorridorSize = int.MaxValue;
+            var bestCorridorSize = 0;
 
             var firstRooms = first.Rooms;
             var secondRooms = second.Rooms;
@@ -27,7 +27,7 @@ namespace LevelGeneration
                     var corridor = GetCorridorBetweenRooms(firstRoom.Rect, secondRoom.Rect);
 
                     int corridorSize = corridor.GetEstimatedSize();
-                    if(corridorSize < bestCorridorSize) 
+                    if(corridorSize > bestCorridorSize) 
                     {
                         bestCorridorSize = corridorSize;
                         bestCorridor = corridor;
@@ -43,14 +43,13 @@ namespace LevelGeneration
             var firstPoint = new Vector2Int(Random.Range(firstRoom.x, firstRoom.xMax), Random.Range(firstRoom.y, firstRoom.yMax));
             var secondPoint = new Vector2Int(Random.Range(secondRoom.x, secondRoom.xMax), Random.Range(secondRoom.y, secondRoom.yMax));
 
-            var horizontalRect = new RectInt(); 
-
+            var horizontalRect = new RectInt();
             horizontalRect.SetMinMax(new Vector2Int(Mathf.Min(firstPoint.x, secondPoint.x), secondPoint.y),
                 new Vector2Int(Mathf.Max(firstPoint.x, secondPoint.x), secondPoint.y + _corridorThickness - 1));
 
             var verticalRect = new RectInt();
             verticalRect.SetMinMax(new Vector2Int(firstPoint.x, Mathf.Min(firstPoint.y, secondPoint.y)),
-                new Vector2Int(firstPoint.x + _corridorThickness - 1, Mathf.Max(firstPoint.y + 1, secondPoint.y + 1)));
+                new Vector2Int(firstPoint.x + _corridorThickness - 1, Mathf.Max(firstPoint.y, secondPoint.y) + 1));
 
             return new Corridor( new List<RectInt> { horizontalRect, verticalRect } );
         }
