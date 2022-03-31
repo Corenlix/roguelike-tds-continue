@@ -5,7 +5,10 @@ namespace Weapon
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
+        [SerializeField] private ParticleSystem bulletTrail;
+        [SerializeField] private GameObject bulletExplosion;
         [SerializeField] private float _speed;
+        
         private Rigidbody2D _rigidbody2D;
         private LayerMask _interactiveLayers;
         
@@ -29,7 +32,7 @@ namespace Weapon
         {
             if ((_interactiveLayers.value & (1 << other.gameObject.layer)) == 0)
                 return;
-
+            
             Destroy(gameObject);
         }
     }
