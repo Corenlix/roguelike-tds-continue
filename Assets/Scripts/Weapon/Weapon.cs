@@ -4,7 +4,6 @@ namespace Weapon
 {
     public class Weapon : MonoBehaviour
     {
-        [SerializeField] private ParticleSystem _shootEffectPrefab;
         [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private float _delay;
         [SerializeField] private AmmoType _ammoType;
@@ -20,8 +19,6 @@ namespace Weapon
             if (_timeRemainToShoot > 0)
                 return;
 
-            Instantiate(_shootEffectPrefab, _shootPoint.position, transform.rotation);
-            
             SpawnBullet();
             _timeRemainToShoot = _delay;
         }
