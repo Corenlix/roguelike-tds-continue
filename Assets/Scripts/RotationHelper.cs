@@ -18,6 +18,12 @@ public static class RotationHelper
         return direction.GetAngle();
     }
 
+    public static Quaternion RotationWithFlip(this Transform transform)
+    {
+        int add = transform.lossyScale.x < 1 ? 180 : 0;
+        return Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + add);
+    }
+    
     public static Quaternion GetAngle(this Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

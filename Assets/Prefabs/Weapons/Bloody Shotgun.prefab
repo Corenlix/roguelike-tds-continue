@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3743273189577565247}
   - component: {fileID: 3743273189577565241}
-  - component: {fileID: 3743273189577565246}
+  - component: {fileID: 6600448367705431811}
   m_Layer: 0
-  m_Name: 'Bloody ShotGun '
+  m_Name: Bloody Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3743273189577565246
+--- !u!114 &6600448367705431811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,11 +93,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3743273189577565244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fa339fa5c651e4d894bd461cc3acd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 3414216d3efe91343a1491df362d8a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: -8651145964778396903, guid: 421ae448bb801e34ba878d218adacc99, type: 3}
-  _delay: 0.25
+  _delay: 0.3
   _ammoType: 0
   _shootPoint: {fileID: 3743273190665022211}
   _interactiveLayers:
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3743273190665022211}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

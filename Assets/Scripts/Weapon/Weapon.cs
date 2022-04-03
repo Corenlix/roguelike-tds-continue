@@ -25,8 +25,8 @@ namespace Weapon
 
         private void SpawnBullet()
         {
-            Bullet bullet =  Instantiate(_bulletPrefab, _shootPoint.position, transform.rotation);
-            bullet.Init(_interactiveLayers, _targetPosition);
+            Bullet bullet =  Instantiate(_bulletPrefab, _shootPoint.position, transform.RotationWithFlip());
+            bullet.Init(_interactiveLayers);
         }
         
         public void AimTo(Vector3 targetPosition)

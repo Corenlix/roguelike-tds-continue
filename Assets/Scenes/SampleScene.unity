@@ -751,7 +751,7 @@ MonoBehaviour:
   _mover: {fileID: 368899992}
   _playerView: {fileID: 368899991}
   _crosshair: {fileID: 318083685}
-  _weapon: {fileID: 786366713}
+  _weapon: {fileID: 1740489242}
 --- !u!4 &368899990
 Transform:
   m_ObjectHideFlags: 0
@@ -1144,17 +1144,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &786366713 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3743273189577565246, guid: 047a954be79b068409bd86f40598802d, type: 3}
-  m_PrefabInstance: {fileID: 1023948841}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1fa339fa5c651e4d894bd461cc3acd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &909137795
 GameObject:
   m_ObjectHideFlags: 3
@@ -1228,6 +1217,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1954491321}
     m_Modifications:
+    - target: {fileID: 3743273189577565241, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565241, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3743273189577565244, guid: 047a954be79b068409bd86f40598802d, type: 3}
       propertyPath: m_Name
       value: 'Bloody Shotgun '
@@ -1304,7 +1301,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.021
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3743273189577565246, guid: 047a954be79b068409bd86f40598802d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 047a954be79b068409bd86f40598802d, type: 3}
 --- !u!4 &1023948842 stripped
 Transform:
@@ -1342,8 +1340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomPrefab: {fileID: -2521723459626777359, guid: efece8ccab37e0844a511d9c363b4be2, type: 3}
   corridorPrefab: {fileID: 8190111683908861708, guid: dbc501dfb21585e4182e29e213c282ab, type: 3}
-  _mainRoomsCount: 4
-  _roomsCount: 25
+  _mainRoomsCount: 8
+  _roomsCount: 16
   _minRoomSize: 3
   _maxRoomSize: 6
   _extraConnections: 12
@@ -2076,6 +2074,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1740489242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6600448367705431811, guid: 047a954be79b068409bd86f40598802d, type: 3}
+  m_PrefabInstance: {fileID: 1023948841}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3414216d3efe91343a1491df362d8a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1954491318
 GameObject:
   m_ObjectHideFlags: 0
