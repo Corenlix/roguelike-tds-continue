@@ -275,3 +275,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletExplosion: {fileID: 1563694292948830675, guid: 583d124ab0684774f90d97b45ff1c06a, type: 3}
   _speed: 20
+  damage: 2
+  _damagePopup: {fileID: -6466338246075112756, guid: ddc610da88023a24982796f48e65c561, type: 3}

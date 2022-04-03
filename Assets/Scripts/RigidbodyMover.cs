@@ -10,12 +10,12 @@ public class RigidbodyMover : MonoBehaviour
     
     public void MoveTo(Vector2 destination)
     {
-        _moveDirection = (destination - _rigidbody.position);
+        MoveByDirection(destination - _rigidbody.position);
     }
 
     public void MoveByDirection(Vector2 direction)
     {
-        _moveDirection = direction;
+        _moveDirection = direction == Vector2.zero ? Vector2.zero : direction.normalized;
     }
     
     private void Awake()

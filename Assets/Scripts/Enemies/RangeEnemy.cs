@@ -1,3 +1,4 @@
+using System.Data;
 using Enemies.EnemyStateMachine;
 using Enemies.EnemyStateMachine.Conditions;
 using Enemies.EnemyStateMachine.States;
@@ -29,7 +30,6 @@ namespace Enemies
             _pathfindMover.Init(pathfinder);
             SetTarget(target);
         }
-        
         public void SetTarget(Transform target)
         {
             _target = target;
@@ -38,6 +38,7 @@ namespace Enemies
         private void Start()
         {
             InitStateMachine();
+            
         }
 
         private void InitStateMachine()

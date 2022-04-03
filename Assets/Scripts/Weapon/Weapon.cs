@@ -9,7 +9,8 @@ namespace Weapon
         [SerializeField] private AmmoType _ammoType;
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private LayerMask _interactiveLayers;
-
+        
+        
         private Vector3 _targetPosition;
         private float _timeRemainToShoot;
 
