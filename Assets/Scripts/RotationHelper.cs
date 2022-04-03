@@ -20,7 +20,7 @@ public static class RotationHelper
 
     public static Quaternion RotationWithFlip(this Transform transform)
     {
-        int add = transform.lossyScale.x < 1 ? 180 : 0;
+        int add = transform.lossyScale.x < 0 ? 180 : 0;
         return Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + add);
     }
     
