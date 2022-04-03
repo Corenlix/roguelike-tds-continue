@@ -24,7 +24,7 @@ namespace LevelGeneration
 
                     var upWall = y < maxY ? levelTable[x, y + 1] : CellType.Wall;
                     var downWall = y > 0 ? levelTable[x, y - 1] : CellType.Wall;
-                    var rightWall = x < maxX ? levelTable[x + 1, y] : downWall;
+                    var rightWall = x < maxX ? levelTable[x + 1, y] : CellType.Wall;
                     var leftWall = x > 0 ? levelTable[x - 1, y] : CellType.Wall;
 
                     if (leftWall != CellType.Wall && rightWall != CellType.Wall ||

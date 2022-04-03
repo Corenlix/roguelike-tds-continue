@@ -5,20 +5,11 @@ namespace LevelGeneration
 {
     public class Corridor
     {
-        public Corridor(List<RectInt> rects)
+        public RectInt Rect;
+        
+        public Corridor(RectInt rect)
         {
-            Rects = rects;
-        }
-
-        public readonly List<RectInt> Rects;
-        public int GetEstimatedSize() 
-        {
-            int size = 0;
-            foreach(var rect in Rects) 
-            {
-                size += rect.size.sqrMagnitude;
-            }
-            return size;
+            Rect = rect;
         }
     }
 }

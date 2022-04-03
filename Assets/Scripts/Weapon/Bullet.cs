@@ -13,10 +13,9 @@ namespace Weapon
         private Rigidbody2D _rigidbody2D;
         private LayerMask _interactiveLayers;
         
-        public void Init(LayerMask layerMask, Vector3 target)
+        public void Init(LayerMask layerMask)
         {
             _interactiveLayers = layerMask;
-            transform.rotation = transform.position.LookAt2D(target);
         }
         
         private void Awake()
