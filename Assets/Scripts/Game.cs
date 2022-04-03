@@ -39,5 +39,8 @@ public class Game : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        var roomToSpawn = _level.MainRooms[1];
+        var enemy = Instantiate(_enemy, roomToSpawn.Rect.center, Quaternion.identity);
+        enemy.Init(_pathfinder, _player.transform);
     }
 }

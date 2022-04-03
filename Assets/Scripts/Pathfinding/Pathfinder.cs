@@ -25,6 +25,8 @@ namespace Pathfinding
         {
             pointA.x = Mathf.Clamp((int)pointA.x, 0, _nodes.GetLength(0) - 1);
             pointA.y = Mathf.Clamp((int)pointA.y, 0, _nodes.GetLength(1) - 1);
+            pointB.x = Mathf.Clamp((int)pointB.x, 0, _nodes.GetLength(0) - 1);
+            pointB.y = Mathf.Clamp((int)pointB.y, 0, _nodes.GetLength(1) - 1);
             
             foreach (var node in _nodes)
             {

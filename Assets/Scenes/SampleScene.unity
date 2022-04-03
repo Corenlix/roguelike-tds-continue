@@ -1295,11 +1295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3743273190665022211, guid: 047a954be79b068409bd86f40598802d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.299
+      value: 0.953
       objectReference: {fileID: 0}
     - target: {fileID: 3743273190665022211, guid: 047a954be79b068409bd86f40598802d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.021
+      value: 0.111
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3743273189577565246, guid: 047a954be79b068409bd86f40598802d, type: 3}
