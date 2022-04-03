@@ -1,14 +1,14 @@
-using System.Collections.Generic;
 using Enemies;
 using LevelGeneration;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour
 {
     public Level Level => _level;
     
-    [SerializeField] private LevelCreator _levelCreator; 
+    [SerializeField] private LevelGenerator levelLevelGenerator; 
     [SerializeField] private LevelDrawer _levelDrawer;
     [SerializeField] private Player _player;
     [SerializeField] private RangeEnemy _enemy;
@@ -17,30 +17,27 @@ public class Game : MonoBehaviour
     
     private void Start()
     {
-        SpawnLevel();
+        levelLevelGenerator.LevelCreated += OnLevelLevelGenerate;
+        levelLevelGenerator.Generate();
+    }
+
+    private void OnLevelLevelGenerate(Level level)
+    {
+        _level = level;
+        levelLevelGenerator.LevelCreated -= OnLevelLevelGenerate;
+        _levelDrawer.DrawLevel(_level.LevelTable);
         _pathfinder = new Pathfinder(_level);
         SpawnPlayer();
         SpawnEnemy();
     }
-    
-    private void SpawnLevel()
-    {
-        _level = _levelCreator.CreateLevel();
-        _levelDrawer.DrawLevel(_level.LevelTable);
-    }
 
     private void SpawnPlayer()
     {
-        List<Room> rooms = _level.Dungeon.Rooms;
-        Room spawnRoom = rooms[0];
-        _player.transform.position = spawnRoom.Rect.center;
+        var roomToSpawn = _level.MainRooms[0];
+        _player.transform.position = roomToSpawn.Rect.center;
     }
 
     private void SpawnEnemy()
     {
-        List<Room> rooms = _level.Dungeon.Rooms;
-        Room spawnRoom = rooms[1];
-        var enemy = Instantiate(_enemy, spawnRoom.Rect.center, Quaternion.identity);
-        enemy.Init(_pathfinder, _player.transform);
     }
 }

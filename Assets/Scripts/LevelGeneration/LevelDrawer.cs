@@ -1,5 +1,5 @@
+using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 namespace LevelGeneration
@@ -8,49 +8,43 @@ namespace LevelGeneration
     {
         [SerializeField] private Tilemap _floorsTilemap;
         [SerializeField] private Tilemap _wallsTilemap;
-        [FormerlySerializedAs("_floorTale")] [SerializeField] private RuleTile _floorTile;
+        [SerializeField] private RuleTile _floorTile;
         [SerializeField] private RuleTile _wallTile;
-        [SerializeField] private int _offset;
-        
+
         public void DrawLevel(CellType[,] level)
         {
-            DrawLevelBackground(level.GetLength(0), level.GetLength(1));
-            for (int i = 0; i < level.GetLength(0); i++)
-            {
-                for (int j = 0; j < level.GetLength(0); j++)
-                {
-                    var currentCell = level[i, j];
-                    var tile = GetTileFromCellType(currentCell);
-                    var palette = GetTilemapFromCellType(currentCell);
-                    palette.SetTile(new Vector3Int(i, j, 0), tile);
-                }    
-            }
+            DrawLayer(level, GetTilemapFromCellType(CellType.Wall), CellType.Wall);
+            DrawLayer(level, GetTilemapFromCellType(CellType.Floor), CellType.Floor);
         }
 
-        private void DrawLevelBackground(int levelWidth, int levelHeight)
+        private void DrawLayer(CellType[,] level, Tilemap map, CellType type)
         {
-            _floorsTilemap.ClearAllTiles();
-            _wallsTilemap.ClearAllTiles();
-            for (int i = -_offset; i < levelWidth + _offset; i++)
+            var vectors = new Vector3Int[level.GetLength(0) * level.GetLength(1)];
+            var tiles = new RuleTile[level.GetLength(0) * level.GetLength(1)];
+            var tile = GetTileFromCellType(type);
+            
+            for (int i = 0; i < level.GetLength(0); i++)
             {
-                for (int j = -_offset; j < levelHeight + _offset; j++)
+                for (int j = 0; j < level.GetLength(1); j++)
                 {
-                    if(i < 0 || i >= levelWidth || j < 0 || j >= levelHeight)
-                        GetTilemapFromCellType(CellType.Wall).SetTile(new Vector3Int(i, j, 0), GetTileFromCellType(CellType.Wall));
-                    else
-                        GetTilemapFromCellType(CellType.Floor).SetTile(new Vector3Int(i, j, 0), GetTileFromCellType(CellType.Floor));
-                }
+                    var currentCell = level[i, j];
+                    if (currentCell != type) continue;
+                    vectors[j + i * level.GetLength(1)] = new Vector3Int(i, j, 0);
+                    tiles[j + i * level.GetLength(1)] = tile;
+                }    
             }
+            map.ClearAllTiles();
+            map.SetTiles(vectors, tiles);
         }
-        
-        
+
         private RuleTile GetTileFromCellType(CellType cellType)
         {
             return cellType switch
             {
                 CellType.Wall => _wallTile,
                 CellType.Empty => null,
-                _ => _floorTile,
+                CellType.Floor => _floorTile,
+                _ => throw new InvalidEnumArgumentException()
             };
         }
 
