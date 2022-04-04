@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
     [SerializeField] private RigidbodyMover _mover;
     [SerializeField] private EntityView _playerView;
     [SerializeField] private Crosshair _crosshair;
-    [SerializeField] private Weapon.Weapon _weapon;
+    [SerializeField] private Weapons.Weapon _weapon;
     
     private PlayerInput _input;
 

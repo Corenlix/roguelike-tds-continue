@@ -5,16 +5,16 @@ namespace Enemies.EnemyStateMachine.Conditions
 {
     public class OutsideDistanceCondition : Condition
     {
-        private readonly Func<Vector2> _positionFunc;
-        private readonly Func<Vector2> _targetPositionFunc;
+        private readonly Transform _transform;
+        private readonly Transform _targetTransform;
         private readonly float _minDistanceSquare;
     
-        public OutsideDistanceCondition(Func<Vector2> positionFunc, Func<Vector2> targetPositionFunc, float minDistance)
+        public OutsideDistanceCondition(Transform transform, Transform targetTransform, float minDistance)
         {
-            _targetPositionFunc = targetPositionFunc;
-            _positionFunc = positionFunc;
+            _transform = transform;
+            _targetTransform = targetTransform;
             _minDistanceSquare = minDistance*minDistance;
         }
-        public override bool IsConditionMet() => Vector2.SqrMagnitude(_positionFunc() - _targetPositionFunc()) > _minDistanceSquare;
+        public override bool IsConditionMet() => Vector2.SqrMagnitude(_transform.position - _targetTransform.position) > _minDistanceSquare;
     }
 }

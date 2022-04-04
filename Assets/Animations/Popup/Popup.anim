@@ -42,7 +42,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: GameObject
+    path: Text
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -70,7 +70,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: GameObject
+    path: Text
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -98,7 +98,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.a
-    path: GameObject
+    path: Text
     classID: 114
     script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_PPtrCurves: []
@@ -156,7 +156,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: GameObject
+    path: Text
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -184,7 +184,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: GameObject
+    path: Text
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -212,7 +212,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.a
-    path: GameObject
+    path: Text
     classID: 114
     script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_EulerEditorCurves: []

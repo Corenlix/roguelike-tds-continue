@@ -5,17 +5,17 @@ namespace Enemies.EnemyStateMachine.Conditions
 {
     public class InsideDistanceCondition : Condition
     {
-        private readonly Func<Vector2> _positionFunc;
-        private readonly Func<Vector2> _targetPositionFunc;
+        private readonly Transform _transform;
+        private readonly Transform _targetTransform;
         private readonly float _maxDistanceSquare;
     
-        public InsideDistanceCondition(Func<Vector2> positionFunc, Func<Vector2> targetPositionFunc, float maxDistance)
+        public InsideDistanceCondition(Transform transform, Transform targetTransform, float maxDistance)
         {
-            _targetPositionFunc = targetPositionFunc;
-            _positionFunc = positionFunc;
+            _transform = transform;
+            _targetTransform = targetTransform;
             _maxDistanceSquare = maxDistance*maxDistance;
         }
         
-        public override bool IsConditionMet() => Vector2.SqrMagnitude(_positionFunc() - _targetPositionFunc()) <= _maxDistanceSquare;
+        public override bool IsConditionMet() => Vector2.SqrMagnitude(_transform.position - _targetTransform.position) <= _maxDistanceSquare;
     }
 }

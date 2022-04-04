@@ -4,6 +4,7 @@ using Enemies.EnemyStateMachine.Conditions;
 using Enemies.EnemyStateMachine.States;
 using Pathfinding;
 using UnityEngine;
+using Weapons;
 
 namespace Enemies
 {
@@ -21,8 +22,9 @@ namespace Enemies
         
         [SerializeField] private PathfindMover _pathfindMover;
         [SerializeField] private EntityView _view;
+        [SerializeField] private Weapon _weapon;
 
-        private EnemyStateMachine.EnemyStateMachine _stateMachine;
+        private StateMachine _stateMachine;
         private Transform _target;
 
         public void Init(Pathfinder pathfinder, Transform target)
@@ -30,6 +32,7 @@ namespace Enemies
             _pathfindMover.Init(pathfinder);
             SetTarget(target);
         }
+        
         public void SetTarget(Transform target)
         {
             _target = target;
@@ -38,23 +41,17 @@ namespace Enemies
         private void Start()
         {
             InitStateMachine();
-            
         }
 
         private void InitStateMachine()
         {
-            var farCondition = new OutsideDistanceCondition(() => transform.position,
-                () => _target.position, _exitChaseStateDistance);
-            var nearCondition = new InsideDistanceCondition(() => transform.position,
-                () => FindObjectOfType<Player>().transform.position, _enterChaseStateDistance);
-            
             var randomWalkState = new RandomWalkState(_view, transform, _pathfindMover, _randomWalkDistance, _randomWalkPeriod);
-            var chaseState = new ChaseTargetState(transform, _view, () => _target.position, _pathfindMover, _chaseMinPeriod, _chaseMaxPeriod);
+            var chaseState = new ChaseTargetState(transform, _view, _weapon, _target, _pathfindMover, _chaseMinPeriod, _chaseMaxPeriod);
+            
+            randomWalkState.SetTransitions(new Transition(chaseState, new InsideDistanceCondition(transform, _target, _enterChaseStateDistance)));
+            chaseState.SetTransitions(new Transition(randomWalkState, new OutsideDistanceCondition(transform, _target, _exitChaseStateDistance)));
 
-            randomWalkState.SetTransitions(new Transition(chaseState, nearCondition));
-            chaseState.SetTransitions(new Transition(randomWalkState, farCondition));
-
-            _stateMachine = new EnemyStateMachine.EnemyStateMachine(randomWalkState);
+            _stateMachine = new StateMachine(randomWalkState);
         }
         
         private void Update()
