@@ -2,11 +2,11 @@ using Enemies.EnemyStateMachine.States;
 
 namespace Enemies.EnemyStateMachine
 {
-    public class EnemyStateMachine
+    public class StateMachine
     {
         private State _currentState;
 
-        public EnemyStateMachine(State defaultState)
+        public StateMachine(State defaultState)
         {
             SetActiveState(defaultState);
         }

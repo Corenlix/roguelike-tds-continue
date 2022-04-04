@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1011866672029635269}
   - component: {fileID: 6195414197846888785}
   - component: {fileID: 8984560461036221801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,8 +202,8 @@ GameObject:
   - component: {fileID: 7678973447946688566}
   - component: {fileID: -4824017709406069929}
   - component: {fileID: -8651145964778396903}
-  m_Layer: 0
-  m_Name: ShotGunBullet
+  m_Layer: 7
+  m_Name: ShotgunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e6d9d51027c8c40905184f0ec4c403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletExplosion: {fileID: 1563694292948830675, guid: 583d124ab0684774f90d97b45ff1c06a, type: 3}
+  _bulletExplosion: {fileID: 1563694292948830675, guid: 583d124ab0684774f90d97b45ff1c06a, type: 3}
   _speed: 20
-  damage: 2
-  _damagePopup: {fileID: -6466338246075112756, guid: ddc610da88023a24982796f48e65c561, type: 3}
+  _damage: 3

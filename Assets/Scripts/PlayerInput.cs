@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerInput
 {
     private RigidbodyMover _mover;
-    private Weapon.Weapon _weapon;
+    private Weapons.Weapon _weapon;
 
-    public PlayerInput(RigidbodyMover mover, Weapon.Weapon weapon)
+    public PlayerInput(RigidbodyMover mover, Weapons.Weapon weapon)
     {
         _mover = mover;
         _weapon = weapon;

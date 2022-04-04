@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Weapons;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -11,19 +12,21 @@ namespace Enemies.EnemyStateMachine.States
         private readonly float _maxWalkPeriod;
         private readonly PathfindMover _pathfindMover;
         private readonly Transform _transform;
-        private readonly Func<Vector2> _targetPositionFunc;
+        private readonly Transform _target;
         private readonly EntityView _entityView;
+        private Weapon _weapon;
         
         private float _timeRemainToWalk;
-        
-        public ChaseTargetState(Transform transform, EntityView entityView, Func<Vector2> targetPositionFunc, PathfindMover pathfindMover, float minWalkPeriod, float maxWalkPeriod)
+
+        public ChaseTargetState(Transform transform, EntityView entityView, Weapon weapon, Transform target, PathfindMover pathfindMover, float minWalkPeriod, float maxWalkPeriod)
         {
             _transform = transform;
             _pathfindMover = pathfindMover;
             _minWalkPeriod = minWalkPeriod;
             _maxWalkPeriod = maxWalkPeriod;
-            _targetPositionFunc = targetPositionFunc;
+            _target = target;
             _entityView = entityView;
+            _weapon = weapon;
         }
 
         public override void Enter()
@@ -48,18 +51,18 @@ namespace Enemies.EnemyStateMachine.States
 
         private void TryAttack()
         {
-            var targetPos = Object.FindObjectOfType<Player>().transform.position;
+            var targetPos = _target.position;
             _entityView.LookAt(targetPos);
-
-            //attack
+            _weapon.AimTo(targetPos);
+            _weapon.Shoot();
         }
         
         private Vector2 GetDestination()
         {
             var currentPosition = _transform.position;
-            var targetPosition = _targetPositionFunc();
-            return new Vector2(Random.Range(Mathf.Min(currentPosition.x, targetPosition.x) - 3, Mathf.Max(currentPosition.x, targetPosition.x) + 3),
-                Random.Range(Mathf.Min(currentPosition.y, targetPosition.y) - 3, Mathf.Max(currentPosition.y, targetPosition.y) + 3));
+            var targetPosition = _target.transform.position;
+            return new Vector2(Random.Range(Mathf.Min(currentPosition.x, targetPosition.x) - 2, Mathf.Max(currentPosition.x, targetPosition.x) + 2),
+                Random.Range(Mathf.Min(currentPosition.y, targetPosition.y) - 2, Mathf.Max(currentPosition.y, targetPosition.y) + 2));
         }
     
         public override void Exit()

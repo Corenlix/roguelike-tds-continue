@@ -1,28 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-public class DamagePopup : MonoBehaviour
+namespace Popup
 {
-   private Animation _animation;
-   
-   private void Awake()
+   public class DamagePopup : MonoBehaviour
    {
-      _animation = GetComponent<Animation>();
-   }
-
-   private void Start()
-   {
-      _animation.Play();
+      [SerializeField] private TextMeshPro _damageText;
       
-   }
-   
-   private void Destroy()
-   {
-      Destroy(gameObject);
+      public void Init(int damage)
+      {
+         _damageText.text = damage.ToString();
+      }
+      
+      private void Destroy()
+      {
+         Destroy(gameObject);
+      }
    }
 }

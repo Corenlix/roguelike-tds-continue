@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c417213fcf8cdd4fa49350b68fb2c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageText: {fileID: 1762297778964477323}
 --- !u!111 &6339409030797447679
 Animation:
   m_ObjectHideFlags: 0
@@ -73,7 +74,7 @@ GameObject:
   - component: {fileID: 7680505028607314540}
   - component: {fileID: 1762297778964477323}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

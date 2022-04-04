@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7367941044288361909}
   - component: {fileID: 7367941044288361898}
   - component: {fileID: 6066731933093202689}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,12 +78,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _randomWalkDistance: 3
   _randomWalkPeriod: 2
-  _enterChaseStateDistance: 12
+  _enterChaseStateDistance: 5
   _chaseMinPeriod: 1
-  _chaseMaxPeriod: 20
-  _exitChaseStateDistance: 20
+  _chaseMaxPeriod: 4
+  _exitChaseStateDistance: 8
   _pathfindMover: {fileID: 7367941044288361909}
   _view: {fileID: 7367941044288361905}
+  _weapon: {fileID: 3235685661467645687}
 --- !u!114 &7367941044288361909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +133,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0076618195, y: 0.78320694}
+  m_Offset: {x: 0.006539345, y: 0.6672311}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -143,7 +144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75481796, y: 1.1188316}
+  m_Size: {x: 0.87789345, y: 1.492795}
   m_EdgeRadius: 0
 --- !u!1 &7367941044494058742
 GameObject:
@@ -157,7 +158,7 @@ GameObject:
   - component: {fileID: 7367941044494058739}
   - component: {fileID: 7367941044494058737}
   - component: {fileID: 7367941044494058736}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crocoman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +175,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4939376788762176971}
   m_Father: {fileID: 7367941044288361904}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -274,3 +276,76 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7531395, y: 0.26924133}
   m_EdgeRadius: 0
+--- !u!1001 &8610590184472906228
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7367941044494058738}
+    m_Modifications:
+    - target: {fileID: 3743273189577565244, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_Name
+      value: Bloody Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565244, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565247, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565247, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565247, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565247, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565247, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565247, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273189577565247, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3743273190665022208, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600448367705431811, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: _delay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600448367705431811, guid: 047a954be79b068409bd86f40598802d, type: 3}
+      propertyPath: _interactiveLayers.m_Bits
+      value: 65
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 047a954be79b068409bd86f40598802d, type: 3}
+--- !u!4 &4939376788762176971 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3743273189577565247, guid: 047a954be79b068409bd86f40598802d, type: 3}
+  m_PrefabInstance: {fileID: 8610590184472906228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3235685661467645687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6600448367705431811, guid: 047a954be79b068409bd86f40598802d, type: 3}
+  m_PrefabInstance: {fileID: 8610590184472906228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3414216d3efe91343a1491df362d8a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

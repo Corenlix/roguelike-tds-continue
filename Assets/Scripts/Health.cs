@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _health;
      
-    public void DealDamaged(int damage)
+    public void DealDamage(int damage)
     {
         _health -= damage;
         
@@ -23,15 +23,16 @@ public class Health : MonoBehaviour
         if(_health <= 0)
             OnDied();
     }
+    
     private void ResetHealth()
     {
         _health = _maxHealth;
         HealthChanged?.Invoke();
     }
+    
     private void OnDied()
     {
         Died?.Invoke();
-        Destroy(gameObject);
     }
 
     private void Start()

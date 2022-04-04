@@ -1,14 +1,14 @@
-using Enemies;
+using Popup;
 using UnityEngine;
 
-namespace Weapon
+namespace Weapons
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] private ParticleSystem bulletExplosion;
+        [SerializeField] private ParticleSystem _bulletExplosion;
         [SerializeField] private float _speed;
-        [SerializeField] private int damage;
+        [SerializeField] private int _damage;
 
         private Rigidbody2D _rigidbody2D;
         private LayerMask _interactiveLayers;
@@ -36,12 +36,11 @@ namespace Weapon
 
             if(other.TryGetComponent(out Health health))
             {
-               health.DealDamaged(damage);
-               
-               PopupSpawner.Instance.SpawnPopup(other.transform.position);
+               health.DealDamage(_damage);
+               PopupSpawner.Instance.SpawnPopup(other.transform.position, _damage);
             }
-            Instantiate(bulletExplosion, transform.position, Quaternion.identity);
             
+            Instantiate(_bulletExplosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
