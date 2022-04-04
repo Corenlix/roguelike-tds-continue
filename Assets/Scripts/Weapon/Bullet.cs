@@ -1,3 +1,4 @@
+using System;
 using Enemies;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Weapon
         [SerializeField] private ParticleSystem bulletExplosion;
         [SerializeField] private float _speed;
         [SerializeField] private int damage;
+        public static event Action OnShakeCamera;
 
         private Rigidbody2D _rigidbody2D;
         private LayerMask _interactiveLayers;
@@ -30,18 +32,16 @@ namespace Weapon
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-           
             if ((_interactiveLayers.value & (1 << other.gameObject.layer)) == 0)
                 return;
-
+            
+            OnShakeCamera?.Invoke();
             if(other.TryGetComponent(out Health health))
             {
                health.DealDamaged(damage);
-               
                PopupSpawner.Instance.SpawnPopup(other.transform.position);
             }
             Instantiate(bulletExplosion, transform.position, Quaternion.identity);
-            
             Destroy(gameObject);
         }
     }
