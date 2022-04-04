@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using Weapon;
+using Weapons;
 
 public class CameraShaker : MonoBehaviour
 {
