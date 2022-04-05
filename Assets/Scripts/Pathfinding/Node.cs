@@ -27,10 +27,10 @@ namespace Pathfinding
             PreviousNode = null;
         }
         
-        public List<Vector2Int> GetPathToRootNode()
+        public List<Vector2> GetPathToRootNode()
         {
-            var path = new List<Vector2Int>();
-            path.Add(new Vector2Int(X, Y));
+            var path = new List<Vector2>();
+            path.Add(new Vector2(X + 0.5f, Y + 0.5f));
 
             if (PreviousNode != null)
                 path.AddRange(PreviousNode.GetPathToRootNode());

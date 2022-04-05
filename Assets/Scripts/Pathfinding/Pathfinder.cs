@@ -21,7 +21,7 @@ namespace Pathfinding
             GenerateNodesFromLevel();
         }
         
-        public List<Vector2Int> FindPath(Vector2 pointA, Vector2 pointB)
+        public List<Vector2> FindPath(Vector2 pointA, Vector2 pointB)
         {
             pointA.x = Mathf.Clamp((int)pointA.x, 0, _nodes.GetLength(0) - 1);
             pointA.y = Mathf.Clamp((int)pointA.y, 0, _nodes.GetLength(1) - 1);
@@ -149,13 +149,13 @@ namespace Pathfinding
             }
         }
 
-        private static void DebugDrawPath(List<Vector2Int> path)
+        private static void DebugDrawPath(List<Vector2> path)
         {
             for (int i = 0; i < path.Count - 1; i++)
             {
                 var a = new Vector3(path[i].x, path[i].y);
                 var b = new Vector3(path[i + 1].x, path[i + 1].y);
-                Debug.DrawLine(a, b, Color.green, 3);
+                Debug.DrawLine(a, b, Color.green, 0.3f);
             }
         }
     }

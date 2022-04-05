@@ -23,10 +23,11 @@ public class RigidbodyMover : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Vector2 velocity = _moveDirection * _speed;
         _rigidbody.velocity = velocity;
         _view.SetRunState(velocity != Vector2.zero);
+        Debug.DrawLine(transform.position, transform.position + (Vector3)velocity.normalized, Color.yellow, 0.1f);
     }
 }

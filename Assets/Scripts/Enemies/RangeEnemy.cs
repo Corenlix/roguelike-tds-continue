@@ -53,12 +53,11 @@ namespace Enemies
             var idleState = new IdleState(_view, _weapon, _target);
            
             randomWalkState.AddTransition(new Transition(chaseShootState, new InsideDistanceCondition(transform, _target, _walkToChaseDistance)));
-            randomWalkState.AddTransition(new Transition(idleState, new InsideDistanceCondition(transform, _target, _chaseToIdleDistance)));
             
             chaseShootState.AddTransition(new Transition(randomWalkState, new OutsideDistanceCondition(transform, _target, _chaseToWalkDistance)));
             chaseShootState.AddTransition(new Transition(idleState, new InsideDistanceCondition(transform, _target, _chaseToIdleDistance)));
 
-            idleState.AddTransition(new Transition(chaseShootState, new InsideDistanceCondition(transform, _target, _idleToChaseDistance)));
+            idleState.AddTransition(new Transition(chaseShootState, new OutsideDistanceCondition(transform, _target, _idleToChaseDistance)));
             
             _stateMachine = new StateMachine(randomWalkState);
         }

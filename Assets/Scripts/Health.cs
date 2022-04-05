@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     public int CurrentHealth => _health;
 
     [SerializeField] private int _maxHealth;
-    [SerializeField] private int _health;
+    private int _health;
      
     public void DealDamage(int damage)
     {

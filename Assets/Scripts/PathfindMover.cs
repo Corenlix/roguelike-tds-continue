@@ -5,16 +5,17 @@ using UnityEngine;
 public class PathfindMover : RigidbodyMover
 {
     private Pathfinder _pathfinder;
-    private List<Vector2Int> _pathPoints;
+    private List<Vector2> _pathPoints;
 
     public void Init(Pathfinder pathfinder)
     {
         _pathfinder = pathfinder;
     }
     
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
         UpdateVelocity();
+        base.FixedUpdate();
     }
 
     public void SetMovePoint(Vector2 position)
@@ -35,7 +36,7 @@ public class PathfindMover : RigidbodyMover
     {
         if (_pathPoints == null || _pathPoints.Count == 0) return;
         var direction = GetMoveDirection();
-        if (direction.sqrMagnitude < 0.1f)
+        if (direction.sqrMagnitude < 0.01f)
         {
             _pathPoints.RemoveAt(0);
             if (_pathPoints.Count > 0)
