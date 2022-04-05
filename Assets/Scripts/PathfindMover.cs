@@ -12,7 +12,7 @@ public class PathfindMover : RigidbodyMover
         _pathfinder = pathfinder;
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateVelocity();
     }
