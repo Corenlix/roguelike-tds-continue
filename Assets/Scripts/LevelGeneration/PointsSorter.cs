@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using DelaunatorSharp;
 using System.Linq;
-using UnityEngine;
 
 namespace LevelGeneration
 {
@@ -18,18 +17,18 @@ namespace LevelGeneration
             _pointsToCheck = new List<T>();
 
             AddFirstNode();
-            FindPaths();
+            Sort();
 
             return _checkedRooms;
         }
 
         private void AddFirstNode()
         {
-            var firstRoom = ((T) _edges.First(x =>_edges.FirstOrDefault(y => y.Q == x.P) == null).P);
+            var firstRoom = (T) _edges.FirstOrDefault(x =>_edges.FirstOrDefault(y => y.Q == x.P) == null)?.P ?? (T) _edges.FirstOrDefault(x => _edges.FirstOrDefault(y => y.P == x.Q) == null)?.Q ?? (T)_edges[0].P;
             _pointsToCheck.Add(firstRoom);
         }
 
-        private void FindPaths()
+        private void Sort()
         {
             while (_pointsToCheck.Count > 0)
             {
