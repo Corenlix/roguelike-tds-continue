@@ -1,4 +1,5 @@
 using Enemies.EnemyStateMachine.States;
+using UnityEngine;
 
 namespace Enemies.EnemyStateMachine
 {
@@ -14,7 +15,6 @@ namespace Enemies.EnemyStateMachine
         public void Tick()
         {
             _currentState.Tick();
-
             if (_currentState.IsReadyToTransit(out State nextState))
             {
                 SetActiveState(nextState);

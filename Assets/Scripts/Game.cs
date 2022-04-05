@@ -14,7 +14,7 @@ public class Game : MonoBehaviour
     [SerializeField] private RangeEnemy _enemy;
     private Level _level;
     private Pathfinder _pathfinder;
-    
+
     private void Start()
     {
         _levelGenerator.LevelCreated += OnLevelGenerate;

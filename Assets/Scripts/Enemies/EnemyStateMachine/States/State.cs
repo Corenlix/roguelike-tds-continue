@@ -1,12 +1,19 @@
-namespace Enemies.EnemyStateMachine.States
+using System.Collections.Generic;
+ 
+ namespace Enemies.EnemyStateMachine.States
 {
     public abstract class State
     {
-        private Transition[] _transitions;
+        private List<Transition> _transitions = new List<Transition>();
 
-        public void SetTransitions(params Transition[] transitions)
+        public void SetTransitions(List<Transition> transitions)
         {
             _transitions = transitions;
+        }
+
+        public void AddTransition(Transition transition)
+        {
+            _transitions.Add(transition);
         }
 
         public bool IsReadyToTransit(out State nextState)
