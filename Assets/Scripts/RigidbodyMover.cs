@@ -15,7 +15,7 @@ public class RigidbodyMover : MonoBehaviour
 
     public void MoveByDirection(Vector2 direction)
     {
-        _moveDirection = direction == Vector2.zero ? Vector2.zero : direction.normalized;
+        _moveDirection = direction.normalized;
     }
     
     private void Awake()

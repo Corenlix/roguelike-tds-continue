@@ -2,22 +2,23 @@ using UnityEngine;
 
 public class PlayerInput
 {
-    private RigidbodyMover _mover;
-    private Weapons.Weapon _weapon;
+    private readonly Player _player;
+    private readonly Crosshair _crosshair;
 
-    public PlayerInput(RigidbodyMover mover, Weapons.Weapon weapon)
+    public PlayerInput(Player player, Crosshair crosshair)
     {
-        _mover = mover;
-        _weapon = weapon;
+        _player = player;
+        _crosshair = crosshair;
     }
 
     public void ReadInput()
     {
         Vector2 moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        _mover.MoveByDirection(moveDirection);
+        _player.Move(moveDirection);
+        
+        _player.LookTo(_crosshair.transform.position);
+        
         if (Input.GetMouseButton(0))
-        {
-            _weapon.Shoot();
-        }
+            _player.Shoot();
     }
 }

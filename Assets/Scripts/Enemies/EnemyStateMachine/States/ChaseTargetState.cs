@@ -52,9 +52,9 @@ namespace Enemies.EnemyStateMachine.States
         private void TryAttack()
         {
             var targetPos = _target.position;
-            _entityView.LookAt(targetPos);
+            _entityView.LookTo(targetPos);
             _weapon.AimTo(targetPos);
-            _weapon.Shoot();
+            _weapon.TryShoot();
         }
         
         private Vector2 GetDestination()

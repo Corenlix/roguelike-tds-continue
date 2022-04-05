@@ -5,51 +5,45 @@ using Cinemachine;
 using UnityEngine;
 using Weapons;
 
+[RequireComponent(typeof(CinemachineVirtualCamera))]
 public class CameraShaker : MonoBehaviour
 {
-    private float _amplitudeGainShake = 1f;
-    private float _frequencyGainShake = 0f;
-    private float _timeShake;
-    
+    [SerializeField] private float _timeModifier = 1 / 25f;
+    [SerializeField] private float _offsetModifier = 1 / 50f;
+    private float _remainShakeTime;
+    private float _shakeTime;
+    private float _intensity;
+    private Vector2 _direction;
+
     private CinemachineVirtualCamera _camera;
-    private CinemachineBasicMultiChannelPerlin _channelPerlin;
+    private CinemachineBasicMultiChannelPerlin _perlin;
+    private CinemachineFramingTransposer _transposer;
+
     private void Awake()
     {
         _camera = GetComponent<CinemachineVirtualCamera>();
-        _channelPerlin = _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-    }
-    private void SetupTimeShake(float time)
-    {
-        _timeShake = time;
-    }
-    private void OnEnable()
-    {
-        Bullet.OnShakeCamera += Shake;
+        _transposer = _camera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        _perlin = _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    private void OnDisable()
+    public void Shake(float intensity, Vector2 direction)
     {
-        Bullet.OnShakeCamera -= Shake;
+        _remainShakeTime = intensity * _timeModifier;
+        _shakeTime = _remainShakeTime;
+        _direction = direction.normalized;
+        _intensity = intensity;
     }
 
-    private void Shake()
-    {
-        _channelPerlin.m_AmplitudeGain = _amplitudeGainShake;
-        _channelPerlin.m_FrequencyGain = _frequencyGainShake;
-        SetupTimeShake(0.1f);
-    }
-    
     private void Update()
     {
-        if (_timeShake > 0)
-        {
-            _timeShake -= Time.deltaTime;
-            if (_timeShake <= 0)
-            {
-                _channelPerlin = _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-                _channelPerlin.m_AmplitudeGain = 0f;
-                _channelPerlin.m_FrequencyGain = 0f;
-            }
-        }
+        if (_shakeTime <= 0)
+            return;
+
+        _remainShakeTime -= Time.deltaTime;
+        
+        float currentIntensity = Mathf.Lerp(_intensity, 0f, 1 - (_remainShakeTime / _shakeTime));
+        _transposer.m_ScreenX = -_direction.x * currentIntensity * _offsetModifier + 0.5f;
+        _transposer.m_ScreenY = _direction.y * currentIntensity / _offsetModifier + 0.5f;
+        _perlin.m_AmplitudeGain = currentIntensity;
     }
 }

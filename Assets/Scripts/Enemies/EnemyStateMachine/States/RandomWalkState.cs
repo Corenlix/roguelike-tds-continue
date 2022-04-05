@@ -42,7 +42,7 @@ namespace Enemies.EnemyStateMachine.States
             Vector2 newPoint = _transform.position; 
             newPoint += new Vector2(Random.Range(-_walkDistance, _walkDistance), Random.Range(-_walkDistance, _walkDistance));
             _moverToPosition.SetMovePoint(newPoint);
-            _entityView.LookAt(newPoint);
+            _entityView.LookTo(newPoint);
         }
         
         public override void Exit()

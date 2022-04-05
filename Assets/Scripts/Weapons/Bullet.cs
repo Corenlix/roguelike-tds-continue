@@ -10,8 +10,7 @@ namespace Weapons
         [SerializeField] private ParticleSystem _bulletExplosion;
         [SerializeField] private float _speed;
         [SerializeField] private int _damage;
-        public static event Action OnShakeCamera;
-
+        
         private Rigidbody2D _rigidbody2D;
         private LayerMask _interactiveLayers;
         
@@ -36,7 +35,6 @@ namespace Weapons
             if ((_interactiveLayers.value & (1 << other.gameObject.layer)) == 0)
                 return;
             
-            OnShakeCamera?.Invoke();
             if(other.TryGetComponent(out Health health))
             {
                health.DealDamage(_damage);

@@ -5,10 +5,13 @@ namespace Weapons
 {
     public class Weapon : MonoBehaviour
     {
+        public float ShakeIntensity => _shakeIntensity;
+        
         [SerializeField] private Bullet _bulletPrefab;
+        [SerializeField] private Transform _shootPoint;
+        [SerializeField] private float _shakeIntensity;
         [SerializeField] private float _delay;
         [SerializeField] private AmmoType _ammoType;
-        [SerializeField] private Transform _shootPoint;
         [SerializeField] private LayerMask _interactiveLayers;
         private Vector3 _targetPosition;
         private float _timeRemainToShoot;
@@ -19,13 +22,14 @@ namespace Weapons
             transform.rotation = transform.LookAt2DWithFlip(_targetPosition);
         }
         
-        public void Shoot()
+        public bool TryShoot()
         {
             if (_timeRemainToShoot > 0)
-                return;
+                return false;
             
             SpawnBullet();
             _timeRemainToShoot = _delay;
+            return true;
         }
 
         private void Update()

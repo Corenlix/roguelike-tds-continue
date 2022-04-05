@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
 {
     public Level Level => _level;
     
-    [SerializeField] private LevelGenerator levelLevelGenerator; 
+    [SerializeField] private LevelGenerator _levelGenerator; 
     [SerializeField] private LevelDrawer _levelDrawer;
     [SerializeField] private Player _player;
     [SerializeField] private RangeEnemy _enemy;
@@ -17,14 +17,14 @@ public class Game : MonoBehaviour
     
     private void Start()
     {
-        levelLevelGenerator.LevelCreated += OnLevelLevelGenerate;
-        levelLevelGenerator.Generate();
+        _levelGenerator.LevelCreated += OnLevelGenerate;
+        _levelGenerator.Generate();
     }
 
-    private void OnLevelLevelGenerate(Level level)
+    private void OnLevelGenerate(Level level)
     {
         _level = level;
-        levelLevelGenerator.LevelCreated -= OnLevelLevelGenerate;
+        _levelGenerator.LevelCreated -= OnLevelGenerate;
         _levelDrawer.DrawLevel(_level.LevelTable);
         _pathfinder = new Pathfinder(_level);
         SpawnPlayer();

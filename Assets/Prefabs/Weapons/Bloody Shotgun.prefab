@@ -97,9 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: -8651145964778396903, guid: 421ae448bb801e34ba878d218adacc99, type: 3}
-  _delay: 0.3
-  _ammoType: 0
   _shootPoint: {fileID: 3743273190665022211}
+  _shakeIntensity: 0.3
+  _delay: 0.5
+  _ammoType: 0
   _interactiveLayers:
     serializedVersion: 2
     m_Bits: 257

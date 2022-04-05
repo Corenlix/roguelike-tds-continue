@@ -38,4 +38,10 @@ public static class RotationHelper
         return new Vector2(vector.x * angleCos - vector.y * angleSin, 
             vector.y * angleCos + vector.x * angleSin);
     }
+
+    public static Vector2 DirectionWithFlip(this Transform transform, Vector2 direction)
+    {
+        direction *= Mathf.Sign(transform.lossyScale.x);
+        return direction;
+    }
 }
