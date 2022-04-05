@@ -73,13 +73,14 @@ namespace LevelGeneration
             _levelGraph = new LevelGraph<RoomGameObject>(_mainRooms, _extraConnections);
             _levelGraph.Edges.ForEach(x => Debug.DrawLine(new Vector3((float)x.P.X, (float)x.P.Y), new Vector3((float)x.Q.X, (float)x.Q.Y), Color.green, 50000000));
             _corridors = new CorridorsSpawner(corridorPrefab, transform).Spawn(_levelGraph.Edges);
+            _mainRooms = new PointsSorter<RoomGameObject>().Sort(_levelGraph.Edges);
             Invoke(nameof(FinalGenerate), 0.5f);
         }
-    
+        
         private void FinalGenerate()
         {
             ClearRooms();
-            var level = new LevelDataGenerator().Generate(_rooms, _corridors);
+            var level = new LevelDataGenerator().Generate(_rooms,   _mainRooms, _corridors);
             new LevelScaler().Scale(level, 2);
 
             LevelCreated?.Invoke(level);

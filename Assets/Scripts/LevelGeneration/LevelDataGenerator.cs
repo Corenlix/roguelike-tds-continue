@@ -12,7 +12,7 @@ namespace LevelGeneration
         private int _xOffset;
         private int _yOffset;
 
-        public Level Generate(List<RoomGameObject> rooms, List<CorridorGameObject> corridors)
+        public Level Generate(List<RoomGameObject> rooms, List<RoomGameObject> mainRooms, List<CorridorGameObject> corridors)
         {
             _rooms = rooms;
             _corridors = corridors;
@@ -24,7 +24,7 @@ namespace LevelGeneration
             var roomsData = new List<Room>();
             _rooms.ForEach(x=>roomsData.Add(x.GetData(_xOffset, _yOffset)));
             var mainRoomsData = new List<Room>();
-            _rooms.ForEach(x=>mainRoomsData.Add(x.GetData(_xOffset, _yOffset)));
+            mainRooms.ForEach(x=>mainRoomsData.Add(x.GetData(_xOffset, _yOffset)));
             var corridorsData = new List<Corridor>();
             _corridors.ForEach(x=>corridorsData.Add(x.GetData(_xOffset, _yOffset)));
             
