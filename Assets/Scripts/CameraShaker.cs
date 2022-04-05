@@ -43,7 +43,7 @@ public class CameraShaker : MonoBehaviour
         
         float currentIntensity = Mathf.Lerp(_intensity, 0f, 1 - (_remainShakeTime / _shakeTime));
         _transposer.m_ScreenX = -_direction.x * currentIntensity * _offsetModifier + 0.5f;
-        _transposer.m_ScreenY = _direction.y * currentIntensity / _offsetModifier + 0.5f;
+        _transposer.m_ScreenY = _direction.y * currentIntensity * _offsetModifier + 0.5f;
         _perlin.m_AmplitudeGain = currentIntensity;
     }
 }
