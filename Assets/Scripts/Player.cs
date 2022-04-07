@@ -1,3 +1,5 @@
+using System;
+using HitBoxes;
 using UnityEngine;
 using Weapons;
 
@@ -7,12 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] private EntityView _playerView;
     [SerializeField] private Crosshair _crosshair;
     [SerializeField] private Weapon _weapon;
+    [SerializeField] private Health _health;
     
     private PlayerInput _input;
 
     private void Start()
     {
         _input = new PlayerInput(this, _crosshair);
+        _health.Died += OnDied;
     }
 
     private void Update()
@@ -32,5 +36,11 @@ public class Player : MonoBehaviour
     {
         if(_weapon.TryShoot())
             _playerView.Shoot(_weapon);
+    }
+
+    private void OnDied()
+    {
+        Destroy(gameObject);
+        _health.Died -= OnDied;
     }
 }

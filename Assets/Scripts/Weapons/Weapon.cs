@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Weapons
@@ -6,13 +5,12 @@ namespace Weapons
     public class Weapon : MonoBehaviour
     {
         public float ShakeIntensity => _shakeIntensity;
-        
+
         [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private float _shakeIntensity;
         [SerializeField] private float _delay;
         [SerializeField] private AmmoType _ammoType;
-        [SerializeField] private LayerMask _interactiveLayers;
         private Vector3 _targetPosition;
         private float _timeRemainToShoot;
 
@@ -40,7 +38,6 @@ namespace Weapons
         private void SpawnBullet()
         {
             Bullet bullet =  Instantiate(_bulletPrefab, _shootPoint.position, transform.RotationWithFlip());
-            bullet.Init(_interactiveLayers);
         }
     }
 }

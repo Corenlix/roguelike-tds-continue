@@ -725,12 +725,13 @@ GameObject:
   m_Component:
   - component: {fileID: 368899990}
   - component: {fileID: 368899989}
+  - component: {fileID: 368899996}
   - component: {fileID: 368899991}
   - component: {fileID: 368899992}
   - component: {fileID: 368899994}
   - component: {fileID: 368899993}
   - component: {fileID: 368899995}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,6 +754,7 @@ MonoBehaviour:
   _playerView: {fileID: 368899991}
   _crosshair: {fileID: 318083685}
   _weapon: {fileID: 1740489242}
+  _health: {fileID: 368899994}
 --- !u!4 &368899990
 Transform:
   m_ObjectHideFlags: 0
@@ -829,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc91cb693162a58429c1d39b1aec101b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 5
+  _maxHealth: 25
 --- !u!61 &368899995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -856,6 +858,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.70038795, y: 1.3503208}
   m_EdgeRadius: 0
+--- !u!114 &368899996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368899988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9600ce036ad0f9d4e9eeb3a9df442e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 368899994}
 --- !u!1 &485211716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,7 +1313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3743273189577565244, guid: 047a954be79b068409bd86f40598802d, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3743273189577565246, guid: 047a954be79b068409bd86f40598802d, type: 3}
       propertyPath: _shootEffectPrefab
@@ -1358,7 +1373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3743273190665022208, guid: 047a954be79b068409bd86f40598802d, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3743273190665022211, guid: 047a954be79b068409bd86f40598802d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1565,6 +1580,7 @@ GameObject:
   - component: {fileID: 1228368207}
   - component: {fileID: 1228368206}
   - component: {fileID: 1228368205}
+  - component: {fileID: 1228368208}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -1887,6 +1903,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1228368208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228368201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab1a93487194aa4b9f276cc8a011681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1420503008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2227,7 +2255,7 @@ GameObject:
   - component: {fileID: 1954491320}
   - component: {fileID: 1954491319}
   - component: {fileID: 1954491322}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Crocoman
   m_TagString: Untagged
   m_Icon: {fileID: 0}

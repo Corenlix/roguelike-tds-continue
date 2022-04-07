@@ -6,24 +6,22 @@ namespace Enemies.EnemyStateMachine.States
     public class IdleState : State
     {
         private readonly Transform _target;
-        private readonly EntityView _entityView;
-        private Weapon _weapon;
+        private readonly RangeEnemy _enemy;
         
-        public IdleState(EntityView entityView, Weapon weapon, Transform target)
+        public IdleState(RangeEnemy enemy, Transform target)
         {
+            _enemy = enemy;
             _target = target;
-            _entityView = entityView;
-            _weapon = weapon;
         }
         
         public override void Enter()
         {
-            
+            _enemy.MoveTo(_enemy.transform.position);
         }
 
         public override void Tick()
         {
-            Attack();
+            _enemy.Attack(_target.position);
         }
 
         public override void Exit()
@@ -31,12 +29,5 @@ namespace Enemies.EnemyStateMachine.States
             
         }
 
-        private void Attack()
-        {
-            var target = _target.position;
-            _entityView.LookTo(target);
-            _weapon.AimTo(target);
-            _weapon.TryShoot();
-        }
     }
 }
