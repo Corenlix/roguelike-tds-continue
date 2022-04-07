@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 7367941044288361911}
+  _rigidbodyMover: {fileID: 7367941044288361909}
 --- !u!1 &7367941044494058742
 GameObject:
   m_ObjectHideFlags: 0

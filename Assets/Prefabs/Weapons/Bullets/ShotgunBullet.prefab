@@ -277,5 +277,6 @@ MonoBehaviour:
     TargetTypes: 0100000002000000
     SparklesPrefab: {fileID: 396732857008140490, guid: 583d124ab0684774f90d97b45ff1c06a, type: 3}
     Damage: 10
+    KnockBack: 8
     Bullet: {fileID: 0}
   _speed: 20

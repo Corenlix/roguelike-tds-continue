@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc91cb693162a58429c1d39b1aec101b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 25
+  _maxHealth: 100
 --- !u!61 &368899995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -871,6 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 368899994}
+  _rigidbodyMover: {fileID: 368899992}
 --- !u!1 &485211716
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ namespace HitBoxes
         public List<HitBoxType> TargetTypes;
         public GameObject SparklesPrefab;
         public int Damage;
+        public float KnockBack;
         [HideInInspector] public Transform Bullet;
+        
     }
 }
