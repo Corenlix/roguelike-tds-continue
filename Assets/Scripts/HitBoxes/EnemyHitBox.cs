@@ -14,7 +14,7 @@ namespace HitBoxes
         {
             _health.DealDamage(hitData.Damage);
             _rigidbodyMover.AddForce(new Force(hitData.KnockBack, hitData.Bullet.right));
-            PopupSpawner.Instance.SpawnPopup(transform.position, hitData.Damage);
+            PopupSpawner.Instance.SpawnPopup(PopupType.Damage, transform.position, hitData.Damage.ToString());
         }
     }
 }

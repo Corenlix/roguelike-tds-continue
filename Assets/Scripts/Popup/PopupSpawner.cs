@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -6,9 +7,10 @@ namespace Popup
     public class PopupSpawner : MonoBehaviour
     {
         public static  PopupSpawner Instance => _instance;
-    
-        [SerializeField] private DamagePopup _prefabPopup;
         private static PopupSpawner _instance;
+        
+        [SerializeField] private PopupView _damagePopup;
+        [SerializeField] private PopupView _itemPickPopup;
 
         private void Awake()
         {
@@ -17,10 +19,26 @@ namespace Popup
             _instance = this;
         }
    
-        public void SpawnPopup(Vector2 position, int damage)
+        public void SpawnPopup(PopupType popupType, Vector2 position, string popupText)
         {
-            DamagePopup popup = Instantiate(_prefabPopup, position, quaternion.identity);
-            popup.Init(damage);
+            PopupView popupView = Instantiate(GetPopupFromType(popupType), position, quaternion.identity);
+            popupView.Init(popupText);
         }
+
+        private PopupView GetPopupFromType(PopupType type)
+        {
+            return type switch
+            {
+                PopupType.Damage => _damagePopup,
+                PopupType.ItemPick => _itemPickPopup,
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+        }
+    }
+
+    public enum PopupType
+    {
+        Damage,
+        ItemPick,
     }
 }

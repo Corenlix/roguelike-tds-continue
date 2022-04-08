@@ -1,5 +1,4 @@
-using System;
-using HitBoxes;
+using Items;
 using UnityEngine;
 using Weapons;
 
@@ -7,21 +6,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private RigidbodyMover _mover;
     [SerializeField] private EntityView _playerView;
-    [SerializeField] private Crosshair _crosshair;
+    [SerializeField] private AmmoBelt _ammoBelt;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private Health _health;
-    
-    private PlayerInput _input;
+    [SerializeField] private ItemPicker _itemPicker;
 
     private void Start()
     {
-        _input = new PlayerInput(this, _crosshair);
-        _health.Died += OnDied;
-    }
-
-    private void Update()
-    {
-        _input.ReadInput();
+        _itemPicker.Init(this);
+        _health.Died += OnDie;
     }
 
     public void Move(Vector3 direction) => _mover.MoveByDirection(direction);
@@ -34,13 +27,20 @@ public class Player : MonoBehaviour
     
     public void Shoot()
     {
-        if(_weapon.TryShoot())
-            _playerView.Shoot(_weapon);
+        if (_ammoBelt.GetAmmoCount(_weapon.AmmoType) < _weapon.AmmoPerShoot) return;
+        if (!_weapon.TryShoot()) return;
+        
+        _ammoBelt.SubtractAmmo(_weapon.AmmoType, _weapon.AmmoPerShoot);
+        _playerView.Shoot(_weapon);
     }
 
-    private void OnDied()
+    public void PickItem() => _itemPicker.Pick();
+
+    public void AddAmmo(AmmoType ammoType, int count) => _ammoBelt.AddAmmo(ammoType, count);
+
+    private void OnDie()
     {
         Destroy(gameObject);
-        _health.Died -= OnDied;
+        _health.Died -= OnDie;
     }
 }

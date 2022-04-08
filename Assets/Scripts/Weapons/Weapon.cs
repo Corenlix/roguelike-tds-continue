@@ -4,6 +4,8 @@ namespace Weapons
 {
     public class Weapon : MonoBehaviour
     {
+        public AmmoType AmmoType => _ammoType;
+        public int AmmoPerShoot => _ammoPerShoot;
         public float ShakeIntensity => _shakeIntensity;
 
         [SerializeField] private Bullet _bulletPrefab;
@@ -11,6 +13,7 @@ namespace Weapons
         [SerializeField] private float _shakeIntensity;
         [SerializeField] private float _delay;
         [SerializeField] private AmmoType _ammoType;
+        [SerializeField] private int _ammoPerShoot = 1;
         private Vector3 _targetPosition;
         private float _timeRemainToShoot;
 

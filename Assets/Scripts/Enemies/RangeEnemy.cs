@@ -1,9 +1,7 @@
 using Enemies.EnemyStateMachine;
 using Enemies.EnemyStateMachine.Conditions;
 using Enemies.EnemyStateMachine.States;
-using Pathfinding;
 using UnityEngine;
-using Weapons;
 
 namespace Enemies
 {
