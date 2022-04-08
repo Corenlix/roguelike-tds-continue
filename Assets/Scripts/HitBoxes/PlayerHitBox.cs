@@ -11,7 +11,7 @@ namespace HitBoxes
 
         protected override void Hit(HitData hitData)
         {
-            _rigidbodyMover.AddForce(new Force(hitData.KnockBack, transform.position - hitData.Bullet.position));
+            _rigidbodyMover.AddForce(new Force(hitData.KnockBack, hitData.Bullet.right));
             _health.DealDamage(hitData.Damage);
         }
     }
