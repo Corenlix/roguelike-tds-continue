@@ -13,10 +13,11 @@ public abstract class Enemy : MonoBehaviour
     
     public virtual void Init(Pathfinder pathfinder, Transform target)
     {
-        _health.Died += OnDied;
+        _health.Died += OnDie;
         _pathfindMover.Init(pathfinder);
         SetTarget(target);
     }
+    
     public void SetTarget(Transform target)
     {
         Target = target;
@@ -29,13 +30,13 @@ public abstract class Enemy : MonoBehaviour
         _weapon.TryShoot();
     }
 
-    public void MoveTo(Vector3 destination) => _pathfindMover.SetMovePoint(Target.position);
+    public void MoveTo(Vector3 destination) => _pathfindMover.SetMovePoint(destination);
 
     public void Stop() => _pathfindMover.Reset();
 
-    private void OnDied()
+    private void OnDie()
     {
-        _health.Died -= OnDied;
+        _health.Died -= OnDie;
         Destroy(gameObject);
     }
 }
