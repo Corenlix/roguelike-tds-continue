@@ -1,3 +1,4 @@
+using Entities;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
@@ -21,5 +22,8 @@ public class PlayerInput : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.E))
            _player.PickItem();
+        
+        if(Input.GetKeyDown(KeyCode.Q))
+            _player.SwitchWeapon();
     }
 }

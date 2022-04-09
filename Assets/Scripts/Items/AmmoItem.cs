@@ -1,5 +1,6 @@
+using Entities;
+using Entities.Weapons;
 using UnityEngine;
-using Weapons;
 
 namespace Items
 {

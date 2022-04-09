@@ -1,4 +1,5 @@
-using Enemies;
+using Entities;
+using Entities.Enemies;
 using LevelGeneration;
 using Pathfinding;
 using UnityEngine;
