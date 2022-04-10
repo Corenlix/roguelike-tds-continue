@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+using System.Linq;
 using Entities;
 using Entities.Enemies;
 using LevelGeneration;
 using Pathfinding;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class Game : MonoBehaviour
     [SerializeField] private LevelDrawer _levelDrawer;
     [SerializeField] private Player _player;
     [SerializeField] private RangeEnemy _enemy;
+    [SerializeField] private List<Chest> _chests;
     private Level _level;
     private Pathfinder _pathfinder;
 
@@ -30,6 +33,7 @@ public class Game : MonoBehaviour
         _pathfinder = new Pathfinder(_level);
         SpawnPlayer();
         SpawnEnemies();
+        SpawnChests();
     }
 
     private void SpawnPlayer()
@@ -51,13 +55,22 @@ public class Game : MonoBehaviour
         enemy.Init(_pathfinder, _player.transform);
     }
 
-    private void OnDrawGizmos()
+    private void SpawnChests()
     {
-        if (_level == null)
-            return;
-        foreach (var levelMainRoom in _level.MainRooms)
+        List<Room> rooms = _level.MainRooms.ToList();
+        foreach (var chest in _chests)
         {
-            Gizmos.DrawCube(levelMainRoom.Rect.center, new Vector3(levelMainRoom.Rect.width, levelMainRoom.Rect.height));
+            var roomToSpawn = rooms[Random.Range(1, rooms.Count)];
+            SpawnChest(roomToSpawn, chest);
+            rooms.Remove(roomToSpawn);
         }
     }
+    
+    private void SpawnChest(Room spawnRoom, Chest chest)
+    {
+        float posX = Random.Range(spawnRoom.Rect.xMin, spawnRoom.Rect.xMax);
+        float posY = Random.Range(spawnRoom.Rect.yMin, spawnRoom.Rect.yMax);
+        
+        Instantiate(chest, new Vector3(posX, posY), Quaternion.identity);
+    }   
 }

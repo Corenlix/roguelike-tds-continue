@@ -1148,7 +1148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0.005974545, y: 0.000059412847, z: -0.00000035497106, w: 0.9999822}
-  m_LocalPosition: {x: -28.406752, y: -12.188909, z: -9.999286}
+  m_LocalPosition: {x: -28.40675, y: -12.18886, z: -10.00338}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1239,6 +1239,9 @@ MonoBehaviour:
   _levelDrawer: {fileID: 558670836}
   _player: {fileID: 368899989}
   _enemy: {fileID: 7367941044288361908, guid: 74480140befbc2b429ae98074bd6ed2f, type: 3}
+  _chests:
+  - {fileID: 5842811036563242308, guid: 944338e0a99eb1b46ac85c7e97d69761, type: 3}
+  - {fileID: 5842811036563242308, guid: 944338e0a99eb1b46ac85c7e97d69761, type: 3}
 --- !u!4 &558670838
 Transform:
   m_ObjectHideFlags: 0
@@ -2435,7 +2438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420503008}
   m_LocalRotation: {x: 0.005974545, y: 0.000059412847, z: -0.00000035497106, w: 0.9999822}
-  m_LocalPosition: {x: -28.406752, y: -12.188909, z: -9.999286}
+  m_LocalPosition: {x: -28.40675, y: -12.18886, z: -10.00338}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 909137796}
