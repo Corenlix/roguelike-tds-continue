@@ -1655,7 +1655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1735,17 +1734,6 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &691297979
 CanvasRenderer:
-=======
-  _levelGenerator: {fileID: 1032417407}
-  _levelDrawer: {fileID: 558670836}
-  _player: {fileID: 368899989}
-  _enemy: {fileID: 7367941044288361908, guid: 74480140befbc2b429ae98074bd6ed2f, type: 3}
-  _chests:
-  - {fileID: 5842811036563242308, guid: 944338e0a99eb1b46ac85c7e97d69761, type: 3}
-  - {fileID: 5842811036563242308, guid: 944338e0a99eb1b46ac85c7e97d69761, type: 3}
---- !u!4 &558670838
-Transform:
->>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2901,7 +2889,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.025334358, y: 0.06218481}
