@@ -35,7 +35,7 @@ namespace LevelGeneration
 
         private void ScaleRooms()
         {
-            foreach (var levelRoom in _level.Rooms)
+            foreach (var levelRoom in _level.SecondaryRooms)
             {
                 levelRoom.Rect = ScaleRect(levelRoom.Rect);
             }

@@ -1,14 +1,7 @@
-<<<<<<< Updated upstream
 using Entities;
 using Entities.Enemies;
-=======
-using System.Collections.Generic;
-using System.Linq;
-using Enemies;
->>>>>>> Stashed changes
 using LevelGeneration;
 using Pathfinding;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,7 +13,6 @@ public class Game : MonoBehaviour
     [SerializeField] private LevelDrawer _levelDrawer;
     [SerializeField] private Player _player;
     [SerializeField] private RangeEnemy _enemy;
-    [SerializeField] private List<Chest> _chests;
     private Level _level;
     private Pathfinder _pathfinder;
 
@@ -37,8 +29,7 @@ public class Game : MonoBehaviour
         _levelDrawer.DrawLevel(_level.LevelTable);
         _pathfinder = new Pathfinder(_level);
         SpawnPlayer();
-        SpawnEnemy();
-        SpawnChest();
+        SpawnEnemies();
     }
 
     private void SpawnPlayer()
@@ -47,24 +38,26 @@ public class Game : MonoBehaviour
         _player.transform.position = roomToSpawn.Rect.center;
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemies()
     {
-        var roomToSpawn = _level.MainRooms[1];
-        var enemy = Instantiate(_enemy, roomToSpawn.Rect.center, Quaternion.identity);
+        for(int i = 0; i < 22; i++)
+            SpawnEnemy(_level.MainRooms[Random.Range(2, _level.MainRooms.Count)]);
+    }
+    
+    private void SpawnEnemy(Room spawnRoom)
+    {
+        var position = spawnRoom.Rect.center;
+        var enemy = Instantiate(_enemy, position, Quaternion.identity);
         enemy.Init(_pathfinder, _player.transform);
     }
 
-    private void SpawnChest()
+    private void OnDrawGizmos()
     {
-        List<Room> rooms = _level.MainRooms.ToList();
-        foreach (var chest in _chests)
+        if (_level == null)
+            return;
+        foreach (var levelMainRoom in _level.MainRooms)
         {
-            var roomToSpawn = rooms[Random.Range(1, rooms.Count)];
-            float posX = Random.Range(roomToSpawn.Rect.xMin, roomToSpawn.Rect.xMax);
-            float posY = Random.Range(roomToSpawn.Rect.yMin, roomToSpawn.Rect.xMax);
-            
-            Instantiate(chest, new Vector2(posX, posY), Quaternion.identity);
-            rooms.Remove(roomToSpawn);
+            Gizmos.DrawCube(levelMainRoom.Rect.center, new Vector3(levelMainRoom.Rect.width, levelMainRoom.Rect.height));
         }
-    }   
+    }
 }

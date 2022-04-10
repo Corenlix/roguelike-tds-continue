@@ -16,8 +16,8 @@ namespace LevelGeneration
         public Corridor GetData(int xOffset = 0, int yOffset = 0)
         {
             var rect = new RectInt();
-            rect.SetMinMax(new Vector2Int(Mathf.FloorToInt(transform.localPosition.x - transform.localScale.x) + xOffset, Mathf.FloorToInt(transform.localPosition.y - transform.localScale.y) + yOffset), 
-                new Vector2Int(Mathf.FloorToInt(transform.localPosition.x + transform.localScale.x) + xOffset, Mathf.FloorToInt(transform.localPosition.y + transform.localScale.y) + yOffset));
+            rect.SetMinMax(new Vector2Int(Mathf.CeilToInt(transform.localPosition.x - transform.localScale.x / 2) + xOffset, Mathf.CeilToInt(transform.localPosition.y - transform.localScale.y / 2) + yOffset), 
+                new Vector2Int(Mathf.CeilToInt(transform.localPosition.x + transform.localScale.x / 2) + xOffset, Mathf.CeilToInt(transform.localPosition.y + transform.localScale.y / 2) + yOffset));
             return new Corridor(rect);
         }
     }

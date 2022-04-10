@@ -6,37 +6,50 @@ namespace LevelGeneration
 {
     public class LevelDataGenerator
     {
-        private List<RoomGameObject> _rooms;
-        private List<CorridorGameObject> _corridors;
+        private List<Room> _allRoomsData;
+        private List<Room> _mainRoomsData;
+        private List<Room> _secondaryRoomsData;
+        private List<Corridor> _corridorsData;
         private CellType[,] _table;
         private int _xOffset;
         private int _yOffset;
 
         public Level Generate(List<RoomGameObject> rooms, List<RoomGameObject> mainRooms, List<CorridorGameObject> corridors)
         {
-            _rooms = rooms;
-            _corridors = corridors;
-        
+            GenerateRects(rooms, mainRooms, corridors);
+            GenerateTable();
+            GenerateRects(rooms, mainRooms, corridors);
+            
+            return new Level(_table, _mainRoomsData, _secondaryRoomsData, _corridorsData);
+        }
+
+        private void GenerateRects(List<RoomGameObject> rooms, List<RoomGameObject> mainRooms, List<CorridorGameObject> corridors)
+        {
+            var secondaryRooms = rooms.Except(mainRooms).ToList();
+            _secondaryRoomsData = new List<Room>();
+            secondaryRooms.ForEach(x => _secondaryRoomsData.Add(x.GetData(_xOffset, _yOffset)));
+            _mainRoomsData = new List<Room>();
+            mainRooms.ForEach(x => _mainRoomsData.Add(x.GetData(_xOffset, _yOffset)));
+            _corridorsData = new List<Corridor>();
+            corridors.ForEach(x => _corridorsData.Add(x.GetData(_xOffset, _yOffset)));
+        }
+
+        private void GenerateTable()
+        {
             InitCells();
             FillBackground();
             FillForeground();
-            
-            var roomsData = new List<Room>();
-            _rooms.ForEach(x=>roomsData.Add(x.GetData(_xOffset, _yOffset)));
-            var mainRoomsData = new List<Room>();
-            mainRooms.ForEach(x=>mainRoomsData.Add(x.GetData(_xOffset, _yOffset)));
-            var corridorsData = new List<Corridor>();
-            _corridors.ForEach(x=>corridorsData.Add(x.GetData(_xOffset, _yOffset)));
-            
-            return new Level(_table, mainRoomsData, roomsData, corridorsData);
         }
 
         private void InitCells()
         {
-            int minX = (int)_rooms.Min(x => x.transform.localPosition.x - x.transform.localScale.x/2) - 10; 
-            int maxX = (int)_rooms.Max(x => x.transform.localPosition.x + x.transform.localScale.x/2) + 10; 
-            int minY = (int)_rooms.Min(x => x.transform.localPosition.y - x.transform.localScale.y/2) - 10; 
-            int maxY = (int)_rooms.Max(x => x.transform.localPosition.y + x.transform.localScale.y/2) + 10;
+            _allRoomsData = new List<Room>();
+            _allRoomsData.AddRange(_mainRoomsData);
+            _allRoomsData.AddRange(_secondaryRoomsData);
+            int minX = _allRoomsData.Min(x => x.Rect.xMin) - 10; 
+            int maxX = _allRoomsData.Max(x => x.Rect.xMax) + 10; 
+            int minY = _allRoomsData.Min(x => x.Rect.yMin) - 10; 
+            int maxY = _allRoomsData.Max(x => x.Rect.yMax) + 10; 
 
             _xOffset = -minX;
             _yOffset = -minY;
@@ -53,22 +66,15 @@ namespace LevelGeneration
     
         private void FillForeground()
         {
-            _corridors.ForEach(x=>DrawTransform(x.transform));
-            _rooms.ForEach(x=>DrawTransform(x.transform));
+            _corridorsData.ForEach(x=>DrawRect(x.Rect));
+            _allRoomsData.ForEach(x=>DrawRect(x.Rect));
         }
     
-        private void DrawTransform(Transform transform)
+        private void DrawRect(RectInt rect)
         {
-            for (int x = Mathf.CeilToInt(transform.localPosition.x - transform.localScale.x/2f);
-                 x < Mathf.CeilToInt(transform.localPosition.x + transform.localScale.x/2f);
-                 x++)
+            foreach (var position in rect.allPositionsWithin)
             {
-                for (int y = Mathf.CeilToInt(transform.localPosition.y - transform.localScale.y/2f);
-                     y < Mathf.CeilToInt(transform.localPosition.y + transform.localScale.y/2f);
-                     y++)
-                {
-                    _table[x + _xOffset, y + _yOffset] = CellType.Floor;
-                }
+                _table[position.x + _xOffset, position.y + _yOffset] = CellType.Floor;
             }
         }
     }
