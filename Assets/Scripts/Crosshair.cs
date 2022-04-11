@@ -1,16 +1,19 @@
+using Infrastructure;
 using UnityEngine;
+using Zenject;
 
 public class Crosshair : MonoBehaviour
 {
-    private Camera _camera;
+    private IInputService _inputService;
 
-    private void Awake()
+    [Inject]
+    private void Construct(IInputService inputService)
     {
-        _camera = Camera.main;
+        _inputService = inputService;
     }
 
     void Update()
     {
-        transform.position = (Vector2)_camera.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = _inputService.LookPoint;
     }
 }

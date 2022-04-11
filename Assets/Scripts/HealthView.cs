@@ -1,13 +1,21 @@
 using Entities;
+using Infrastructure;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class HealthView : MonoBehaviour
 {
-    [SerializeField] private Health _health;
     [SerializeField] private Image _healthStripe;
     [SerializeField] private TextMeshProUGUI _healthText;
+    private Health _health;
+
+    [Inject]
+    private void Construct(IPlayerFactory playerFactory)
+    {
+        _health = playerFactory.Player.Health;
+    }
     
     private void OnEnable()
     {

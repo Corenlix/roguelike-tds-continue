@@ -4,17 +4,41 @@ using UnityEngine.Tilemaps;
 
 namespace LevelGeneration
 {
-    public class LevelDrawer : MonoBehaviour
+    public class LevelDrawer
     {
-        [SerializeField] private Tilemap _floorsTilemap;
-        [SerializeField] private Tilemap _wallsTilemap;
-        [SerializeField] private RuleTile _floorTile;
-        [SerializeField] private RuleTile _wallTile;
+        private RuleTile _floorTile;
+        private RuleTile _wallTile;
+        private Tilemap _floorsTilemap;
+        private Tilemap _wallsTilemap;
 
         public void DrawLevel(CellType[,] level)
         {
+            _floorTile = Resources.Load<RuleTile>("FloorTile");
+            _wallTile = Resources.Load<RuleTile>("WallTile");
+
+            var grid = new GameObject("Grid");
+            grid.AddComponent<Grid>();
+            _floorsTilemap = CreateTilemap("Floors Tilemap", grid);
+            _wallsTilemap = CreateTilemap("Walls Tilemap", grid);
+            
+            var wallsRigidbody2D = _wallsTilemap.gameObject.AddComponent<Rigidbody2D>();
+            wallsRigidbody2D.bodyType = RigidbodyType2D.Static;
+            _wallsTilemap.gameObject.AddComponent<TilemapCollider2D>();
+            _wallsTilemap.gameObject.AddComponent<CompositeCollider2D>();
+
             DrawLayer(level, GetTilemapFromCellType(CellType.Wall), CellType.Wall);
             DrawLayer(level, GetTilemapFromCellType(CellType.Floor), CellType.Floor);
+        }
+        
+        private Tilemap CreateTilemap(string tilemapName, GameObject parent)
+        {
+            var go = new GameObject(tilemapName);
+            go.transform.parent = parent.transform;
+            var tm = go.AddComponent<Tilemap>();
+            var tr = go.AddComponent<TilemapRenderer>();
+            tm.tileAnchor = new Vector3(0, 0, 0);
+
+            return tm;
         }
 
         private void DrawLayer(CellType[,] level, Tilemap map, CellType type)
