@@ -12,9 +12,9 @@ public class HealthView : MonoBehaviour
     private Health _health;
 
     [Inject]
-    private void Construct(IPlayerFactory playerFactory)
+    private void Construct(Player player)
     {
-        _health = playerFactory.Player.Health;
+        _health = player.Health;
     }
     
     private void OnEnable()

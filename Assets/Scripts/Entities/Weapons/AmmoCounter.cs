@@ -12,9 +12,9 @@ namespace Entities.Weapons
         private AmmoBelt _ammoBelt;
 
         [Inject]
-        private void Construct(IPlayerFactory playerFactory)
+        private void Construct(Player player)
         {
-            _ammoBelt = playerFactory.Player.AmmoBelt;
+            _ammoBelt = player.AmmoBelt;
         }
         
         private void OnEnable()
