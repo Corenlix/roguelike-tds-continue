@@ -1,29 +1,14 @@
-using Entities;
+using Infrastructure;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class StandaloneInputService : IInputService
 {
-    [SerializeField] private  Player _player;
-    [SerializeField] private Crosshair _crosshair;
-
-    private void Update()
-    {
-        ReadInput();
-    }
-
-    private void ReadInput()
-    {
-        Vector2 moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        _player.Move(moveDirection);
-        _player.LookTo(_crosshair.transform.position);
-        
-        if (Input.GetMouseButton(0))
-            _player.Shoot();
-        
-        if(Input.GetKeyDown(KeyCode.E))
-           _player.PickItem();
-        
-        if(Input.GetKeyDown(KeyCode.Q))
-            _player.SwitchWeapon();
-    }
+    private Camera Camera => _camera ? _camera : _camera = Camera.main;
+    private Camera _camera;
+    
+    public Vector2 MoveAxis => new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    public Vector2 LookPoint => Camera.ScreenToWorldPoint(Input.mousePosition);
+    public bool ShootButton => Input.GetMouseButton(0);
+    public bool PickButtonDown => Input.GetKeyDown(KeyCode.E);
+    public bool SwitchWeaponButtonDown => Input.GetKeyDown(KeyCode.Q);
 }

@@ -9,6 +9,7 @@ namespace Items
         
         public void ShowTip(Item item)
         {
+            transform.parent = null;
             gameObject.SetActive(true);
             _tipText.text = $"[E] {item.Name}";
             _tipText.transform.position = item.transform.position;
