@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using Entities.HitBoxes;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,6 +9,7 @@ namespace LevelGeneration
     {
         private RuleTile _floorTile;
         private RuleTile _wallTile;
+        private GameObject _tilemapsParent;
         private Tilemap _floorsTilemap;
         private Tilemap _wallsTilemap;
 
@@ -16,29 +18,43 @@ namespace LevelGeneration
             _floorTile = Resources.Load<RuleTile>("FloorTile");
             _wallTile = Resources.Load<RuleTile>("WallTile");
 
-            var grid = new GameObject("Grid");
-            grid.AddComponent<Grid>();
-            _floorsTilemap = CreateTilemap("Floors Tilemap", grid);
-            _wallsTilemap = CreateTilemap("Walls Tilemap", grid);
-            
-            var wallsRigidbody2D = _wallsTilemap.gameObject.AddComponent<Rigidbody2D>();
-            wallsRigidbody2D.bodyType = RigidbodyType2D.Static;
-            _wallsTilemap.gameObject.AddComponent<TilemapCollider2D>();
-            _wallsTilemap.gameObject.AddComponent<CompositeCollider2D>();
+            _tilemapsParent = new GameObject("Grid");
+            _tilemapsParent.AddComponent<Grid>();
+            _floorsTilemap = CreateTilemap("Floors Tilemap", _tilemapsParent, -1);
+            _wallsTilemap = CreateTilemapWithCollider("Walls Tilemap", _tilemapsParent, 0);
 
             DrawLayer(level, GetTilemapFromCellType(CellType.Wall), CellType.Wall);
             DrawLayer(level, GetTilemapFromCellType(CellType.Floor), CellType.Floor);
         }
+
+        public void Clear()
+        {
+            Object.Destroy(_tilemapsParent);
+        }
         
-        private Tilemap CreateTilemap(string tilemapName, GameObject parent)
+        private Tilemap CreateTilemap(string tilemapName, GameObject parent, int sortingOrder)
         {
             var go = new GameObject(tilemapName);
             go.transform.parent = parent.transform;
             var tm = go.AddComponent<Tilemap>();
             var tr = go.AddComponent<TilemapRenderer>();
+            tr.sortingOrder = sortingOrder;
             tm.tileAnchor = new Vector3(0, 0, 0);
 
             return tm;
+        }
+
+        private Tilemap CreateTilemapWithCollider(string tilemapName, GameObject parent, int sortingOrder)
+        {
+            var tilemap = CreateTilemap(tilemapName, parent, sortingOrder);
+            var wallsRigidbody2D = tilemap.gameObject.AddComponent<Rigidbody2D>();
+            wallsRigidbody2D.bodyType = RigidbodyType2D.Static;
+            var wallsCollider = tilemap.gameObject.AddComponent<TilemapCollider2D>();
+            wallsCollider.usedByComposite = true;
+            tilemap.gameObject.AddComponent<CompositeCollider2D>();
+            tilemap.gameObject.AddComponent<WallHitBox>();
+
+            return tilemap;
         }
 
         private void DrawLayer(CellType[,] level, Tilemap map, CellType type)

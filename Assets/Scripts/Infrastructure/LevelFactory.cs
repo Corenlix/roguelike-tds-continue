@@ -1,6 +1,5 @@
 ﻿using System;
 using LevelGeneration;
-using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -8,20 +7,16 @@ namespace Infrastructure
 {
     public class LevelFactory : ILevelFactory
     {
-        public event Action LevelGenerated;
-        public Level Level { get; private set; }
-
+        public event Action<Level> LevelGenerated;
         private LevelGenerator _levelGenerator;
         private LevelDrawer _levelDrawer;
 
-        public LevelFactory()
+        public void Generate()
         {
+            _levelDrawer?.Clear();
+            Object.Destroy(_levelGenerator);
+            
             _levelDrawer = new LevelDrawer();
-            GenerateLevel();
-        }
-        
-        private void GenerateLevel()
-        {
             _levelGenerator = Object.Instantiate(Resources.Load<LevelGenerator>("LevelGenerator"));
             _levelGenerator.LevelCreated += OnLevelGenerate;
             _levelGenerator.Generate();
@@ -29,10 +24,9 @@ namespace Infrastructure
 
         private void OnLevelGenerate(Level level)
         {
-            Level = level;
             _levelGenerator.LevelCreated -= OnLevelGenerate;
-            _levelDrawer.DrawLevel(Level.LevelTable);
-            LevelGenerated?.Invoke();
+            _levelDrawer.DrawLevel(level.LevelTable);
+            LevelGenerated?.Invoke(level);
         }
     }
 }

@@ -1,9 +1,12 @@
 using Entities;
+using UnityEngine;
 
 namespace Infrastructure
 {
-    public interface IPlayerFactory
+    public interface IGameFactory
     {
-        Player Player { get; }
+        Player CreatePlayer(Vector3 at);
+        PlayerCamera CreatePlayerCamera();
+        GameObject CreateHud();
     }
 }
