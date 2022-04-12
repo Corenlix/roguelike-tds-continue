@@ -1,6 +1,6 @@
-using Entities;
 using Entities.Weapons;
 using UnityEngine;
+using Zenject;
 
 namespace Items
 {
@@ -11,10 +11,17 @@ namespace Items
         
         [SerializeField] private AmmoType _ammoType;
         [SerializeField] private int _count;
-    
-        protected override void OnPick(Player player)
+        private PlayerAmmoBelt _ammoBelt;
+
+        [Inject]
+        private void Construct(PlayerAmmoBelt ammoBelt)
         {
-            player.AddAmmo(_ammoType, _count);
+            _ammoBelt = ammoBelt;
+        }
+        
+        protected override void OnPick()
+        {
+            _ammoBelt.AddAmmo(_ammoType, _count);
         }
     }
 }

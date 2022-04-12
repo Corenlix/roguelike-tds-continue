@@ -16,7 +16,7 @@ namespace Items
         {
             if (_itemsToPick.Count == 0) return;
             Item itemToPick = _itemsToPick[0];
-            itemToPick.Pick(_pickPlayer);
+            itemToPick.Pick();
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -29,7 +29,7 @@ namespace Items
                         _tip.ShowTip(item);
                     _itemsToPick.Add(item);
                 }
-                else item.Pick(_pickPlayer);
+                else item.Pick();
             }
         }
 

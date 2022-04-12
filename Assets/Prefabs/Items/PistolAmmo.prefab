@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2610176599535660847}
   - component: {fileID: 2610176599535660832}
   m_Layer: 0
-  m_Name: ShotgunAmmo
+  m_Name: PistolAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3b8f6afa8ee2c7f4695e06c21c2bbf2a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7517393, g: 1, b: 0.5613208, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aef83fcae0204449a7491cadcd5618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Shotgun ammo
-  _ammoType: 1
-  _count: 20
+  Name: Pistol ammo
+  _ammoType: 0
+  _count: 40
 --- !u!61 &2610176599535660832
 BoxCollider2D:
   m_ObjectHideFlags: 0

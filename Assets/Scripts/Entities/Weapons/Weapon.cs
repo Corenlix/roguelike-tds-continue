@@ -15,10 +15,12 @@ namespace Entities.Weapons
         [SerializeField] protected Transform _shootPoint;
         private float _timeRemainToShoot;
         private IGameFactory _gameFactory;
+        private PlayerAmmoBelt _ammoBelt;
 
         [Inject]
-        private void Construct(IGameFactory gameFactory)
+        private void Construct(IGameFactory gameFactory, PlayerAmmoBelt ammoBelt)
         {
+            _ammoBelt = ammoBelt;
             _gameFactory = gameFactory;
         }
         
@@ -41,10 +43,13 @@ namespace Entities.Weapons
 
         public bool TryShoot()
         {
+            if (_ammoBelt.GetAmmoCount(AmmoType) < AmmoPerShoot) return false;
+            
             if (_timeRemainToShoot > 0)
                 return false;
 
             OnShoot();
+            _ammoBelt.SubtractAmmo(AmmoType, AmmoPerShoot);
             _timeRemainToShoot = StaticData.Delay;
             return true;
         }
