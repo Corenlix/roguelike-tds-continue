@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a5913e713e4dec8f6c8fb42e477370, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 1
   MoveSpeed: 8
   HitData:
     Damage: 5

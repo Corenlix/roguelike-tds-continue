@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd3b67f46c04c0885c80486e0a7a181, type: 3}
   m_Name: Bullet
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 1
   Speed: 25
   HitData:
-    TargetTypes: 0100000002000000
-    SparklesPrefab: {fileID: 396732857008140490, guid: 583d124ab0684774f90d97b45ff1c06a, type: 3}
     Damage: 10
     KnockBack: 3
   _prefab: {fileID: 4923466864312498156, guid: 421ae448bb801e34ba878d218adacc99, type: 3}

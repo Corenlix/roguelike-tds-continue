@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd75053cfc4408fa314d83789574bae, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  WeaponId: 1
-  BulletId: 0
+  WeaponId: 2
+  BulletId: 1
   AmmoType: 1
   AmmoPerShoot: 1
   ShakeIntensity: 0.8

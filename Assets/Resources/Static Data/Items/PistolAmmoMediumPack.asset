@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a9fe9ae2bc4000922f1549318e6291, type: 3}
   m_Name: PistolAmmoMediumPack
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 1
   Prefab: {fileID: 2610176599535660847, guid: 7c153612c17e40d44b60db82831be00b, type: 3}

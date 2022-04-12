@@ -12,16 +12,26 @@ namespace Infrastructure.AssetProvider
             _diContainer = diContainer;
         }
         
-        public T Instantiate<T>(string path, Vector3 at) where T : Object
+        public T Instantiate<T>(string path, Vector3 at) where T : MonoBehaviour
         {
             var prefab = Resources.Load<T>(path);
             return _diContainer.InstantiatePrefabForComponent<T>(prefab, at, Quaternion.identity, null);
         }
 
-        public T Instantiate<T>(string path) where T : Object
+        public GameObject Instantiate(string path, Vector3 at)
         {
-            var prefab = Resources.Load<T>(path);
-            return _diContainer.InstantiatePrefabForComponent<T>(prefab);
+            var prefab = Resources.Load(path);
+            return _diContainer.InstantiatePrefab(prefab, at, Quaternion.identity, null);
+        }
+
+        public T Instantiate<T>(string path) where T : MonoBehaviour
+        {
+            return Instantiate<T>(path, Vector3.zero);
+        }
+
+        public GameObject Instantiate(string path)
+        {
+            return Instantiate(path, Vector3.zero);
         }
     }
 }

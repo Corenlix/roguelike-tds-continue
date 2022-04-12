@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f0403c8ee1491bbb87d31153373216, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  WeaponId: 0
-  BulletId: 0
+  WeaponId: 1
+  BulletId: 1
   AmmoType: 0
   AmmoPerShoot: 1
   ShakeIntensity: 0.2

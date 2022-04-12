@@ -43,7 +43,7 @@ namespace Infrastructure.Factory
 
                 public GameObject CreateHud()
                 {
-                        var hud = _assetProvider.Instantiate<GameObject>(AssetPath.Hud);
+                        var hud = _assetProvider.Instantiate(AssetPath.Hud);
                         return hud;
                 }
 
