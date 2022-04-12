@@ -1,29 +1,33 @@
+using System.Collections.Generic;
 using Entities.HitBoxes;
+using Infrastructure;
 using UnityEngine;
 
 namespace Entities.Weapons
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Bullet : MonoBehaviour
+    public abstract class Bullet : MonoBehaviour
     {
-        [SerializeField] private HitData _hitData;
-        [SerializeField] private float _speed;
+        protected abstract BulletStaticData BulletStaticData { get; }
+        protected virtual List<HitBoxType> TargetTypes => new List<HitBoxType> { HitBoxType.Enemy, HitBoxType.Wall };
+        [SerializeField] private GameObject _sparklesPrefab;
         private Rigidbody2D _rigidbody2D;
+        
+        public abstract void Init(BulletStaticData bulletData);
 
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-    
+
         private void Start()
         {
-            _rigidbody2D.velocity = transform.right * _speed;
-            _hitData.Bullet = transform;
+            _rigidbody2D.velocity = transform.right * BulletStaticData.Speed;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if(other.TryGetComponent(out HitBox hitBox) && hitBox.TryHit(_hitData))
+            if(other.TryGetComponent(out HitBox hitBox) && hitBox.TryHit(BulletStaticData.HitData, transform, TargetTypes, _sparklesPrefab))
                 Destroy(gameObject);
         }
     }

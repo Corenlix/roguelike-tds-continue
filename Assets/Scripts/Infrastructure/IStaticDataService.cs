@@ -6,5 +6,6 @@ namespace Infrastructure
     {
         public EnemyStaticData ForEnemy(EnemyId id);
         WeaponStaticData ForWeapon(WeaponId id);
+        BulletStaticData ForBullet(BulletId id);
     }
 }

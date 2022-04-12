@@ -1,4 +1,5 @@
 ﻿using Unity.Mathematics;
+using UnityEngine;
 
 namespace Entities.HitBoxes
 {
@@ -6,9 +7,9 @@ namespace Entities.HitBoxes
     {
         public override HitBoxType HitBoxType => HitBoxType.Wall;
         
-        protected override void Hit(HitData hitData)
+        protected override void Hit(HitData hitData, Transform bullet, GameObject sparkles)
         {
-            Instantiate(hitData.SparklesPrefab, hitData.Bullet.position, quaternion.identity);
+            Instantiate(sparkles, bullet.position, quaternion.identity);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Infrastructure
     [CreateAssetMenu(menuName = "Static Data/Enemies/Range Enemy", fileName = "Range Enemy")]
     public class RangeEnemyStaticData : EnemyStaticData
     {
+        public override Enemy Prefab => _prefab;
         [Header("Behavior")]
         public int RandomWalkDistance;
         public  float RandomWalkPeriod;
@@ -13,5 +14,6 @@ namespace Infrastructure
         public  int IdleToChaseDistance;
         public  int WalkToChaseDistance;
         public  int ChaseToWalkDistance;
+        [SerializeField] private RangeEnemy _prefab;
     }
 }

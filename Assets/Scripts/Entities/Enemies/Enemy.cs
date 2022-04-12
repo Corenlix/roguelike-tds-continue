@@ -1,4 +1,3 @@
-using Entities.Weapons;
 using Infrastructure;
 using Pathfinding;
 using UnityEngine;
@@ -10,7 +9,6 @@ namespace Entities.Enemies
     {
         [SerializeField] private PathfindMover _pathfindMover;
         [SerializeField] private EntityView _view;
-        [SerializeField] private Weapon _weapon;
         [SerializeField] private Health _health;
     
         protected Transform Target;
@@ -33,8 +31,6 @@ namespace Entities.Enemies
         public void Attack(Vector3 target)
         {
             _view.LookTo(target);
-            _weapon.AimTo(target);
-            _weapon.TryShoot();
         }
 
         public void MoveTo(Vector3 destination) => _pathfindMover.SetMovePoint(destination);

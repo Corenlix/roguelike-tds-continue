@@ -1,10 +1,7 @@
-﻿using UnityEngine;
-
-namespace Entities.Weapons
+﻿namespace Entities.Weapons
 {
     public class Shotgun : Weapon
     {
-        [SerializeField] private Bullet _bulletPrefab;
         private ShotgunStaticData _shotgunStaticData;
 
         protected override WeaponStaticData StaticData => _shotgunStaticData;
@@ -22,11 +19,6 @@ namespace Entities.Weapons
                 float angle = -_shotgunStaticData.MaxDeviationAngle + i * angleBetweenNeighborBullets;
                 InstantiateBullet(angle);
             }
-        }
-
-        private void InstantiateBullet(float deviationDegrees)
-        {
-            var bullet = Instantiate(_bulletPrefab, shootPoint.transform.position, transform.RotationWithFlip(deviationDegrees));
         }
     }
 }

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   Id: 0
-  Prefab: {fileID: 7367941044288361908, guid: 74480140befbc2b429ae98074bd6ed2f, type: 3}
   RandomWalkDistance: 5
   RandomWalkPeriod: 2
   ChaseToIdleDistance: 8
   IdleToChaseDistance: 9
   WalkToChaseDistance: 14
   ChaseToWalkDistance: 15
+  _prefab: {fileID: 7367941044288361908, guid: 74480140befbc2b429ae98074bd6ed2f, type: 3}

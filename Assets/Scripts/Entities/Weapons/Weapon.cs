@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Infrastructure;
+using UnityEngine;
+using Zenject;
 
 namespace Entities.Weapons
 {
@@ -10,10 +12,17 @@ namespace Entities.Weapons
         
         protected abstract WeaponStaticData StaticData { get; }
         
-        [SerializeField] protected Transform shootPoint;
+        [SerializeField] protected Transform _shootPoint;
         private float _timeRemainToShoot;
         private Vector3 _targetPosition;
+        private IGameFactory _gameFactory;
 
+        [Inject]
+        private void Construct(IGameFactory gameFactory)
+        {
+            _gameFactory = gameFactory;
+        }
+        
         public abstract void Init(WeaponStaticData weaponStaticData);
 
         public void Enable()
@@ -44,6 +53,11 @@ namespace Entities.Weapons
 
         protected abstract void OnShoot();
 
+        protected Bullet InstantiateBullet(float addAngle = 0)
+        {
+            return _gameFactory.CreateBullet(StaticData.BulletId, _shootPoint.position, transform.RotationWithFlip(addAngle));
+        }
+
         private void Awake()
         {
             Enable();
@@ -53,15 +67,5 @@ namespace Entities.Weapons
         {
             _timeRemainToShoot -= Time.deltaTime;
         }
-    }
-
-    public abstract class WeaponStaticData : ScriptableObject
-    {
-        public Weapon Prefab;
-        public WeaponId WeaponId;
-        public AmmoType AmmoType;
-        public int AmmoPerShoot = 1;
-        public float ShakeIntensity;
-        public float Delay;
     }
 }

@@ -15,5 +15,6 @@ namespace Infrastructure
         Pathfinder CreatePathfinder(Level level);
         Enemy CreateEnemy(Vector3 at, EnemyId id);
         Weapon CreateWeapon(WeaponId id, Transform parent, Vector3 position);
+        Bullet CreateBullet(BulletId id, Vector3 position, Quaternion rotation);
     }
 }
