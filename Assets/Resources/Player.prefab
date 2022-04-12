@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7532004181910915265}
   - component: {fileID: 7532004181910915264}
   m_Layer: 0
-  m_Name: PickItemTip
+  m_Name: InteractTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,7 +492,7 @@ MonoBehaviour:
   _mover: {fileID: 7924238742685167542}
   _playerView: {fileID: 7924238742685167545}
   _health: {fileID: 7924238742685167540}
-  _itemPicker: {fileID: 7924238740898405476}
+  _interacter: {fileID: 7924238740898405476}
 --- !u!114 &7924238742685167538
 MonoBehaviour:
   m_ObjectHideFlags: 0

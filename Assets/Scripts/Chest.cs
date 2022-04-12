@@ -11,7 +11,7 @@ public class Chest : MonoBehaviour, IInteractable
 {
     public Vector3 Position => transform.position;
     public bool NeedPressInteractButton => true;
-    public string InteractText => "[E] Open Chest";
+    public string InteractText => "Open Chest";
     
     private ChestStaticData _chestStaticData;
     private IStaticDataService _staticDataService;

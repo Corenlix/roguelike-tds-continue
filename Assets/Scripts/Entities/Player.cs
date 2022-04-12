@@ -4,6 +4,7 @@ using Infrastructure;
 using Infrastructure.Input;
 using Items;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Entities
@@ -17,7 +18,7 @@ namespace Entities
         [SerializeField] private RigidbodyMover _mover;
         [SerializeField] private EntityView _playerView;
         [SerializeField] private Health _health;
-        [SerializeField] private ItemPicker _itemPicker;
+        [SerializeField] private Interacter _interacter;
         private IInput _input;
         private PlayerWeapons _weapons;
 
@@ -31,7 +32,6 @@ namespace Entities
 
         private void Start()
         {
-            _itemPicker.Init(this);
             _weapons.TryAddWeapon(WeaponId.Pistol);
             _health.Died += OnDie;
         }
@@ -64,7 +64,7 @@ namespace Entities
 
         private void SwitchWeapon() => _weapons.SwitchWeapon();
 
-        private void PickItem() => _itemPicker.Pick();
+        private void PickItem() => _interacter.Pick();
 
         private void Shoot()
         {

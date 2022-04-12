@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Shotgun
-  _weaponId: 1
+  _weaponId: 2
 --- !u!61 &5434791027407856777
 BoxCollider2D:
   m_ObjectHideFlags: 0
