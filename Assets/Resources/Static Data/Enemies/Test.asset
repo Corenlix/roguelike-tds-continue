@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   Id: 0
+  MoveSpeed: 8
+  HitData:
+    Damage: 5
+    KnockBack: 5
+  BulletSpeed: 5
+  ShootDelay: 0.5
   RandomWalkDistance: 5
   RandomWalkPeriod: 2
   ChaseToIdleDistance: 8

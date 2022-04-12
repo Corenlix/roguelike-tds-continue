@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Infrastructure
 {
-    public interface IGameFactory
+    public interface IGameFactory : IService
     {
         Player CreatePlayer(Vector3 at);
         PlayerCamera CreatePlayerCamera();

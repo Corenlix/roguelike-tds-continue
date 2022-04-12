@@ -1,3 +1,4 @@
+using Entities.Enemies.EnemyAbilities;
 using Infrastructure;
 using Pathfinding;
 using UnityEngine;
@@ -10,18 +11,35 @@ namespace Entities.Enemies
         [SerializeField] private PathfindMover _pathfindMover;
         [SerializeField] private EntityView _view;
         [SerializeField] private Health _health;
-    
+        [SerializeField] private EnemyWeapon _enemyWeapon;
+        private EnemyStaticData _enemyStaticData;
+        private Pathfinder _pathfinder;
+        private Player _player;
+        
         protected Transform Target;
 
         [Inject]
         private void Construct(Pathfinder pathfinder, Player player)
         {
-            _health.Died += OnDie;
-            _pathfindMover.Init(pathfinder);
-            SetTarget(player.transform);
+            _pathfinder = pathfinder;
+            _player = player;
         }
 
-        public abstract void Init(EnemyStaticData staticData);
+        public void Init(EnemyStaticData staticData)
+        {
+            _enemyStaticData = staticData;
+        }
+
+        private void Start()
+        {
+            SetTarget(_player.transform);
+            _health.Died += OnDie;
+            _pathfindMover.Init(_pathfinder, _enemyStaticData.MoveSpeed);
+            _enemyWeapon.Init(_enemyStaticData.HitData, _enemyStaticData.MoveSpeed, _enemyStaticData.ShootDelay);
+            OnInit(_enemyStaticData);
+        }
+
+        protected abstract void OnInit(EnemyStaticData staticData);
 
         public void SetTarget(Transform target)
         {
@@ -31,6 +49,8 @@ namespace Entities.Enemies
         public void Attack(Vector3 target)
         {
             _view.LookTo(target);
+            _enemyWeapon.AimTo(target);
+            _enemyWeapon.TryShoot();
         }
 
         public void MoveTo(Vector3 destination) => _pathfindMover.SetMovePoint(destination);

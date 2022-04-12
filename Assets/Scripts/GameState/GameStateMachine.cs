@@ -6,14 +6,15 @@ namespace GameState
 {
     public class GameStateMachine
     {
-        private Dictionary<Type, IState> _states;
+        private readonly Dictionary<Type, IState> _states;
         private IState _activeState;
 
         public GameStateMachine(ILevelFactory levelFactory, IGameFactory gameFactory)
         {
             _states = new Dictionary<Type, IState>()
             {
-                {typeof(GenerateLevelState), new GenerateLevelState(this, levelFactory, gameFactory)}
+                {typeof(GenerateLevelState), new GenerateLevelState(this, levelFactory, gameFactory)},
+                {typeof(GameLoopState), new GameLoopState(this)}
             };
 
             Enter<GenerateLevelState>();
