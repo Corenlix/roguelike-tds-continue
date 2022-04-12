@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Shotgun
-  _weaponPrefab: {fileID: -4263236282717264847, guid: 047a954be79b068409bd86f40598802d, type: 3}
+  _weaponId: 1
 --- !u!61 &5434791027407856777
 BoxCollider2D:
   m_ObjectHideFlags: 0

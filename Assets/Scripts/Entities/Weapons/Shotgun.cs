@@ -4,16 +4,22 @@ namespace Entities.Weapons
 {
     public class Shotgun : Weapon
     {
-        private const int BulletsCount = 5;
-        private const float MaxDeviationAngle = 10;
         [SerializeField] private Bullet _bulletPrefab;
+        private ShotgunStaticData _shotgunStaticData;
+
+        protected override WeaponStaticData StaticData => _shotgunStaticData;
+        
+        public override void Init(WeaponStaticData weaponStaticData)
+        {
+            _shotgunStaticData = (ShotgunStaticData) weaponStaticData;
+        }
 
         protected override void OnShoot()
         {
-            float angleBetweenNeighborBullets = MaxDeviationAngle * 2 / (BulletsCount - 1);
-            for (int i = 0; i < BulletsCount; i++)
+            float angleBetweenNeighborBullets = _shotgunStaticData.MaxDeviationAngle * 2 / (_shotgunStaticData.BulletsCount - 1);
+            for (int i = 0; i < _shotgunStaticData.BulletsCount; i++)
             {
-                float angle = -MaxDeviationAngle + i * angleBetweenNeighborBullets;
+                float angle = -_shotgunStaticData.MaxDeviationAngle + i * angleBetweenNeighborBullets;
                 InstantiateBullet(angle);
             }
         }

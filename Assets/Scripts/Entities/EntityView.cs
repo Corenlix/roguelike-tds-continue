@@ -22,9 +22,5 @@ namespace Entities
             transform.localScale = new Vector3(xScaleModifier * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             transform.rotation = Quaternion.Euler(rotationEuler);   
         }
-
-        public virtual void Shoot(Weapon weapon)
-        {
-        }
     }
 }

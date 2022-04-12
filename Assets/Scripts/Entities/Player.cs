@@ -11,27 +11,30 @@ namespace Entities
     {
         public event Action<Weapon> Shot;
         public Health Health => _health;
-        public AmmoBelt AmmoBelt => _ammoBelt;
-        
+
+        [SerializeField] private Transform _weaponsContainer;
         [SerializeField] private RigidbodyMover _mover;
         [SerializeField] private EntityView _playerView;
-        [SerializeField] private AmmoBelt _ammoBelt;
-        [SerializeField] private PlayerWeapons _weapons;
         [SerializeField] private Health _health;
         [SerializeField] private ItemPicker _itemPicker;
-        [SerializeField] private Weapon _startWeapon;
         private IInput _input;
+        private PlayerAmmoBelt _playerAmmoBelt;
+        private PlayerWeapons _weapons;
 
         [Inject]
-        private void Construct(IInput input)
+        private void Construct(IInput input, PlayerWeapons playerWeapons, PlayerAmmoBelt playerAmmoBelt)
         {
+            _weapons = playerWeapons;
+            _weapons.WeaponsContainer = _weaponsContainer;
+            _playerAmmoBelt = playerAmmoBelt;
             _input = input;
         }
 
         private void Start()
         {
             _itemPicker.Init(this);
-            _weapons.TryAddWeapon(Instantiate(_startWeapon));
+            _weapons.TryAddWeapon(WeaponId.Pistol);
+            _playerAmmoBelt.AddAmmo(AmmoType.Pistol, 100);
             _health.Died += OnDie;
         }
 
@@ -65,19 +68,18 @@ namespace Entities
 
         private void PickItem() => _itemPicker.Pick();
 
-        public bool TryAddWeapon(Weapon weapon) =>_weapons.TryAddWeapon(weapon);
+        public bool TryAddWeapon(WeaponId id) =>_weapons.TryAddWeapon(id);
 
         private void Shoot()
         {
             var weapon = _weapons.SelectedWeapon;
-            if (_ammoBelt.GetAmmoCount(weapon.AmmoType) < weapon.AmmoPerShoot) return;
+            if (_playerAmmoBelt.GetAmmoCount(weapon.AmmoType) < weapon.AmmoPerShoot) return;
             if (!weapon.TryShoot()) return;
         
-            _ammoBelt.SubtractAmmo(weapon.AmmoType, weapon.AmmoPerShoot);
-            _playerView.Shoot(weapon);
+            _playerAmmoBelt.SubtractAmmo(weapon.AmmoType, weapon.AmmoPerShoot);
             Shot?.Invoke(weapon);
         }
 
-        public void AddAmmo(AmmoType ammoType, int count) => _ammoBelt.AddAmmo(ammoType, count);
+        public void AddAmmo(AmmoType ammoType, int count) => _playerAmmoBelt.AddAmmo(ammoType, count);
     }
 }

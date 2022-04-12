@@ -4,18 +4,17 @@ namespace Entities.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
-        public AmmoType AmmoType => _ammoType;
-        public int AmmoPerShoot => _ammoPerShoot;
-        public float ShakeIntensity => _shakeIntensity;
+        public AmmoType AmmoType => StaticData.AmmoType;
+        public int AmmoPerShoot => StaticData.AmmoPerShoot;
+        public float ShakeIntensity => StaticData.ShakeIntensity;
+        
+        protected abstract WeaponStaticData StaticData { get; }
         
         [SerializeField] protected Transform shootPoint;
-
-        [SerializeField] private AmmoType _ammoType;
-        [SerializeField] private int _ammoPerShoot = 1;
-        [SerializeField] private float _shakeIntensity;
-        [SerializeField] private float _delay;
         private float _timeRemainToShoot;
         private Vector3 _targetPosition;
+
+        public abstract void Init(WeaponStaticData weaponStaticData);
 
         public void Enable()
         {
@@ -39,7 +38,7 @@ namespace Entities.Weapons
                 return false;
 
             OnShoot();
-            _timeRemainToShoot = _delay;
+            _timeRemainToShoot = StaticData.Delay;
             return true;
         }
 
@@ -54,5 +53,15 @@ namespace Entities.Weapons
         {
             _timeRemainToShoot -= Time.deltaTime;
         }
+    }
+
+    public abstract class WeaponStaticData : ScriptableObject
+    {
+        public Weapon Prefab;
+        public WeaponId WeaponId;
+        public AmmoType AmmoType;
+        public int AmmoPerShoot = 1;
+        public float ShakeIntensity;
+        public float Delay;
     }
 }
