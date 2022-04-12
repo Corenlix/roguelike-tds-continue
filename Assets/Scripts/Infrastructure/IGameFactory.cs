@@ -14,7 +14,7 @@ namespace Infrastructure
         PlayerCamera CreatePlayerCamera();
         GameObject CreateHud();
         Pathfinder CreatePathfinder(Level level);
-        Enemy CreateEnemy(Vector3 at, EnemyId id);
+        Enemy CreateEnemy(EnemyId id, Vector3 at);
         Weapon CreateWeapon(WeaponId id, Transform parent, Vector3 position);
         Bullet CreateBullet(BulletId id, Vector3 position, Quaternion rotation);
         Item CreateItem(ItemId id, Vector3 position);

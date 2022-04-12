@@ -11,6 +11,7 @@ namespace Items
 
     public enum ItemId
     {
+        None,
         PistolAmmoMediumPack,
         ShotgunAmmoMediumPack,
         Pistol,

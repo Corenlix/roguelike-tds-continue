@@ -5,19 +5,12 @@ using Random = UnityEngine.Random;
 
 namespace Items
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "Loot", menuName = "Static Data/Loot")]
     public class Loot : ScriptableObject
     {
         [SerializeField] private List<LootChance> _lootChances;
         
-        public void InstantiateAt(Vector3 position)
-        {
-            var spawnItem = GetItemPrefab();
-            if (spawnItem)
-                Instantiate(spawnItem, position, Quaternion.identity);
-        }
-
-        private Item GetItemPrefab()
+        public ItemId Get()
         {
             float random = Random.Range(0, 100);
             float curRandom = 0;
@@ -31,7 +24,7 @@ namespace Items
                     return lootChance.Item;
             }
 
-            return null;
+            return ItemId.None;
         }
     }
 }

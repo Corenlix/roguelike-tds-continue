@@ -34,7 +34,7 @@ namespace GameState
             _gameFactory.CreatePlayerCamera();
             _gameFactory.CreateHud();
             _gameFactory.CreateItem(ItemId.PistolAmmoMediumPack, level.MainRooms[0].Rect.center + Vector2.right * 4);
-            _gameFactory.CreateEnemy(level.MainRooms[1].Rect.center, EnemyId.Test);
+            _gameFactory.CreateEnemy(EnemyId.Test, level.MainRooms[1].Rect.center);
             _gameStateMachine.Enter<GameLoopState>();
         }
 

@@ -5,7 +5,7 @@ namespace Items
     [Serializable]
     public class LootChance
     {
-        public Item Item;
+        public ItemId Item;
         public float Chance;
     }
 }
