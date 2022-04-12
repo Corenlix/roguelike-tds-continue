@@ -20,12 +20,12 @@ namespace Entities
         [SerializeField] private Health _health;
         [SerializeField] private ItemPicker _itemPicker;
         [SerializeField] private Weapon _startWeapon;
-        private IInputService _inputService;
+        private IInput _input;
 
         [Inject]
-        private void Construct(IInputService inputService)
+        private void Construct(IInput input)
         {
-            _inputService = inputService;
+            _input = input;
         }
 
         private void Start()
@@ -43,13 +43,13 @@ namespace Entities
 
         private void Update()
         {
-            Move(_inputService.MoveAxis);
-            LookTo(_inputService.LookPoint);
-            if(_inputService.ShootButton)
+            Move(_input.MoveAxis);
+            LookTo(_input.LookPoint);
+            if(_input.ShootButton)
                 Shoot();
-            if(_inputService.SwitchWeaponButtonDown)
+            if(_input.SwitchWeaponButtonDown)
                 SwitchWeapon();
-            if(_inputService.PickButtonDown)
+            if(_input.PickButtonDown)
                 PickItem();
         }
 

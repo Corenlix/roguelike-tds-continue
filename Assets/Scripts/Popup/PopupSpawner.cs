@@ -1,44 +1,34 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Popup
 {
-    public class PopupSpawner : MonoBehaviour
+    public class PopupSpawner
     {
-        public static  PopupSpawner Instance => _instance;
-        private static PopupSpawner _instance;
-        
-        [SerializeField] private PopupView _damagePopup;
-        [SerializeField] private PopupView _itemPickPopup;
+        private const string PopupViewsPath = "PopupViews";
+        private Dictionary<PopupType, PopupView> _popupViews;
 
-        private void Awake()
+        public PopupSpawner()
         {
-            if(_instance)
-                Destroy(_instance);
-            _instance = this;
+            Load();
         }
-   
+
+        private void Load()
+        {
+            _popupViews = Resources
+                .LoadAll<PopupView>(PopupViewsPath)
+                .ToDictionary(x => x.Type, x => x);
+        }
+
         public void SpawnPopup(PopupType popupType, Vector2 position, string popupText)
         {
-            PopupView popupView = Instantiate(GetPopupFromType(popupType), position, quaternion.identity);
+            PopupView popupView = Object.Instantiate(ViewForType(popupType), position, quaternion.identity);
             popupView.Init(popupText);
         }
 
-        private PopupView GetPopupFromType(PopupType type)
-        {
-            return type switch
-            {
-                PopupType.Damage => _damagePopup,
-                PopupType.ItemPick => _itemPickPopup,
-                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-            };
-        }
-    }
-
-    public enum PopupType
-    {
-        Damage,
-        ItemPick,
+        private PopupView ViewForType(PopupType type) => _popupViews[type];
     }
 }

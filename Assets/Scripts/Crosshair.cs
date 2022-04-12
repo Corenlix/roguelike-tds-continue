@@ -4,16 +4,16 @@ using Zenject;
 
 public class Crosshair : MonoBehaviour
 {
-    private IInputService _inputService;
+    private IInput _input;
 
     [Inject]
-    private void Construct(IInputService inputService)
+    private void Construct(IInput input)
     {
-        _inputService = inputService;
+        _input = input;
     }
 
     void Update()
     {
-        transform.position = _inputService.LookPoint;
+        transform.position = _input.LookPoint;
     }
 }

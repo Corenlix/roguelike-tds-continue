@@ -18,15 +18,12 @@ public class Game : MonoBehaviour
     
     private void Start()
     {
-        _levelFactory.Generate();
-        _levelFactory.LevelGenerated += OnLevelGenerate;
+       
     }
 
     private void OnLevelGenerate(Level level)
     {
-        _level = level;
-        _levelFactory.LevelGenerated -= OnLevelGenerate;
-        InstantiatePlayer();
+        
     }
 
     private void InstantiatePlayer()

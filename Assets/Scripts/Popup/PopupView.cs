@@ -5,6 +5,7 @@ namespace Popup
 {
    public class PopupView : MonoBehaviour
    {
+      public PopupType Type;
       [SerializeField] private TextMeshPro _text;
       
       public void Init(string popupText)
