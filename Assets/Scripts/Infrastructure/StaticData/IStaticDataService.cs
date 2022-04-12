@@ -12,5 +12,7 @@ namespace Infrastructure.StaticData
         WeaponStaticData ForWeapon(WeaponId id);
         BulletStaticData ForBullet(BulletId id);
         ItemStaticData ForItem(ItemId id);
+        LootStaticData ForLoot(LootId id);
+        ChestStaticData ForChest(ChestId id);
     }
 }

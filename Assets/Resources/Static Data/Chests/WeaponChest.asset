@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8bf0b87fda9492b87c3a50abd0a76a6, type: 3}
+  m_Name: WeaponChest
+  m_EditorClassIdentifier: 
+  ChestId: 1
+  Prefab: {fileID: 5842811036563242308, guid: 944338e0a99eb1b46ac85c7e97d69761, type: 3}
+  LootId: 1

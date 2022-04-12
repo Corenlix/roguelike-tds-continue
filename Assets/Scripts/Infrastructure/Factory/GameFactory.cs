@@ -99,5 +99,16 @@ namespace Infrastructure.Factory
                         var item = _diContainer.InstantiatePrefabForComponent<Item>(itemData.Prefab, position, Quaternion.identity, null);
                         return item;
                 }
+
+                public Chest CreateChest(ChestId id, Vector3 position)
+                {
+                        if (id == ChestId.None)
+                                return null;
+
+                        var chestData = _staticDataService.ForChest(id);
+                        var chest = _diContainer.InstantiatePrefabForComponent<Chest>(chestData.Prefab, position, Quaternion.identity, null);
+                        chest.Init(chestData);
+                        return chest;
+                }
         }
 }

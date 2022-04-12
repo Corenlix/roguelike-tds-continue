@@ -6,8 +6,8 @@ namespace Items
 {
     public class AmmoItem : Item
     {
-        public override bool NeedPressPickButton => false;
-        protected override string PickText => $"+{_count}";
+        public override bool NeedPressInteractButton => false;
+        protected override string OnPickText => $"+{_count}";
         
         [SerializeField] private AmmoType _ammoType;
         [SerializeField] private int _count;
@@ -19,7 +19,7 @@ namespace Items
             _ammoBelt = ammoBelt;
         }
         
-        protected override void OnPick()
+        protected override void OnInteract()
         {
             _ammoBelt.AddAmmo(_ammoType, _count);
         }

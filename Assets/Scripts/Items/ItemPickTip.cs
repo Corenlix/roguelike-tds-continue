@@ -7,12 +7,12 @@ namespace Items
     {
         [SerializeField] private TextMeshPro _tipText;
         
-        public void ShowTip(Item item)
+        public void ShowTip(IInteractable interactable)
         {
             transform.parent = null;
             gameObject.SetActive(true);
-            _tipText.text = $"[E] {item.Name}";
-            _tipText.transform.position = item.transform.position;
+            _tipText.text = $"[E] {interactable.InteractText}";
+            _tipText.transform.position = interactable.Position;
         }
 
         public void HideTip()

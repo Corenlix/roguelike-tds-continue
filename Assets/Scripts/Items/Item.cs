@@ -4,11 +4,14 @@ using Zenject;
 
 namespace Items
 {
-    public abstract class Item : MonoBehaviour
+    public abstract class Item : MonoBehaviour, IInteractable
     {
-        public abstract bool NeedPressPickButton { get; }
-        protected abstract string PickText { get; }
         public string Name;
+        public Vector3 Position => transform.position;
+        public abstract bool NeedPressInteractButton { get; }
+        public string InteractText => Name; 
+        protected abstract string OnPickText { get; }
+        
         private PopupSpawner _popupSpawner;
 
         [Inject]
@@ -17,13 +20,13 @@ namespace Items
             _popupSpawner = popupSpawner;
         }
         
-        public void Pick()
+        public void Interact()
         {
-            _popupSpawner.SpawnPopup(PopupType.ItemPick, transform.position, PickText);
-            OnPick();
+            _popupSpawner.SpawnPopup(PopupType.ItemPick, transform.position, InteractText);
+            OnInteract();
             Destroy(gameObject);
         }
         
-        protected abstract void OnPick();
+        protected abstract void OnInteract();
     }
 }

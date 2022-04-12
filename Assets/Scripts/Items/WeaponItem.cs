@@ -6,8 +6,8 @@ namespace Items
 {
     public class WeaponItem : Item
     {
-        public override bool NeedPressPickButton => true;
-        protected override string PickText => Name;
+        public override bool NeedPressInteractButton => true;
+        protected override string OnPickText => InteractText;
 
         [SerializeField] private WeaponId _weaponId;
         private PlayerWeapons _playerWeapons;
@@ -18,7 +18,7 @@ namespace Items
             _playerWeapons = playerWeapons;
         }
         
-        protected override void OnPick()
+        protected override void OnInteract()
         {
             _playerWeapons.TryAddWeapon(_weaponId);
         }

@@ -38,6 +38,8 @@ namespace GameState
             _gameFactory.CreateHud();
             _gameFactory.CreateItem(ItemId.PistolAmmoMediumPack, level.MainRooms[0].Rect.center + Vector2.right * 4);
             _gameFactory.CreateEnemy(EnemyId.Test, level.MainRooms[1].Rect.center);
+            _gameFactory.CreateChest(ChestId.AmmoChest, level.MainRooms[1].Rect.center);
+            _gameFactory.CreateChest(ChestId.WeaponChest, level.MainRooms[2].Rect.center);
             _gameStateMachine.Enter<GameLoopState>();
         }
 

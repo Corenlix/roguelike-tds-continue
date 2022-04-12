@@ -18,5 +18,6 @@ namespace Infrastructure.Factory
         Weapon CreateWeapon(WeaponId id, Transform parent, Vector3 position);
         Bullet CreateBullet(BulletId id, Vector3 position, Quaternion rotation);
         Item CreateItem(ItemId id, Vector3 position);
+        Chest CreateChest(ChestId id, Vector3 position);
     }
 }
