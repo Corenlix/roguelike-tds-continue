@@ -2,7 +2,6 @@ using Entities.Enemies.EnemyStateMachine;
 using Entities.Enemies.EnemyStateMachine.Conditions;
 using Entities.Enemies.EnemyStateMachine.States;
 using Infrastructure;
-using UnityEngine;
 
 namespace Entities.Enemies
 {
@@ -11,16 +10,12 @@ namespace Entities.Enemies
         private StateMachine _stateMachine;
         private RangeEnemyStaticData _data;
         
-        public override void Init(EnemyStaticData data)
+        protected override void OnInit(EnemyStaticData data)
         {
             _data = (RangeEnemyStaticData)data;
-        }
-
-        private void Start()
-        {
             InitStateMachine();
         }
-
+        
         private void Update()
         {
             _stateMachine.Tick();

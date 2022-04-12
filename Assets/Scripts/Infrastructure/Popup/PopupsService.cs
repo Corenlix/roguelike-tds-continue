@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using Infrastructure;
 using Unity.Mathematics;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Popup
 {
-    public class PopupSpawner
+    public class PopupSpawner : IService
     {
         private const string PopupViewsPath = "PopupViews";
         private Dictionary<PopupType, PopupView> _popupViews;

@@ -14,7 +14,6 @@ namespace Entities.Weapons
         
         [SerializeField] protected Transform _shootPoint;
         private float _timeRemainToShoot;
-        private Vector3 _targetPosition;
         private IGameFactory _gameFactory;
 
         [Inject]
@@ -37,8 +36,7 @@ namespace Entities.Weapons
         
         public void AimTo(Vector3 targetPosition)
         {
-            _targetPosition = targetPosition;
-            transform.rotation = transform.LookAt2DWithFlip(_targetPosition);
+            transform.rotation = transform.LookAt2DWithFlip(targetPosition);
         }
 
         public bool TryShoot()

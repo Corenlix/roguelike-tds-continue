@@ -33,6 +33,8 @@ namespace GameState
             _gameFactory.CreatePlayerCamera();
             _gameFactory.CreateHud();
             _gameFactory.CreateEnemy(level.MainRooms[1].Rect.center, EnemyId.Test);
+            
+            _gameStateMachine.Enter<GameLoopState>();
         }
 
         public void Exit()

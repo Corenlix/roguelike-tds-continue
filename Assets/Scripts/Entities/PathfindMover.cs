@@ -4,20 +4,21 @@ using UnityEngine;
 
 namespace Entities
 {
-    public class PathfindMover : RigidbodyMover
+    public class PathfindMover : MonoBehaviour
     {
+        [SerializeField] private RigidbodyMover _rigidbodyMover;
         private Pathfinder _pathfinder;
         private List<Vector2> _pathPoints;
 
-        public void Init(Pathfinder pathfinder)
+        public void Init(Pathfinder pathfinder, float speed)
         {
+            _rigidbodyMover.Init(speed);
             _pathfinder = pathfinder;
         }
     
-        protected override void FixedUpdate()
+        private void FixedUpdate()
         {
             UpdateVelocity();
-            base.FixedUpdate();
         }
 
         public void SetMovePoint(Vector2 position)
@@ -25,12 +26,12 @@ namespace Entities
             _pathPoints = _pathfinder.FindPath(transform.position, position);
             if(_pathPoints == null)
                 Reset();
-            else MoveByDirection(GetMoveDirection());
+            else _rigidbodyMover.MoveByDirection(GetMoveDirection());
         }
 
         public void Reset()
         {
-            MoveByDirection(Vector2.zero);
+            _rigidbodyMover.MoveByDirection(Vector2.zero);
             _pathPoints = null;
         }
     
@@ -44,7 +45,7 @@ namespace Entities
                 if (_pathPoints.Count > 0)
                 {
                     direction = GetMoveDirection();
-                    MoveByDirection(direction);
+                    _rigidbodyMover.MoveByDirection(direction);
                 }
                 else
                     Reset();

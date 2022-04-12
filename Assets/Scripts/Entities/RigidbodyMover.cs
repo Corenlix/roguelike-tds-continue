@@ -13,6 +13,12 @@ namespace Entities
         private KnockBackForces _knockBackForces = new KnockBackForces();
 
         public void AddForce(Force force) => _knockBackForces.AddForce(force);
+
+        public void Init(float speed)
+        {
+            _speed = speed;
+        }
+        
         public void MoveTo(Vector2 destination)
         {
             MoveByDirection(destination - _rigidbody.position);
