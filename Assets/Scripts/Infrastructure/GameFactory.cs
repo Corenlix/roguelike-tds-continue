@@ -2,6 +2,7 @@
 using Entities.Enemies;
 using Entities.Weapons;
 using Infrastructure;
+using Items;
 using LevelGeneration;
 using Pathfinding;
 using UnityEngine;
@@ -74,5 +75,12 @@ public class GameFactory : IGameFactory
                 var bullet = _diContainer.InstantiatePrefabForComponent<Bullet>(bulletData.Prefab, position, rotation, null);
                 bullet.Init(bulletData);
                 return bullet;
+        }
+
+        public Item CreateItem(ItemId id, Vector3 position)
+        {
+                var itemData = _staticDataService.ForItem(id);
+                var item = _diContainer.InstantiatePrefabForComponent<Item>(itemData.Prefab, position, Quaternion.identity, null);
+                return item;
         }
 }

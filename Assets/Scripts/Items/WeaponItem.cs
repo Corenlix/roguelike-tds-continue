@@ -1,6 +1,6 @@
-using Entities;
 using Entities.Weapons;
 using UnityEngine;
+using Zenject;
 
 namespace Items
 {
@@ -10,10 +10,17 @@ namespace Items
         protected override string PickText => Name;
 
         [SerializeField] private WeaponId _weaponId;
-    
-        protected override void OnPick(Player player)
+        private PlayerWeapons _playerWeapons;
+
+        [Inject]
+        private void Construct(PlayerWeapons playerWeapons)
         {
-            player.TryAddWeapon(_weaponId);
+            _playerWeapons = playerWeapons;
+        }
+        
+        protected override void OnPick()
+        {
+            _playerWeapons.TryAddWeapon(_weaponId);
         }
     }
 }

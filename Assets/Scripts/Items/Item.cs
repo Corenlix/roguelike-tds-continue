@@ -1,4 +1,3 @@
-using Entities;
 using Popup;
 using UnityEngine;
 using Zenject;
@@ -18,13 +17,13 @@ namespace Items
             _popupSpawner = popupSpawner;
         }
         
-        public void Pick(Player player)
+        public void Pick()
         {
             _popupSpawner.SpawnPopup(PopupType.ItemPick, transform.position, PickText);
-            OnPick(player);
+            OnPick();
             Destroy(gameObject);
         }
         
-        protected abstract void OnPick(Player player);
+        protected abstract void OnPick();
     }
 }

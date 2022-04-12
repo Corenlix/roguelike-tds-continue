@@ -18,15 +18,13 @@ namespace Entities
         [SerializeField] private Health _health;
         [SerializeField] private ItemPicker _itemPicker;
         private IInput _input;
-        private PlayerAmmoBelt _playerAmmoBelt;
         private PlayerWeapons _weapons;
 
         [Inject]
-        private void Construct(IInput input, PlayerWeapons playerWeapons, PlayerAmmoBelt playerAmmoBelt)
+        private void Construct(IInput input, PlayerWeapons playerWeapons)
         {
             _weapons = playerWeapons;
             _weapons.WeaponsContainer = _weaponsContainer;
-            _playerAmmoBelt = playerAmmoBelt;
             _input = input;
         }
 
@@ -34,7 +32,6 @@ namespace Entities
         {
             _itemPicker.Init(this);
             _weapons.TryAddWeapon(WeaponId.Pistol);
-            _playerAmmoBelt.AddAmmo(AmmoType.Pistol, 100);
             _health.Died += OnDie;
         }
 
@@ -68,18 +65,12 @@ namespace Entities
 
         private void PickItem() => _itemPicker.Pick();
 
-        public bool TryAddWeapon(WeaponId id) =>_weapons.TryAddWeapon(id);
-
         private void Shoot()
         {
             var weapon = _weapons.SelectedWeapon;
-            if (_playerAmmoBelt.GetAmmoCount(weapon.AmmoType) < weapon.AmmoPerShoot) return;
             if (!weapon.TryShoot()) return;
-        
-            _playerAmmoBelt.SubtractAmmo(weapon.AmmoType, weapon.AmmoPerShoot);
+            
             Shot?.Invoke(weapon);
         }
-
-        public void AddAmmo(AmmoType ammoType, int count) => _playerAmmoBelt.AddAmmo(ammoType, count);
     }
 }

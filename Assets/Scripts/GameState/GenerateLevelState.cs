@@ -1,4 +1,5 @@
 ﻿using Infrastructure;
+using Items;
 using LevelGeneration;
 using UnityEngine;
 using Zenject;
@@ -32,8 +33,8 @@ namespace GameState
             _gameFactory.CreatePlayer(level.MainRooms[0].Rect.center);
             _gameFactory.CreatePlayerCamera();
             _gameFactory.CreateHud();
+            _gameFactory.CreateItem(ItemId.PistolAmmoMediumPack, level.MainRooms[0].Rect.center + Vector2.right * 4);
             _gameFactory.CreateEnemy(level.MainRooms[1].Rect.center, EnemyId.Test);
-            
             _gameStateMachine.Enter<GameLoopState>();
         }
 
