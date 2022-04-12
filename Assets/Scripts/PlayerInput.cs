@@ -1,7 +1,7 @@
 using Infrastructure;
 using UnityEngine;
 
-public class StandaloneInputService : IInputService
+public class StandaloneInput : IInput
 {
     private Camera Camera => _camera ? _camera : _camera = Camera.main;
     private Camera _camera;

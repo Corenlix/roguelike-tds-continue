@@ -2,7 +2,7 @@
 
 namespace Infrastructure
 {
-    public interface IInputService : IService
+    public interface IInput : IService
     {
         Vector2 MoveAxis { get; }
         Vector2 LookPoint { get; }

@@ -1,6 +1,8 @@
 using Entities.Weapons;
+using Infrastructure;
 using Pathfinding;
 using UnityEngine;
+using Zenject;
 
 namespace Entities.Enemies
 {
@@ -12,14 +14,17 @@ namespace Entities.Enemies
         [SerializeField] private Health _health;
     
         protected Transform Target;
-    
-        public virtual void Init(Pathfinder pathfinder, Transform target)
+
+        [Inject]
+        private void Construct(Pathfinder pathfinder, Player player)
         {
             _health.Died += OnDie;
             _pathfindMover.Init(pathfinder);
-            SetTarget(target);
+            SetTarget(player.transform);
         }
-    
+
+        public abstract void Init(EnemyStaticData staticData);
+
         public void SetTarget(Transform target)
         {
             Target = target;

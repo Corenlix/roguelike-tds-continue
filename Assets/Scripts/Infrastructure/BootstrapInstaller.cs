@@ -12,8 +12,8 @@ namespace Infrastructure
         private void BindInput()
         {
             Container.
-                Bind<IInputService>().
-                To<StandaloneInputService>().
+                Bind<IInput>().
+                To<StandaloneInput>().
                 AsSingle();
         }
     }

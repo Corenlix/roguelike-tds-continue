@@ -1,5 +1,6 @@
 ﻿using Popup;
 using UnityEngine;
+using Zenject;
 
 namespace Entities.HitBoxes
 {
@@ -9,12 +10,19 @@ namespace Entities.HitBoxes
         
         [SerializeField] private Health _health;
         [SerializeField] private RigidbodyMover _rigidbodyMover;
+        private PopupSpawner _popupSpawner;
 
+        [Inject]
+        private void Construct(PopupSpawner popupSpawner)
+        {
+            _popupSpawner = popupSpawner;
+        }
+        
         protected override void Hit(HitData hitData)
         {
             _health.DealDamage(hitData.Damage);
             _rigidbodyMover.AddForce(new Force(hitData.KnockBack, hitData.Bullet.right));
-            PopupSpawner.Instance.SpawnPopup(PopupType.Damage, transform.position, hitData.Damage.ToString());
+            _popupSpawner.SpawnPopup(PopupType.Damage, transform.position, hitData.Damage.ToString());
         }
     }
 }
