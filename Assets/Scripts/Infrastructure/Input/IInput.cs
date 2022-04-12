@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Infrastructure
+namespace Infrastructure.Input
 {
     public interface IInput : IService
     {

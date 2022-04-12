@@ -1,6 +1,4 @@
-﻿using Entities.Enemies.EnemyAbilities;
-
-namespace Entities.Enemies.EnemyWeapons
+﻿namespace Entities.Enemies.EnemyWeapons
 {
     public class EnemyPistol : EnemyWeapon
     {

@@ -1,4 +1,6 @@
-﻿using Infrastructure;
+﻿using Entities.Weapons.StaticData;
+using Infrastructure;
+using Infrastructure.Factory;
 using UnityEngine;
 using Zenject;
 

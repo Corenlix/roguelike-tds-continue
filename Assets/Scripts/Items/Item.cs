@@ -1,4 +1,4 @@
-using Popup;
+using Infrastructure.Popup;
 using UnityEngine;
 using Zenject;
 

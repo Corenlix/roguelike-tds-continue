@@ -1,5 +1,7 @@
 ﻿using GameState;
-using Popup;
+using Infrastructure.Factory;
+using Infrastructure.Popup;
+using Infrastructure.StaticData;
 using Zenject;
 
 namespace Infrastructure

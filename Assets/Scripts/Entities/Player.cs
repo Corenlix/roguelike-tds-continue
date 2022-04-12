@@ -1,6 +1,7 @@
 using System;
 using Entities.Weapons;
 using Infrastructure;
+using Infrastructure.Input;
 using Items;
 using UnityEngine;
 using Zenject;

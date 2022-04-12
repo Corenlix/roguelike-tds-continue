@@ -1,6 +1,7 @@
 using Entities.Enemies.EnemyStateMachine;
 using Entities.Enemies.EnemyStateMachine.Conditions;
 using Entities.Enemies.EnemyStateMachine.States;
+using Entities.Enemies.StaticData;
 using Infrastructure;
 
 namespace Entities.Enemies

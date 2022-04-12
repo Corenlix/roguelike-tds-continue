@@ -6,7 +6,7 @@ using LevelGeneration;
 using Pathfinding;
 using UnityEngine;
 
-namespace Infrastructure
+namespace Infrastructure.Factory
 {
     public interface IGameFactory : IService
     {

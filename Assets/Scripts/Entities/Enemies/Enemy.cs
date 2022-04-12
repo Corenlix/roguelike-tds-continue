@@ -1,4 +1,5 @@
-using Entities.Enemies.EnemyAbilities;
+using Entities.Enemies.EnemyWeapons;
+using Entities.Enemies.StaticData;
 using Infrastructure;
 using Pathfinding;
 using UnityEngine;

@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Entities.Enemies;
+using Entities.Enemies.StaticData;
 using Entities.Weapons;
+using Entities.Weapons.StaticData;
 using Items;
 using UnityEngine;
 
-namespace Infrastructure
+namespace Infrastructure.StaticData
 {
     public class StaticDataService : IStaticDataService
     {

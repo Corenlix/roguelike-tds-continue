@@ -1,7 +1,10 @@
+using Entities.Enemies;
+using Entities.Enemies.StaticData;
 using Entities.Weapons;
+using Entities.Weapons.StaticData;
 using Items;
 
-namespace Infrastructure
+namespace Infrastructure.StaticData
 {
     public interface IStaticDataService
     {

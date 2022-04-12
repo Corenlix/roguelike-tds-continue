@@ -1,6 +1,6 @@
 using System;
 
-namespace Popup
+namespace Infrastructure.Popup
 {
     [Serializable]
     public enum PopupType

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Infrastructure;
+using Infrastructure.Factory;
 using UnityEngine;
 using Zenject;
 

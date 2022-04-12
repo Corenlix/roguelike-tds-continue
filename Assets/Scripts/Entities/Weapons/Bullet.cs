@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Entities.HitBoxes;
+using Entities.Weapons.StaticData;
 using Infrastructure;
 using UnityEngine;
 

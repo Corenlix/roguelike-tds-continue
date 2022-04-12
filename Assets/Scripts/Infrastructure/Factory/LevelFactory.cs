@@ -3,7 +3,7 @@ using LevelGeneration;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Infrastructure
+namespace Infrastructure.Factory
 {
     public class LevelFactory : ILevelFactory
     {
