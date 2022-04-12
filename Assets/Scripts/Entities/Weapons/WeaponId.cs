@@ -2,6 +2,7 @@
 {
     public enum WeaponId
     {
+        None,
         Pistol,
         Shotgun,
     }

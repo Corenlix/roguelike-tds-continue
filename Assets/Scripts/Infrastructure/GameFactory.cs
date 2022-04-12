@@ -43,8 +43,11 @@ public class GameFactory : IGameFactory
                 return hud;
         }
 
-        public Enemy CreateEnemy(Vector3 at, EnemyId id)
+        public Enemy CreateEnemy(EnemyId id, Vector3 at)
         {
+                if (id == EnemyId.None)
+                        return null;
+                
                 var enemyData = _staticDataService.ForEnemy(id);
                 var enemy = _diContainer.InstantiatePrefabForComponent<Enemy>(enemyData.Prefab, at,
                         Quaternion.identity, null);
@@ -61,6 +64,9 @@ public class GameFactory : IGameFactory
 
         public Weapon CreateWeapon(WeaponId id, Transform parent, Vector3 position)
         {
+                if (id == WeaponId.None)
+                        return null;
+                
                 var weaponData = _staticDataService.ForWeapon(id);
                 var weapon =
                         _diContainer.InstantiatePrefabForComponent<Weapon>(weaponData.Prefab, position,
@@ -71,6 +77,9 @@ public class GameFactory : IGameFactory
 
         public Bullet CreateBullet(BulletId id, Vector3 position, Quaternion rotation)
         {
+                if (id == BulletId.None)
+                        return null;
+                
                 var bulletData = _staticDataService.ForBullet(id);
                 var bullet = _diContainer.InstantiatePrefabForComponent<Bullet>(bulletData.Prefab, position, rotation, null);
                 bullet.Init(bulletData);
@@ -79,6 +88,9 @@ public class GameFactory : IGameFactory
 
         public Item CreateItem(ItemId id, Vector3 position)
         {
+                if (id == ItemId.None)
+                        return null;
+                
                 var itemData = _staticDataService.ForItem(id);
                 var item = _diContainer.InstantiatePrefabForComponent<Item>(itemData.Prefab, position, Quaternion.identity, null);
                 return item;
