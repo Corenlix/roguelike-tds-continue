@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Entities.Weapons
+namespace Entities.Weapons.StaticData
 {
     [CreateAssetMenu(fileName = "Pistol", menuName = "Static Data/Weapons/Pistol")]
     public class PistolStaticData : WeaponStaticData

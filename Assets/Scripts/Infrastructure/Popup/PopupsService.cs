@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Infrastructure;
 using Unity.Mathematics;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Popup
+namespace Infrastructure.Popup
 {
     public class PopupSpawner : IService
     {

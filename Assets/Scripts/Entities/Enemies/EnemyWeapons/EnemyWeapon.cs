@@ -1,8 +1,7 @@
-﻿using Entities.Enemies.EnemyWeapons;
-using Entities.HitBoxes;
+﻿using Entities.HitBoxes;
 using UnityEngine;
 
-namespace Entities.Enemies.EnemyAbilities
+namespace Entities.Enemies.EnemyWeapons
 {
     public abstract class EnemyWeapon : MonoBehaviour
     {

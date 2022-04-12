@@ -1,7 +1,6 @@
-using Entities.Weapons;
 using UnityEngine;
 
-namespace Infrastructure
+namespace Entities.Weapons.StaticData
 {
     [CreateAssetMenu(fileName = "Bullet", menuName = "Static Data/Bullets/Bullet")]
     public class DefaultBulletStaticData : BulletStaticData

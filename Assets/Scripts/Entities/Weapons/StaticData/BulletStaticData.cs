@@ -1,8 +1,7 @@
 using Entities.HitBoxes;
-using Entities.Weapons;
 using UnityEngine;
 
-namespace Infrastructure
+namespace Entities.Weapons.StaticData
 {
     public abstract class BulletStaticData : ScriptableObject
     {

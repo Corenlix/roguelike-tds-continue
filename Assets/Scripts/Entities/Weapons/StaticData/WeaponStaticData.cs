@@ -1,7 +1,6 @@
-using Infrastructure;
 using UnityEngine;
 
-namespace Entities.Weapons
+namespace Entities.Weapons.StaticData
 {
     public abstract class WeaponStaticData : ScriptableObject
     {

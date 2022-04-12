@@ -1,7 +1,7 @@
 using System;
 using LevelGeneration;
 
-namespace Infrastructure
+namespace Infrastructure.Factory
 {
     public interface ILevelFactory : IService
     {

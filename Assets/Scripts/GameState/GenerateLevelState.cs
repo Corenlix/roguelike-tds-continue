@@ -1,4 +1,7 @@
-﻿using Infrastructure;
+﻿using Entities.Enemies;
+using Infrastructure;
+using Infrastructure.Factory;
+using Infrastructure.StaticData;
 using Items;
 using LevelGeneration;
 using UnityEngine;

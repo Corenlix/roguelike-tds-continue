@@ -1,4 +1,4 @@
-namespace Infrastructure
+namespace Entities.Enemies
 {
     public enum EnemyId
     {

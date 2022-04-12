@@ -1,4 +1,6 @@
-﻿namespace Entities.Weapons
+﻿using Entities.Weapons.StaticData;
+
+namespace Entities.Weapons
 {
     public class Shotgun : Weapon
     {

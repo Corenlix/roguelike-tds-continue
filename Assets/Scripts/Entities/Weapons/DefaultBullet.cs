@@ -1,3 +1,4 @@
+using Entities.Weapons.StaticData;
 using Infrastructure;
 
 namespace Entities.Weapons

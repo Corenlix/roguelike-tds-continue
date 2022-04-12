@@ -1,3 +1,5 @@
+using Entities.Weapons.StaticData;
+
 namespace Entities.Weapons
 {
     public class Pistol : Weapon

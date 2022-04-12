@@ -1,7 +1,6 @@
-﻿using Entities.Enemies;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Infrastructure
+namespace Entities.Enemies.StaticData
 {
     [CreateAssetMenu(menuName = "Static Data/Enemies/Range Enemy", fileName = "Range Enemy")]
     public class RangeEnemyStaticData : EnemyStaticData

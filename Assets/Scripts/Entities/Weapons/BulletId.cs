@@ -1,4 +1,4 @@
-namespace Infrastructure
+namespace Entities.Weapons
 {
     public enum BulletId
     {

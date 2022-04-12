@@ -1,8 +1,7 @@
-using Entities.Enemies;
 using Entities.HitBoxes;
 using UnityEngine;
 
-namespace Infrastructure
+namespace Entities.Enemies.StaticData
 {
     public abstract class EnemyStaticData : ScriptableObject
     {
