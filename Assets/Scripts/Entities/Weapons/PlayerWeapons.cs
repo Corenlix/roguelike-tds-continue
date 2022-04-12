@@ -1,28 +1,35 @@
 using System;
 using System.Collections.Generic;
+using Infrastructure;
 using UnityEngine;
+using Zenject;
 
 namespace Entities.Weapons
 {
-    public class PlayerWeapons : MonoBehaviour
+    public class PlayerWeapons
     {
         public Weapon SelectedWeapon => _activeWeapons[_selectedWeaponIndex];
-        [SerializeField] private int _maxWeaponsCount;
-        [SerializeField] private Transform _weaponsContainer;
+        public Transform WeaponsContainer;
+        private int _maxWeaponsCount = 3;
         private readonly List<Weapon> _activeWeapons = new List<Weapon>();
         private int _selectedWeaponIndex;
+        private IGameFactory _gameFactory;
+
+        public PlayerWeapons(IGameFactory gameFactory)
+        {
+            _gameFactory = gameFactory;
+        }
         
-        public bool TryAddWeapon(Weapon weapon)
+        public bool TryAddWeapon(WeaponId id)
         {
             if (_activeWeapons.Count >= _maxWeaponsCount)
                 return false;
-            
-            _activeWeapons.Add(weapon);
-            weapon.transform.parent = _weaponsContainer;
-            weapon.transform.localPosition = Vector3.zero;
+
+            var weaponInstance = _gameFactory.CreateWeapon(id, WeaponsContainer, WeaponsContainer.transform.position);
+            _activeWeapons.Add(weaponInstance);
 
             if (_activeWeapons.Count > 1)
-                weapon.Disable();
+                weaponInstance.Disable();
             else SelectWeapon(0);
 
             return true;

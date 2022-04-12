@@ -9,12 +9,11 @@ namespace Items
         public override bool NeedPressPickButton => true;
         protected override string PickText => Name;
 
-        [SerializeField] private Weapon _weaponPrefab;
+        [SerializeField] private WeaponId _weaponId;
     
         protected override void OnPick(Player player)
         {
-            var weapon = Instantiate(_weaponPrefab);
-            player.TryAddWeapon(weapon);
+            player.TryAddWeapon(_weaponId);
         }
     }
 }

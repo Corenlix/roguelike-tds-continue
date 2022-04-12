@@ -9,27 +9,27 @@ namespace Entities.Weapons
     {
         [SerializeField] private AmmoType _ammoType;
         [SerializeField] private TextMeshProUGUI _ammoText;
-        private AmmoBelt _ammoBelt;
+        private PlayerAmmoBelt _playerAmmoBelt;
 
         [Inject]
-        private void Construct(Player player)
+        private void Construct(PlayerAmmoBelt playerAmmoBelt)
         {
-            _ammoBelt = player.AmmoBelt;
+            _playerAmmoBelt = playerAmmoBelt;
         }
         
         private void OnEnable()
         {
-            _ammoBelt.AmmoCountChanged += UpdateCounter;
+            _playerAmmoBelt.AmmoCountChanged += UpdateCounter;
         }
 
         private void UpdateCounter()
         {
-            _ammoText.text = $"[{_ammoBelt.GetAmmoCount(_ammoType)}]";
+            _ammoText.text = $"[{_playerAmmoBelt.GetAmmoCount(_ammoType)}]";
         }
 
         private void OnDisable()
         {
-            _ammoBelt.AmmoCountChanged -= UpdateCounter;
+            _playerAmmoBelt.AmmoCountChanged -= UpdateCounter;
         }
     }
 }

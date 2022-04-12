@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Entities.Enemies;
+using Entities.Weapons;
 using Infrastructure;
 using LevelGeneration;
 using Pathfinding;
@@ -19,6 +20,8 @@ public class GameFactory : IGameFactory
         
         public Player CreatePlayer(Vector3 at)
         {
+                _diContainer.Bind<PlayerWeapons>().AsSingle();
+                _diContainer.Bind<PlayerAmmoBelt>().AsSingle();
                 var player = _diContainer.InstantiatePrefabForComponent<Player>(Resources.Load<Player>("Player"), at, Quaternion.identity, null);
                 _diContainer.Bind<Player>().FromInstance(player).AsSingle();
                 return player;
@@ -53,5 +56,15 @@ public class GameFactory : IGameFactory
                 var pathfinder = new Pathfinder(level);
                 _diContainer.Bind<Pathfinder>().FromInstance(pathfinder).AsSingle();
                 return pathfinder;
+        }
+
+        public Weapon CreateWeapon(WeaponId id, Transform parent, Vector3 position)
+        {
+                var weaponData = _staticDataService.ForWeapon(id);
+                var weapon =
+                        _diContainer.InstantiatePrefabForComponent<Weapon>(weaponData.Prefab, position,
+                                Quaternion.identity, parent);
+                weapon.Init(weaponData);
+                return weapon;
         }
 }
