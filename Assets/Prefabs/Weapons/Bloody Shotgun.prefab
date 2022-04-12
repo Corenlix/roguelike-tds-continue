@@ -96,12 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff0ea56eeed493ba9756a1705d02819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPoint: {fileID: 3743273190665022211}
-  _ammoType: 1
-  _ammoPerShoot: 1
-  _shakeIntensity: 10
-  _delay: 0.6
-  _bulletPrefab: {fileID: -8651145964778396903, guid: 421ae448bb801e34ba878d218adacc99, type: 3}
+  _shootPoint: {fileID: 3743273190665022211}
 --- !u!1 &3743273190665022208
 GameObject:
   m_ObjectHideFlags: 0

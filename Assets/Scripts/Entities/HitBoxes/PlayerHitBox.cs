@@ -9,9 +9,9 @@ namespace Entities.HitBoxes
         [SerializeField] private Health _health;
         [SerializeField] private RigidbodyMover _rigidbodyMover;
 
-        protected override void Hit(HitData hitData)
+        protected override void Hit(HitData hitData, Transform bullet, GameObject sparkles)
         {
-            _rigidbodyMover.AddForce(new Force(hitData.KnockBack, hitData.Bullet.right));
+            _rigidbodyMover.AddForce(new Force(hitData.KnockBack, bullet.right));
             _health.DealDamage(hitData.Damage);
         }
     }

@@ -67,4 +67,12 @@ public class GameFactory : IGameFactory
                 weapon.Init(weaponData);
                 return weapon;
         }
+
+        public Bullet CreateBullet(BulletId id, Vector3 position, Quaternion rotation)
+        {
+                var bulletData = _staticDataService.ForBullet(id);
+                var bullet = _diContainer.InstantiatePrefabForComponent<Bullet>(bulletData.Prefab, position, rotation, null);
+                bullet.Init(bulletData);
+                return bullet;
+        }
 }

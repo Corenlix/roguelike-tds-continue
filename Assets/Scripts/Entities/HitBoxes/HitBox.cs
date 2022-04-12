@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Entities.HitBoxes
@@ -6,22 +7,15 @@ namespace Entities.HitBoxes
     {
         public abstract HitBoxType HitBoxType { get; }
 
-        public bool TryHit(HitData hitData)
+        public bool TryHit(HitData hitData, Transform bullet, List<HitBoxType> targetTypes, GameObject sparkles)
         {
-            if (!hitData.TargetTypes.Contains(HitBoxType))
+            if (!targetTypes.Contains(HitBoxType))
                 return false;
 
-            Hit(hitData);
+            Hit(hitData, bullet, sparkles);
             return true;
         }
         
-        protected abstract void Hit(HitData hitData);
-    }
-
-    public enum HitBoxType
-    {
-        Player,
-        Enemy,
-        Wall,
+        protected abstract void Hit(HitData hitData, Transform bullet, GameObject sparkles);
     }
 }
