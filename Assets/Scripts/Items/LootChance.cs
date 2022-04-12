@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Serialization;
 
 namespace Items
 {
@@ -6,6 +7,6 @@ namespace Items
     public class LootChance
     {
         public ItemId Item;
-        public float Chance;
+        [FormerlySerializedAs("Chance")] public float Weight;
     }
 }

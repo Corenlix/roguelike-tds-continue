@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,16 +16,14 @@ namespace Items
         
         public ItemId Get()
         {
-            float random = Random.Range(0, 100);
+            float totalWeight = _lootChances.Sum(x => x.Weight);
+            float random = Random.Range(0, totalWeight);
             float curRandom = 0;
             foreach (var lootChance in _lootChances)
             {
-                curRandom += lootChance.Chance;
-                if (curRandom > 100)
-                    throw new ArgumentOutOfRangeException();
-
                 if (curRandom <= random)
                     return lootChance.Item;
+                curRandom += lootChance.Weight;
             }
 
             return ItemId.None;
