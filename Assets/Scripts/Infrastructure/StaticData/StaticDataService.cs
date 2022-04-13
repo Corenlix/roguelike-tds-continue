@@ -5,18 +5,21 @@ using Entities.Enemies.StaticData;
 using Entities.Weapons;
 using Entities.Weapons.StaticData;
 using Items;
+using LevelGeneration;
 using UnityEngine;
 
 namespace Infrastructure.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
+        private const string LevelsDataPath = "Static Data/Levels";
         private const string EnemiesDataPath = "Static Data/Enemies";
         private const string WeaponsDataPath = "Static Data/Weapons";
         private const string BulletsDataPath = "Static Data/Bullets";
         private const string ItemsDataPath = "Static Data/Items";
         private const string LootsDataPath = "Static Data/Loots";
         private const string ChestsDataPath = "Static Data/Chests";
+        private Dictionary<LevelId, LevelStaticData> _levelGenerators;
         private Dictionary<EnemyId, EnemyStaticData> _enemies;
         private Dictionary<WeaponId, WeaponStaticData> _weapons;
         private Dictionary<BulletId, BulletStaticData> _bullets;
@@ -31,6 +34,10 @@ namespace Infrastructure.StaticData
 
         public void Load()
         {
+            _levelGenerators = Resources
+                .LoadAll<LevelStaticData>(LevelsDataPath)
+                .ToDictionary(x => x.LevelId, x => x);
+
             _enemies = Resources
                 .LoadAll<EnemyStaticData>(EnemiesDataPath)
                 .ToDictionary(x => x.Id, x => x);
@@ -55,6 +62,8 @@ namespace Infrastructure.StaticData
                 .LoadAll<ChestStaticData>(ChestsDataPath)
                 .ToDictionary(x => x.ChestId, x => x);
         }
+
+        public LevelStaticData ForLevel(LevelId id) => _levelGenerators[id];
 
         public EnemyStaticData ForEnemy(EnemyId id) => _enemies[id];
         

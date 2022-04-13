@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Infrastructure;
 using Infrastructure.Factory;
+using Infrastructure.StaticData;
 
 namespace GameState
 {
@@ -10,15 +11,15 @@ namespace GameState
         private readonly Dictionary<Type, IState> _states;
         private IState _activeState;
 
-        public GameStateMachine(ILevelFactory levelFactory, IGameFactory gameFactory)
+        public GameStateMachine(IGameFactory gameFactory, IStaticDataService staticDataService)
         {
             _states = new Dictionary<Type, IState>()
             {
-                {typeof(GenerateLevelState), new GenerateLevelState(this, levelFactory, gameFactory)},
+                {typeof(LoadLevelState), new LoadLevelState(this, gameFactory, staticDataService)},
                 {typeof(GameLoopState), new GameLoopState(this)}
             };
 
-            Enter<GenerateLevelState>();
+            Enter<LoadLevelState>();
         }
         
         public void Enter<TState>() where TState : class, IState

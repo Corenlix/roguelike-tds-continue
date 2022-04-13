@@ -13,7 +13,6 @@ namespace Infrastructure
         {
             Container.Bind<IAssetProvider>().To<AssetProvider.AssetProvider>().AsSingle();
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
-            Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<PopupSpawner>().AsSingle();
 

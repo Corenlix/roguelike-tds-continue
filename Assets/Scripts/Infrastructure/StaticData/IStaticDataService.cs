@@ -3,6 +3,7 @@ using Entities.Enemies.StaticData;
 using Entities.Weapons;
 using Entities.Weapons.StaticData;
 using Items;
+using LevelGeneration;
 
 namespace Infrastructure.StaticData
 {
@@ -14,5 +15,6 @@ namespace Infrastructure.StaticData
         ItemStaticData ForItem(ItemId id);
         LootStaticData ForLoot(LootId id);
         ChestStaticData ForChest(ChestId id);
+        LevelStaticData ForLevel(LevelId id);
     }
 }

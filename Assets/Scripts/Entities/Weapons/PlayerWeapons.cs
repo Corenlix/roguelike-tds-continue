@@ -27,6 +27,9 @@ namespace Entities.Weapons
                 return false;
 
             var weaponInstance = _gameFactory.CreateWeapon(id, WeaponsContainer, WeaponsContainer.transform.position);
+            var weaponScale = weaponInstance.transform.localScale;
+            weaponScale.x = Mathf.Abs(weaponScale.x);
+            weaponInstance.transform.localScale = weaponScale;
             _activeWeapons.Add(weaponInstance);
 
             if (_activeWeapons.Count > 1)
