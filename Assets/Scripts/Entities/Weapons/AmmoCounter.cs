@@ -20,6 +20,7 @@ namespace Entities.Weapons
         private void OnEnable()
         {
             _playerAmmoBelt.AmmoCountChanged += UpdateCounter;
+            UpdateCounter();
         }
 
         private void UpdateCounter()

@@ -31,7 +31,6 @@ namespace GameState
         {
             _levelStaticData = _staticDataService.ForLevel(LevelId.FirstLevel);
             var level = _levelStaticData.Generate();
-            LevelScaler.Scale(level, 2);
             new LevelDrawer().DrawLevel(level.LevelTable);
             _gameFactory.CreatePathfinder(level);
             SpawnEntities(level);

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelId: 0
   LevelSize: {x: 32, y: 32}
-  Steps: 200
-  Rotate90Chance: 70
+  Steps: 400
+  Scale: 2
+  Rotate90Chance: 30
   Rotate180Chance: 70

@@ -7,7 +7,11 @@ namespace LevelGeneration.WalkerGenerator
     {
         public Vector2Int LevelSize;
         public int Steps;
+        [Range(2,6)]
+        public int Scale;
+        [Range(0,100)]
         public int Rotate90Chance;
+        [Range(0,100)]
         public int Rotate180Chance;
         
         public override Level Generate()

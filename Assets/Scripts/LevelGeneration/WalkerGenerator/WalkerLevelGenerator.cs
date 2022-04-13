@@ -26,7 +26,9 @@ namespace LevelGeneration.WalkerGenerator
         {
             _levelTable = new CellType[_levelData.LevelSize.x + MapOffset, _levelData.LevelSize.y + MapOffset];
             Walk(_levelData.Steps);
-            return new Level(_levelTable);
+            var level = new Level(_levelTable);
+            LevelScaler.Scale(level, _levelData.Scale);
+            return level;
         }
 
         private void Walk(int steps) 
