@@ -30,6 +30,11 @@ namespace Entities
             _input = input;
         }
 
+        private void OnEnable()
+        {
+            _health.Damaged += OnTakeDamage;
+        }
+
         private void Start()
         {
             _weapons.TryAddWeapon(WeaponId.Pistol);
@@ -40,6 +45,11 @@ namespace Entities
         {
             Destroy(gameObject);
             _health.Died -= OnDie;
+        }
+
+        private void OnDisable()
+        {
+            _health.Damaged -= _playerView.OnTakeDamage;
         }
 
         private void Update()
@@ -72,6 +82,11 @@ namespace Entities
             if (!weapon.TryShoot()) return;
             
             Shot?.Invoke(weapon);
+        }
+
+        private void OnTakeDamage()
+        {
+            _playerView.OnTakeDamage();
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Items
@@ -11,15 +12,15 @@ namespace Items
     {
         public LootId LootId => _lootId;
         
-        [SerializeField] private List<LootChance> _lootChances;
+        [SerializeField] private List<LootWeight> _lootWeights;
         [SerializeField] private LootId _lootId;
         
         public ItemId Get()
         {
-            float totalWeight = _lootChances.Sum(x => x.Weight);
+            float totalWeight = _lootWeights.Sum(x => x.Weight);
             float random = Random.Range(0, totalWeight);
             float curRandom = 0;
-            foreach (var lootChance in _lootChances)
+            foreach (var lootChance in _lootWeights)
             {
                 if (curRandom <= random)
                     return lootChance.Item;

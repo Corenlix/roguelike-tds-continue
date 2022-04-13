@@ -1,3 +1,4 @@
+using System;
 using Entities.Enemies.EnemyWeapons;
 using Entities.Enemies.StaticData;
 using Infrastructure;
@@ -31,12 +32,17 @@ namespace Entities.Enemies
             _enemyStaticData = staticData;
         }
 
+        private void OnEnable()
+        {
+            _health.Damaged += OnTakeDamage;
+        }
+
         private void Start()
         {
             SetTarget(_player.transform);
             _health.Died += OnDie;
             _pathfindMover.Init(_pathfinder, _enemyStaticData.MoveSpeed);
-            _enemyWeapon.Init(_enemyStaticData.HitData, _enemyStaticData.MoveSpeed, _enemyStaticData.ShootDelay);
+            _enemyWeapon.Init(_enemyStaticData.HitData, _enemyStaticData.BulletSpeed, _enemyStaticData.ShootDelay);
             OnInit(_enemyStaticData);
         }
 
@@ -62,6 +68,11 @@ namespace Entities.Enemies
         {
             _health.Died -= OnDie;
             Destroy(gameObject);
+        }
+
+        private void OnTakeDamage()
+        {
+            _view.OnTakeDamage();
         }
     }
 }

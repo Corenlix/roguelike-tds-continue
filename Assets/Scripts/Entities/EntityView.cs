@@ -8,10 +8,16 @@ namespace Entities
         [SerializeField] private Animator _animator;
     
         private static readonly int Run = Animator.StringToHash("Run");
+        private static readonly int TakeDamage = Animator.StringToHash("TakeDamage");
 
         public void SetRunState(bool state)
         {
             _animator.SetBool(Run, state);
+        }
+
+        public void OnTakeDamage()
+        {
+            _animator.SetTrigger(TakeDamage);
         }
 
         public void LookTo(Vector3 position)

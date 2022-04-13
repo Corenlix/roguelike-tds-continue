@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3c60fac3b5e6d4993f5963bcf5305c, type: 3}
   m_Name: AmmoLoot
   m_EditorClassIdentifier: 
-  _lootChances:
+  _lootWeights:
   - Item: 1
-    Chance: 50
+    Weight: 1
   - Item: 2
-    Chance: 50
+    Weight: 1
   _lootId: 2
