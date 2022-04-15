@@ -51,16 +51,6 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 5658781864977752136, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 328056999903988223, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: -4032752705614328921, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 52223881583292665, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 1942658580278854645, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 6516465113127462949, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 5023225828585338039, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 3246792787386233627, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: -8351912458575111850, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: -5862627439253646039, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: 9058822660989661298, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: 1670679116868395324, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: -1400070130308293167, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
@@ -69,14 +59,6 @@ SpriteAtlas:
   - {fileID: -7626348988197198589, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: -7063403058836991687, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: 7148013115713942494, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: -5397999960270960932, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: -6304367829943975507, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: -7199932314770546759, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 2970102780737232822, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 6079304858319419815, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 8810467295780256326, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: -8239208900809810017, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 7820223792649709418, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: 21300000, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
   - {fileID: -7287732061954022656, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: -3990983241478422898, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
@@ -88,16 +70,6 @@ SpriteAtlas:
   - {fileID: 1986394952384275652, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: 1494582489817834251, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   m_PackedSpriteNamesToIndex:
-  - WallSet_22
-  - WallSet_23
-  - WallSet_20
-  - WallSet_21
-  - WallSet_26
-  - WallSet_27
-  - WallSet_24
-  - WallSet_25
-  - WallSet_28
-  - WallSet_29
   - WallSet_4
   - WallSet_5
   - WallSet_6
@@ -106,14 +78,6 @@ SpriteAtlas:
   - WallSet_1
   - WallSet_2
   - WallSet_3
-  - WallSet_8
-  - WallSet_9
-  - WallSet_19
-  - WallSet_18
-  - WallSet_17
-  - WallSet_16
-  - WallSet_15
-  - WallSet_12
   - Floor
   - Crocoman_8
   - Crocoman_2
