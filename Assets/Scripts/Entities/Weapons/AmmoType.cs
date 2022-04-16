@@ -7,6 +7,7 @@ namespace Entities.Weapons
     {
         Pistol,
         Shotgun,
+        Riffle,
         Laser,
     }
 }

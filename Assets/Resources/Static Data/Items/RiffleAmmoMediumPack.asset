@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49a9fe9ae2bc4000922f1549318e6291, type: 3}
-  m_Name: PistolAmmoMediumPack 2
+  m_Name: RiffleAmmoMediumPack
   m_EditorClassIdentifier: 
   Id: 2
-  Prefab: {fileID: 2610176599535660847, guid: 37217a5585208234c976861830bfd829, type: 3}
+  Prefab: {fileID: 2610176599535660847, guid: df435e390656ca740ab4da7ebf0246b6, type: 3}

@@ -5,5 +5,7 @@
         None,
         Pistol,
         Shotgun,
+        AssaultRiffle,
+        MachineGun,
     }
 }

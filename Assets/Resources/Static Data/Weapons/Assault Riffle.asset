@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fabe82570d948c09f235c6d466cbd05, type: 3}
+  m_Name: Assault Riffle
+  m_EditorClassIdentifier: 
+  WeaponId: 3
+  BulletId: 1
+  AmmoType: 2
+  AmmoPerShoot: 4
+  ShakeIntensity: 0.4
+  Delay: 0.5
+  ShootsInBurst: 4
+  _prefab: {fileID: 3277549861325054249, guid: 026178ecccb1e4e4cab50c3a15bb17ff, type: 3}

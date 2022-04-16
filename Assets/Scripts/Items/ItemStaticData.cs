@@ -11,10 +11,15 @@ namespace Items
 
     public enum ItemId
     {
-        None,
-        PistolAmmoMediumPack,
-        ShotgunAmmoMediumPack,
-        Pistol,
-        Shotgun,
+        None = -1,
+        PistolAmmoMediumPack= 0,
+        ShotgunAmmoMediumPack = 1,
+        RifleAmmoMediumPack = 2,
+        
+        Pistol = 100,
+        Shotgun = 101,
+        MachineGun = 102,
+        Riffle = 103,
+        AssaultRiffle = 104,
     }
 }
