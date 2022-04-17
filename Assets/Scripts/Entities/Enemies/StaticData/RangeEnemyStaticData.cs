@@ -14,5 +14,9 @@ namespace Entities.Enemies.StaticData
         public  int WalkToChaseDistance;
         public  int ChaseToWalkDistance;
         [SerializeField] private RangeEnemy _prefab;
+        
+        [Header("Shooting")]
+        public float BulletSpeed;
+        public float ShootDelay;
     }
 }

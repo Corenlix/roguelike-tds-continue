@@ -21,7 +21,7 @@ namespace Entities.Enemies.EnemyStateMachine.States
         public override void Tick()
         {
             _enemy.MoveTo(_target.position);
-            _enemy.Attack(_target.position);
+            _enemy.RangeAttack(_target.position);
         }
 
         public override void Exit()

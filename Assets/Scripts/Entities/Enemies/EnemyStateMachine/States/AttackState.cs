@@ -1,31 +1,30 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Entities.Enemies.EnemyStateMachine.States
 {
-    public class IdleState : State
+    public class AttackState : State
     {
+        private readonly MeleeEnemy _meleeEnemy;
         private readonly Transform _target;
-        private readonly RangeEnemy _enemy;
-        
-        public IdleState(RangeEnemy enemy, Transform target)
+
+        public AttackState(MeleeEnemy meleeEnemy, Transform target)
         {
-            _enemy = enemy;
+            _meleeEnemy = meleeEnemy;
             _target = target;
         }
-        
         public override void Enter()
         {
-            _enemy.MoveTo(_enemy.transform.position);
+            _meleeEnemy.Attack();
         }
 
         public override void Tick()
         {
-            _enemy.RangeAttack(_target.position);
+            _meleeEnemy.MoveTo(_target.position);
         }
 
         public override void Exit()
         {
-            
+        
         }
     }
 }

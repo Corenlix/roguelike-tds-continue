@@ -10,7 +10,6 @@ namespace Entities.Enemies.StaticData
         public EnemyId Id;
         public float MoveSpeed;
         public HitData HitData;
-        public float BulletSpeed;
-        public float ShootDelay;
+       
     }
 }

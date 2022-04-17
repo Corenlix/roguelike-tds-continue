@@ -1,4 +1,7 @@
-﻿using Infrastructure.Popup;
+﻿using System;
+using System.Collections.Generic;
+using Entities.Enemies.StaticData;
+using Infrastructure.Popup;
 using UnityEngine;
 using Zenject;
 
@@ -6,12 +9,13 @@ namespace Entities.HitBoxes
 {
     public class EnemyHitBox : HitBox
     {
+        protected virtual List<HitBoxType> TargetType => new List<HitBoxType>() {HitBoxType.Player};
         public override HitBoxType HitBoxType => HitBoxType.Enemy;
         
         [SerializeField] private Health _health;
         [SerializeField] private RigidbodyMover _rigidbodyMover;
         private PopupSpawner _popupSpawner;
-
+        
         [Inject]
         private void Construct(PopupSpawner popupSpawner)
         {

@@ -4,5 +4,6 @@ namespace Entities.Enemies
     {
         None,
         Test,
+        Spider
     }
 }

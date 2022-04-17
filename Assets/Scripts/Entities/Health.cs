@@ -11,7 +11,7 @@ namespace Entities
 
         public int MaxHealth => _maxHealth;
         public int CurrentHealth => _health;
-
+        
         [SerializeField] private int _maxHealth;
         private int _health;
      

@@ -3,18 +3,19 @@ using UnityEngine;
 
 namespace Entities
 {
-    public class EntityView : MonoBehaviour
+    public abstract  class EntityView : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
-    
+        [SerializeField] protected Animator _animator;
+
         private static readonly int Run = Animator.StringToHash("Run");
         private static readonly int TakeDamage = Animator.StringToHash("TakeDamage");
+        
 
         public void SetRunState(bool state)
         {
             _animator.SetBool(Run, state);
         }
-
+        
         public void OnTakeDamage()
         {
             _animator.SetTrigger(TakeDamage);
@@ -29,4 +30,5 @@ namespace Entities
             transform.rotation = Quaternion.Euler(rotationEuler);   
         }
     }
+    
 }

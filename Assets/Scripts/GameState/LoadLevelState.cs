@@ -41,7 +41,7 @@ namespace GameState
             var floorPoints = level.GetFloorPoints();
             _gameFactory.CreatePlayer(floorPoints[0]);
             _gameFactory.CreateItem(ItemId.Shotgun, floorPoints[1]);
-            _gameFactory.CreateEnemy(EnemyId.Test, floorPoints[20]);
+            _gameFactory.CreateEnemy(EnemyId.Spider, floorPoints[20]);
             _gameFactory.CreateChest(ChestId.AmmoChest, floorPoints[50]);
             _gameFactory.CreateChest(ChestId.WeaponChest, floorPoints[80]);
             _gameStateMachine.Enter<GameLoopState>();

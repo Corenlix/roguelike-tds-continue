@@ -1,22 +1,33 @@
 using Entities.Enemies.EnemyStateMachine;
 using Entities.Enemies.EnemyStateMachine.Conditions;
 using Entities.Enemies.EnemyStateMachine.States;
+using Entities.Enemies.EnemyWeapons;
 using Entities.Enemies.StaticData;
+using Entities.Weapons;
 using Infrastructure;
+using UnityEngine;
 
 namespace Entities.Enemies
 {
     public class RangeEnemy : Enemy
     {
+        [SerializeField] private EnemyWeapon _enemyWeapon;
         private StateMachine _stateMachine;
         private RangeEnemyStaticData _data;
         
         protected override void OnInit(EnemyStaticData data)
         {
             _data = (RangeEnemyStaticData)data;
+            _enemyWeapon.Init(_data.HitData, _data.BulletSpeed, _data.ShootDelay);
             InitStateMachine();
         }
-        
+
+        public void RangeAttack(Vector3 target)
+        {
+            _view.LookTo(target);
+            _enemyWeapon.AimTo(target);
+            _enemyWeapon.TryShoot();   
+        }
         private void Update()
         {
             _stateMachine.Tick();

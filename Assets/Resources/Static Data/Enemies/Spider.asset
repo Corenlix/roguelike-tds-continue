@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab58b003f512694a9e6627acdfbb445, type: 3}
+  m_Name: Spider
+  m_EditorClassIdentifier: 
+  Id: 2
+  MoveSpeed: 4
+  HitData:
+    Damage: 15
+    KnockBack: 8
+  RandomWalkDistance: 5
+  RandomWalkPeriod: 2
+  WalkToChaseDistance: 6
+  ChaseToWalkDistance: 7
+  ChaseToAttackDistance: 3
+  AttackToChaseDistance: 4
+  _prefab: {fileID: -2425427702038818122, guid: 4685b9a035b6af44b884ae0fdd0a680f, type: 3}

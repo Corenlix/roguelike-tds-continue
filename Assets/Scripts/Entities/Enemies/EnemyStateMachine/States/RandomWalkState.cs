@@ -4,12 +4,12 @@ namespace Entities.Enemies.EnemyStateMachine.States
 {
     public class RandomWalkState : State
     {
-        private RangeEnemy _enemy;
-        private int _walkDistance;
-        private float _walkPeriod;
+        private readonly Enemy _enemy;
+        private readonly int _walkDistance;
+        private readonly float _walkPeriod;
         private float _timeToWalk;
 
-        public RandomWalkState(RangeEnemy enemy, int walkDistance, float walkPeriod)
+        public RandomWalkState(Enemy enemy, int walkDistance, float walkPeriod)
         {
             _walkDistance = walkDistance;
             _walkPeriod = walkPeriod;
