@@ -24,7 +24,7 @@ namespace Entities
             _animator.SetTrigger(TakeDamage);
         }
 
-        public void LookTo(Vector3 position)
+        public virtual void LookTo(Vector3 position)
         {
             var aimDirection = position - transform.position;
             Vector3 rotationEuler = transform.rotation.eulerAngles;

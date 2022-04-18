@@ -46,6 +46,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
     - {fileID: 2800000, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
     - {fileID: 2800000, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+    - {fileID: 2800000, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -69,6 +70,7 @@ SpriteAtlas:
   - {fileID: -512265628096823119, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: 1986394952384275652, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: 1494582489817834251, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: 21300000, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
   m_PackedSpriteNamesToIndex:
   - WallSet_4
   - WallSet_5
@@ -88,6 +90,7 @@ SpriteAtlas:
   - Crocoman_7
   - Crocoman_4
   - Crocoman_5
+  - eye boss
   m_RenderDataMap: {}
   m_Tag: New Sprite Atlas
   m_IsVariant: 0

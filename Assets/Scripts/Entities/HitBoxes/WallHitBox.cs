@@ -7,9 +7,10 @@ namespace Entities.HitBoxes
     {
         public override HitBoxType HitBoxType => HitBoxType.Wall;
         
-        protected override void Hit(HitData hitData, Transform bullet, GameObject sparkles)
+        protected override void Hit(HitData hitData, Transform bullet, GameObject sparkles = null)
         {
-            Instantiate(sparkles, bullet.position, quaternion.identity);
+            if(sparkles)
+                Instantiate(sparkles, bullet.position, quaternion.identity);
         }
     }
 }

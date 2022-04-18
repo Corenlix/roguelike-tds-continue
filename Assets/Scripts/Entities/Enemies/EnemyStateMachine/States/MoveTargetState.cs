@@ -1,4 +1,3 @@
-using Entities.Enemies.EnemyWeapons;
 using UnityEngine;
 
 namespace Entities.Enemies.EnemyStateMachine.States

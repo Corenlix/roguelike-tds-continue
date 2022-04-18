@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Entities.Enemies.EnemyStateMachine;
 using Entities.Enemies.EnemyWeapons;
 using Entities.Enemies.StaticData;
+using Entities.HitBoxes;
 using Infrastructure;
 using Infrastructure.Factory;
 using Pathfinding;
@@ -12,9 +14,10 @@ namespace Entities.Enemies
 {
     public abstract class Enemy : MonoBehaviour
     {
+        protected static List<HitBoxType> DefaultTargetTypes => new List<HitBoxType> { HitBoxType.Player, HitBoxType.Wall };
+        protected abstract EnemyView View { get; }
         protected Transform Target;
-        
-        [SerializeField] protected EnemyView _view;
+
         [SerializeField] private Health _health;
         private EnemyStaticData _enemyStaticData;
         private Player _player;
@@ -40,7 +43,7 @@ namespace Entities.Enemies
 
         private void OnEnable()
         {
-            _health.Damaged += _view.OnTakeDamage;
+            _health.Damaged += View.OnTakeDamage;
             _health.Died += OnDie;
         }
 
@@ -60,7 +63,7 @@ namespace Entities.Enemies
         private void OnDisable()
         {
             _health.Died -= OnDie;
-            _health.Damaged -= _view.OnTakeDamage;
+            _health.Damaged -= View.OnTakeDamage;
         }
     }
 }

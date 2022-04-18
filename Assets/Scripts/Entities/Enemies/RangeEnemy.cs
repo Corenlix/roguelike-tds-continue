@@ -9,6 +9,8 @@ namespace Entities.Enemies
 {
     public class RangeEnemy : Enemy
     {
+        protected override EnemyView View => _view;
+        [SerializeField] private EnemyView _view;
         [SerializeField] private EnemyShootWeapon _enemyWeapon;
         [SerializeField] private Mover _mover;
 

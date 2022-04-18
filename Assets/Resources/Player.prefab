@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 7924238740898405479}
   - component: {fileID: 7924238740898405476}
   m_Layer: 0
-  m_Name: ItemPicker
+  m_Name: Interacter
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.025334358, y: 0.06218481}
+  m_Offset: {x: 0.076768875, y: 0.13177347}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -272,7 +272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6310558, y: 0.6821699}
+  m_Size: {x: 2.3390465, y: 1.3175459}
   m_EdgeRadius: 0
 --- !u!114 &7924238740898405476
 MonoBehaviour:
@@ -547,7 +547,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _health: 100
 --- !u!50 &7924238742685167543
 Rigidbody2D:
   serializedVersion: 4
