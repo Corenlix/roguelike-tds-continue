@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Entities.Enemies.StaticData;
-using Infrastructure.Popup;
+﻿using Infrastructure.Popup;
 using UnityEngine;
 using Zenject;
 
 namespace Entities.HitBoxes
 {
-    public class EnemyHitBox : HitBox
+    public sealed class EnemyHitBox : HitBox
     {
-        protected virtual List<HitBoxType> TargetType => new List<HitBoxType>() {HitBoxType.Player};
         public override HitBoxType HitBoxType => HitBoxType.Enemy;
         
         [SerializeField] private Health _health;
@@ -22,7 +18,7 @@ namespace Entities.HitBoxes
             _popupSpawner = popupSpawner;
         }
         
-        protected override void Hit(HitData hitData, Transform bullet, GameObject sparkles)
+        protected override void Hit(HitData hitData, Transform bullet, GameObject sparkles = null)
         {
             _health.DealDamage(hitData.Damage);
             _rigidbodyMover.AddForce(new Force(hitData.KnockBack, bullet.right));

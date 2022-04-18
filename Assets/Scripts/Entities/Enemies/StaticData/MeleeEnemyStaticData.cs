@@ -15,6 +15,6 @@ namespace Entities.Enemies.StaticData
         public  int WalkToChaseDistance;
         public  int ChaseToWalkDistance;
         public int ChaseToAttackDistance;
-        [SerializeField] private MeleeEnemy _prefab;
+        [SerializeField] private Spider _prefab;
     }
 }

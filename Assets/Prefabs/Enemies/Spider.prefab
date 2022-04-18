@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: -9209503217736586922}
   - component: {fileID: -6568135447267477722}
   - component: {fileID: -5417638672722708770}
-  - component: {fileID: 8956248620179750307}
-  - component: {fileID: 5543753264616717553}
   - component: {fileID: 1817035422216542323}
   - component: {fileID: 7954967330418097206}
   m_Layer: 0
@@ -37,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 2840596266475047785}
   - {fileID: 3475922702225801935}
+  - {fileID: 1113554714955490926}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -93,46 +92,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 9156551597417716317}
   _speed: 0
---- !u!114 &8956248620179750307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 230205789952653296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d9d58691c8b441a8a0d0bc4ba764cef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: {fileID: -9209503217736586922}
-  _rigidbodyMover: {fileID: -5417638672722708770}
---- !u!61 &5543753264616717553
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 230205789952653296}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 0.5}
-    newSize: {x: 0.75, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.5}
-  m_EdgeRadius: 0
 --- !u!50 &1817035422216542323
 Rigidbody2D:
   serializedVersion: 4
@@ -168,9 +127,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 9156551597417716317}
   _health: {fileID: -9209503217736586922}
+  _hitByTrigger: {fileID: 8820606800236532631}
   _mover: {fileID: -6568135447267477722}
   _attackMover: {fileID: -5417638672722708770}
-  _weapon: {fileID: 4268192363841086515}
+--- !u!1 &2379944771616510769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1113554714955490926}
+  - component: {fileID: 8474589452867101125}
+  - component: {fileID: 8686922975541837287}
+  m_Layer: 0
+  m_Name: HItBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1113554714955490926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2379944771616510769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7264582832348060535}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8474589452867101125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2379944771616510769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9d58691c8b441a8a0d0bc4ba764cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: -9209503217736586922}
+  _rigidbodyMover: {fileID: -5417638672722708770}
+--- !u!58 &8686922975541837287
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2379944771616510769}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &3297312124632697534
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,9 +202,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3475922702225801935}
   - component: {fileID: 8687190390598982120}
-  - component: {fileID: 4268192363841086515}
+  - component: {fileID: 8820606800236532631}
   m_Layer: 0
-  m_Name: Splash
+  m_Name: HitTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +237,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.19086647}
+  m_Offset: {x: 0, y: -0.00086402893}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -227,9 +248,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.63417435}
+  m_Size: {x: 0.78835297, y: 0.53316116}
   m_EdgeRadius: 0
---- !u!114 &4268192363841086515
+--- !u!114 &8820606800236532631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,11 +259,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3297312124632697534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 324721f388594d6a98752d26b8e5380b, type: 3}
+  m_Script: {fileID: 11500000, guid: ba0057cc326cbf84398aff76b52684b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _splashEffectPrefab: {fileID: 0}
-  _attackCollider: {fileID: 8687190390598982120}
 --- !u!1 &7021780189020495327
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +314,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 5838d8fc83041e84282ac99d802492ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -317,7 +336,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 5376646307960564450, guid: a14548161bbdf1748abc5a99b32e33d1, type: 3}
-  m_Color: {r: 0, g: 0.990005, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -17,4 +17,6 @@ MonoBehaviour:
     Weight: 1
   - Item: 2
     Weight: 1
+  - Item: 0
+    Weight: 1
   _lootId: 2

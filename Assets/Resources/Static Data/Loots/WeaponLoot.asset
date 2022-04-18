@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: WeaponLoot
   m_EditorClassIdentifier: 
   _lootWeights:
-  - Item: 4
+  - Item: 101
+    Weight: 1
+  - Item: 102
+    Weight: 1
+  - Item: 103
+    Weight: 1
+  - Item: 104
     Weight: 1
   _lootId: 1
