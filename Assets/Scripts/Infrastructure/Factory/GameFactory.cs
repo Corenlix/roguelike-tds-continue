@@ -17,13 +17,14 @@ namespace Infrastructure.Factory
                 private readonly IStaticDataService _staticDataService;
                 private readonly IAssetProvider _assetProvider;
 
-                public GameFactory(DiContainer container, IStaticDataService staticDataService, IAssetProvider assetProvider)
+                public GameFactory(DiContainer container, IStaticDataService staticDataService,
+                        IAssetProvider assetProvider)
                 {
                         _assetProvider = assetProvider;
                         _diContainer = container;
                         _staticDataService = staticDataService;
                 }
-        
+
                 public Player CreatePlayer(Vector3 at)
                 {
                         _diContainer.Bind<PlayerWeapons>().AsSingle();
@@ -51,7 +52,7 @@ namespace Infrastructure.Factory
                 {
                         if (id == EnemyId.None)
                                 return null;
-                
+
                         var enemyData = _staticDataService.ForEnemy(id);
                         var enemy = _diContainer.InstantiatePrefabForComponent<Enemy>(enemyData.Prefab, at,
                                 Quaternion.identity, null);
@@ -70,7 +71,7 @@ namespace Infrastructure.Factory
                 {
                         if (id == WeaponId.None)
                                 return null;
-                
+
                         var weaponData = _staticDataService.ForWeapon(id);
                         var weapon =
                                 _diContainer.InstantiatePrefabForComponent<Weapon>(weaponData.Prefab, position,
@@ -83,9 +84,11 @@ namespace Infrastructure.Factory
                 {
                         if (id == BulletId.None)
                                 return null;
-                
+
                         var bulletData = _staticDataService.ForBullet(id);
-                        var bullet = _diContainer.InstantiatePrefabForComponent<Bullet>(bulletData.Prefab, position, rotation, null);
+                        var bullet =
+                                _diContainer.InstantiatePrefabForComponent<Bullet>(bulletData.Prefab, position,
+                                        rotation, null);
                         bullet.Init(bulletData);
                         return bullet;
                 }
@@ -94,9 +97,10 @@ namespace Infrastructure.Factory
                 {
                         if (id == ItemId.None)
                                 return null;
-                
+
                         var itemData = _staticDataService.ForItem(id);
-                        var item = _diContainer.InstantiatePrefabForComponent<Item>(itemData.Prefab, position, Quaternion.identity, null);
+                        var item = _diContainer.InstantiatePrefabForComponent<Item>(itemData.Prefab, position,
+                                Quaternion.identity, null);
                         return item;
                 }
 
@@ -106,9 +110,27 @@ namespace Infrastructure.Factory
                                 return null;
 
                         var chestData = _staticDataService.ForChest(id);
-                        var chest = _diContainer.InstantiatePrefabForComponent<Chest>(chestData.Prefab, position, Quaternion.identity, null);
+                        var chest = _diContainer.InstantiatePrefabForComponent<Chest>(chestData.Prefab, position,
+                                Quaternion.identity, null);
                         chest.Init(chestData);
                         return chest;
+                }
+
+                public Level CreateLevel(LevelId id)
+                {
+                        var levelStaticData = _staticDataService.ForLevel(LevelId.FirstLevel);
+                        var level = levelStaticData.Generate();
+                        _diContainer.Bind<Level>().FromInstance(level).AsSingle();
+                        new LevelDrawer().DrawLevel(level.LevelTable);
+                        CreatePathfinder(level);
+                        return level;
+                }
+
+                public EnemiesSpawner CreateEnemySpawner(EnemySpawnerId id)
+                {
+                        var spawner = _diContainer.InstantiateComponentOnNewGameObject<EnemiesSpawner>();
+                        spawner.Init(_staticDataService.ForEnemySpawner(id));
+                        return spawner;
                 }
         }
 }

@@ -19,5 +19,7 @@ namespace Infrastructure.Factory
         Bullet CreateBullet(BulletId id, Vector3 position, Quaternion rotation);
         Item CreateItem(ItemId id, Vector3 position);
         Chest CreateChest(ChestId id, Vector3 position);
+        Level CreateLevel(LevelId id);
+        EnemiesSpawner CreateEnemySpawner(EnemySpawnerId id);
     }
 }

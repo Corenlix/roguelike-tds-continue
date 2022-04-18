@@ -16,5 +16,6 @@ namespace Infrastructure.StaticData
         LootStaticData ForLoot(LootId id);
         ChestStaticData ForChest(ChestId id);
         LevelStaticData ForLevel(LevelId id);
+        EnemySpawnerStaticData ForEnemySpawner(EnemySpawnerId id);
     }
 }

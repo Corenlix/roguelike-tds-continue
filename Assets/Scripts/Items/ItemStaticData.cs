@@ -19,7 +19,6 @@ namespace Items
         Pistol = 100,
         Shotgun = 101,
         MachineGun = 102,
-        Riffle = 103,
         AssaultRiffle = 104,
     }
 }

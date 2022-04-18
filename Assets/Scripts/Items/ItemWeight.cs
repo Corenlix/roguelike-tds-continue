@@ -4,9 +4,9 @@ using UnityEngine.Serialization;
 namespace Items
 {
     [Serializable]
-    public class LootWeight
+    public class ItemWeight<T>
     {
-        public ItemId Item;
+        public T Item;
         public float Weight;
     }
 }

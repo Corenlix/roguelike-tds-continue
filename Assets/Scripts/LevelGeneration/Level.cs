@@ -6,6 +6,7 @@ namespace LevelGeneration
     public class Level
     {
         public CellType[,] LevelTable;
+        private List<Vector2> _floorPoints;
 
         public Level(CellType[,] levelTable)
         {
@@ -14,17 +15,20 @@ namespace LevelGeneration
         
         public List<Vector2> GetFloorPoints()
         {
-            var points = new List<Vector2>();
+            if (_floorPoints != null)
+                return _floorPoints;
+            
+            _floorPoints = new List<Vector2>();
             for (int i = 0; i < LevelTable.GetLength(0); i++)
             {
                 for (int j = 0; j < LevelTable.GetLength(1); j++)
                 {
                     if(LevelTable[i,j] == CellType.Floor)
-                        points.Add(new Vector2(i,j));
+                        _floorPoints.Add(new Vector2(i,j));
                 }
             }
 
-            return points;
+            return _floorPoints;
         }
     }
 }

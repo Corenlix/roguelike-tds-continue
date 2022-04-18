@@ -11,11 +11,11 @@ namespace GameState
         private readonly Dictionary<Type, IState> _states;
         private IState _activeState;
 
-        public GameStateMachine(IGameFactory gameFactory, IStaticDataService staticDataService)
+        public GameStateMachine(IGameFactory gameFactory)
         {
             _states = new Dictionary<Type, IState>()
             {
-                {typeof(LoadLevelState), new LoadLevelState(this, gameFactory, staticDataService)},
+                {typeof(LoadLevelState), new LoadLevelState(this, gameFactory)},
                 {typeof(GameLoopState), new GameLoopState(this)}
             };
 

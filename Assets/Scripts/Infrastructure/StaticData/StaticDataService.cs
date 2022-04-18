@@ -19,6 +19,7 @@ namespace Infrastructure.StaticData
         private const string ItemsDataPath = "Static Data/Items";
         private const string LootsDataPath = "Static Data/Loots";
         private const string ChestsDataPath = "Static Data/Chests";
+        private const string EnemySpawnersPath = "Static Data/EnemySpawners";
         private Dictionary<LevelId, LevelStaticData> _levelGenerators;
         private Dictionary<EnemyId, EnemyStaticData> _enemies;
         private Dictionary<WeaponId, WeaponStaticData> _weapons;
@@ -26,6 +27,7 @@ namespace Infrastructure.StaticData
         private Dictionary<ItemId, ItemStaticData> _items;
         private Dictionary<LootId, LootStaticData> _loots;
         private Dictionary<ChestId, ChestStaticData> _chests;
+        private Dictionary<EnemySpawnerId, EnemySpawnerStaticData> _enemySpawners;
 
         public StaticDataService()
         {
@@ -61,6 +63,10 @@ namespace Infrastructure.StaticData
             _chests = Resources
                 .LoadAll<ChestStaticData>(ChestsDataPath)
                 .ToDictionary(x => x.ChestId, x => x);
+            
+            _enemySpawners = Resources
+                .LoadAll<EnemySpawnerStaticData>(EnemySpawnersPath)
+                .ToDictionary(x => x.Id, x => x);
         }
 
         public LevelStaticData ForLevel(LevelId id) => _levelGenerators[id];
@@ -76,5 +82,7 @@ namespace Infrastructure.StaticData
         public LootStaticData ForLoot(LootId id) => _loots[id];
         
         public ChestStaticData ForChest(ChestId id) => _chests[id];
+        
+        public EnemySpawnerStaticData ForEnemySpawner(EnemySpawnerId id) => _enemySpawners[id];
     }
 }

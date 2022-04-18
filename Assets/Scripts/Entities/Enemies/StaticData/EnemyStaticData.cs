@@ -8,8 +8,7 @@ namespace Entities.Enemies.StaticData
         public abstract Enemy Prefab { get; }
 
         public EnemyId Id;
-        public float MoveSpeed;
+        public float MoveSpeed; 
         public HitData HitData;
-       
     }
 }
