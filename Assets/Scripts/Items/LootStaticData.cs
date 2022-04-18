@@ -19,12 +19,12 @@ namespace Items
         {
             float totalWeight = _lootWeights.Sum(x => x.Weight);
             float random = Random.Range(0, totalWeight);
-            float curRandom = 0;
+            float curRandomSum = 0;
             foreach (var lootChance in _lootWeights)
             {
-                if (curRandom <= random)
+                curRandomSum += lootChance.Weight;
+                if (random <= curRandomSum)
                     return lootChance.Item;
-                curRandom += lootChance.Weight;
             }
 
             return ItemId.None;
