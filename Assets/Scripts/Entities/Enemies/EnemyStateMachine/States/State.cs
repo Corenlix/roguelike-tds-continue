@@ -4,12 +4,7 @@ namespace Entities.Enemies.EnemyStateMachine.States
 {
     public abstract class State
     {
-        private List<Transition> _transitions = new List<Transition>();
-
-        public void SetTransitions(List<Transition> transitions)
-        {
-            _transitions = transitions;
-        }
+        private readonly List<Transition> _transitions = new List<Transition>();
 
         public void AddTransition(Transition transition)
         {
@@ -27,9 +22,14 @@ namespace Entities.Enemies.EnemyStateMachine.States
             nextState = null;
             return false;
         }
-    
+
         public abstract void Enter();
         public abstract void Tick();
         public abstract void Exit();
+
+        public void Reset()
+        {
+            _transitions.ForEach(x=>x.Reset());
+        }
     }
 }

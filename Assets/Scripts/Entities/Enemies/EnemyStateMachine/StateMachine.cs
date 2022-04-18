@@ -24,6 +24,7 @@ namespace Entities.Enemies.EnemyStateMachine
         {
             if (state == null) return;
             _currentState?.Exit();
+            _currentState?.Reset();
             _currentState = state;
             _currentState.Enter();
         }

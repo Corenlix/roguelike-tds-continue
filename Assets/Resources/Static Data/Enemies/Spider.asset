@@ -17,10 +17,10 @@ MonoBehaviour:
   HitData:
     Damage: 15
     KnockBack: 8
+  AttackBoost: 3
   RandomWalkDistance: 5
   RandomWalkPeriod: 2
   WalkToChaseDistance: 6
   ChaseToWalkDistance: 7
   ChaseToAttackDistance: 3
-  AttackToChaseDistance: 4
-  _prefab: {fileID: -2425427702038818122, guid: 4685b9a035b6af44b884ae0fdd0a680f, type: 3}
+  _prefab: {fileID: 7954967330418097206, guid: 4685b9a035b6af44b884ae0fdd0a680f, type: 3}

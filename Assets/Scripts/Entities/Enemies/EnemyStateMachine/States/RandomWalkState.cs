@@ -4,16 +4,18 @@ namespace Entities.Enemies.EnemyStateMachine.States
 {
     public class RandomWalkState : State
     {
-        private readonly Enemy _enemy;
         private readonly int _walkDistance;
         private readonly float _walkPeriod;
+        private readonly EnemyView _enemyView;
+        private readonly Mover _mover;
         private float _timeToWalk;
 
-        public RandomWalkState(Enemy enemy, int walkDistance, float walkPeriod)
+        public RandomWalkState(EnemyView enemyView, Mover mover, int walkDistance, float walkPeriod)
         {
+            _mover = mover;
+            _enemyView = enemyView;
             _walkDistance = walkDistance;
             _walkPeriod = walkPeriod;
-            _enemy = enemy;
         }
         
         public override void Enter()
@@ -35,14 +37,14 @@ namespace Entities.Enemies.EnemyStateMachine.States
 
         private void MoveToNewPoint()
         {
-            Vector2 newPoint = _enemy.transform.position; 
+            Vector2 newPoint = _enemyView.transform.position; 
             newPoint += new Vector2(Random.Range(-_walkDistance, _walkDistance), Random.Range(-_walkDistance, _walkDistance));
-            _enemy.MoveTo(newPoint);
+            _mover.MoveTo(newPoint);
         }
         
         public override void Exit()
         {
-            _enemy.Stop();
+            _mover.Stop();
         }
     }
 }

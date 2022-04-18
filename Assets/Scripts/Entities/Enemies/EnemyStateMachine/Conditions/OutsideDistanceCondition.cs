@@ -15,5 +15,9 @@ namespace Entities.Enemies.EnemyStateMachine.Conditions
             _minDistanceSquare = minDistance*minDistance;
         }
         public override bool IsConditionMet() => Vector2.SqrMagnitude(_transform.position - _targetTransform.position) > _minDistanceSquare;
+        public override void Reset()
+        {
+            
+        }
     }
 }

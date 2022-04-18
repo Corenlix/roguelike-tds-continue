@@ -1,4 +1,5 @@
 using System;
+using Entities.Enemies.EnemyStateMachine;
 using Entities.Enemies.EnemyWeapons;
 using Entities.Enemies.StaticData;
 using Infrastructure;
@@ -11,19 +12,18 @@ namespace Entities.Enemies
 {
     public abstract class Enemy : MonoBehaviour
     {
-        [SerializeField] private PathfindMover _pathfindMover;
+        protected Transform Target;
+        
         [SerializeField] protected EnemyView _view;
         [SerializeField] private Health _health;
         private EnemyStaticData _enemyStaticData;
-        private Pathfinder _pathfinder;
         private Player _player;
-        
-        protected Transform Target;
+        private StateMachine _stateMachine;
+
 
         [Inject]
-        private void Construct(Pathfinder pathfinder, Player player)
+        private void Construct(Player player)
         {
-            _pathfinder = pathfinder;
             _player = player;
         }
 
@@ -32,34 +32,24 @@ namespace Entities.Enemies
             _enemyStaticData = staticData;
         }
         
-        private void OnEnable()
-        {
-            _health.Damaged += OnTakeDamage;
-        }
-
         private void Start()
         {
-            SetTarget(_player.transform);
+            Target = _player.transform;
+            _stateMachine = InitStateMachine(_enemyStaticData);
+        }
+
+        private void OnEnable()
+        {
+            _health.Damaged += _view.OnTakeDamage;
             _health.Died += OnDie;
-            _pathfindMover.Init(_pathfinder, _enemyStaticData.MoveSpeed);
-            OnInit(_enemyStaticData);
         }
 
-        protected abstract void OnInit(EnemyStaticData staticData);
+        protected abstract StateMachine InitStateMachine(EnemyStaticData staticData);
 
-        public void SetTarget(Transform target)
+        private void Update()
         {
-            Target = target;
+            _stateMachine.Tick();
         }
-
-        public void LookToTarget(Vector3 target)
-        {
-            _view.LookTo(target);
-        }
-        
-        public void MoveTo(Vector3 destination) => _pathfindMover.SetMovePoint(destination);
-
-        public void Stop() => _pathfindMover.Reset();
 
         private void OnDie()
         {
@@ -67,9 +57,10 @@ namespace Entities.Enemies
             Destroy(gameObject);
         }
 
-        private void OnTakeDamage()
+        private void OnDisable()
         {
-            _view.OnTakeDamage();
+            _health.Died -= OnDie;
+            _health.Damaged -= _view.OnTakeDamage;
         }
     }
 }

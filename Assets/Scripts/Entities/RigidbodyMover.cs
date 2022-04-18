@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Entities
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class RigidbodyMover : MonoBehaviour
+    public class RigidbodyMover : Mover
     {
         [SerializeField] private EntityView _view;
         [SerializeField] private float _speed;
@@ -14,19 +14,26 @@ namespace Entities
 
         public void AddForce(Force force) => _knockBackForces.AddForce(force);
 
-        public void Init(float speed)
+        public override void SetSpeed(float speed)
         {
             _speed = speed;
         }
+
+        public override float GetSpeed() => _speed;
         
-        public void MoveTo(Vector2 destination)
+        public override void MoveTo(Vector2 position)
         {
-            MoveByDirection(destination - _rigidbody.position);
+            MoveByDirection(position - _rigidbody.position);
         }
 
         public void MoveByDirection(Vector2 direction)
         {
             _moveDirection = direction.normalized;
+        }
+
+        public override void Stop()
+        {
+            _moveDirection = Vector2.zero;
         }
     
         private void Awake()
@@ -34,14 +41,12 @@ namespace Entities
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        protected virtual void FixedUpdate()
+        private void FixedUpdate()
         {
             _knockBackForces.UpdateForces();
             Vector2 velocity = _moveDirection * _speed ;
             _rigidbody.velocity = velocity + _knockBackForces.GetTotalValue();
             _view.SetRunState(velocity != Vector2.zero);
-            Debug.DrawLine(transform.position, transform.position + (Vector3)velocity.normalized, Color.yellow, 0.1f);
         }
-    
     }
 }

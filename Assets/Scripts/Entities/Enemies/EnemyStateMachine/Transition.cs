@@ -21,5 +21,13 @@ namespace Entities.Enemies.EnemyStateMachine
             nextState = isReady ? _nextState : null;
             return isReady;
         }
+
+        public void Reset()
+        {
+            foreach (var condition in _conditions)
+            {
+                condition.Reset();
+            }
+        }
     }
 }

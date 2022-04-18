@@ -16,5 +16,9 @@ namespace Entities.Enemies.EnemyStateMachine.Conditions
         }
         
         public override bool IsConditionMet() => Vector2.SqrMagnitude(_transform.position - _targetTransform.position) <= _maxDistanceSquare;
+        public override void Reset()
+        {
+            
+        }
     }
 }

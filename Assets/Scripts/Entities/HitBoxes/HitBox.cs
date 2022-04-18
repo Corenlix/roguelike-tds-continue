@@ -7,7 +7,7 @@ namespace Entities.HitBoxes
     {
         public abstract HitBoxType HitBoxType { get; }
 
-        public bool TryHit(HitData hitData, Transform bullet, List<HitBoxType> targetTypes, GameObject sparkles)
+        public bool TryHit(HitData hitData, Transform bullet, List<HitBoxType> targetTypes, GameObject sparkles = null)
         {
             if (!targetTypes.Contains(HitBoxType))
                 return false;
@@ -16,6 +16,6 @@ namespace Entities.HitBoxes
             return true;
         }
         
-        protected abstract void Hit(HitData hitData, Transform bullet, GameObject sparkles);
+        protected abstract void Hit(HitData hitData, Transform bullet, GameObject sparkles = null);
     }
 }

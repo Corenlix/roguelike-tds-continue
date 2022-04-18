@@ -53,7 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 30
-  _health: 30
 --- !u!114 &7367941044288361908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,10 +65,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a990c874deed4244d9b2edab174d5c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pathfindMover: {fileID: 7367941044288361909}
   _view: {fileID: 8430513864126818090}
   _health: {fileID: 7367941044288361911}
   _enemyWeapon: {fileID: 1816762083584300138}
+  _mover: {fileID: 7367941044288361909}
 --- !u!114 &7367941044288361909
 MonoBehaviour:
   m_ObjectHideFlags: 0

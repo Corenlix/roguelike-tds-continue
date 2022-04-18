@@ -1,40 +1,49 @@
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
+using Zenject;
 
 namespace Entities
 {
-    public class PathfindMover : MonoBehaviour
+    public class PathfindMover : Mover
     {
         [SerializeField] private RigidbodyMover _rigidbodyMover;
         private Pathfinder _pathfinder;
         private List<Vector2> _pathPoints;
 
-        public void Init(Pathfinder pathfinder, float speed)
+        [Inject]
+        private void Construct(Pathfinder pathfinder)
         {
-            _rigidbodyMover.Init(speed);
             _pathfinder = pathfinder;
         }
-    
+
         private void FixedUpdate()
         {
             UpdateVelocity();
         }
 
-        public void SetMovePoint(Vector2 position)
+        public override void SetSpeed(float speed)
+        {
+            _rigidbodyMover.SetSpeed(speed);
+        }
+        
+        public override float GetSpeed() => _rigidbodyMover.GetSpeed();
+
+
+        public override void MoveTo(Vector2 position)
         {
             _pathPoints = _pathfinder.FindPath(transform.position, position);
             if(_pathPoints == null)
-                Reset();
+                Stop();
             else _rigidbodyMover.MoveByDirection(GetMoveDirection());
         }
 
-        public void Reset()
+        public override void Stop()
         {
             _rigidbodyMover.MoveByDirection(Vector2.zero);
             _pathPoints = null;
         }
-    
+
         private void UpdateVelocity()
         {
             if (_pathPoints == null || _pathPoints.Count == 0) return;
@@ -48,7 +57,7 @@ namespace Entities
                     _rigidbodyMover.MoveByDirection(direction);
                 }
                 else
-                    Reset();
+                    Stop();
             }
         }
 

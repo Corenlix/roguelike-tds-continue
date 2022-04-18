@@ -1,15 +1,18 @@
+using Entities.Enemies.EnemyWeapons;
 using UnityEngine;
 
 namespace Entities.Enemies.EnemyStateMachine.States
 {
     public class ChaseState : State
     {
-        private readonly MeleeEnemy _meleeEnemy;
         private readonly Transform _target;
+        private readonly EnemyView _enemyView;
+        private readonly Mover _mover;
 
-        public ChaseState(MeleeEnemy meleeEnemy, Transform target)
+        public ChaseState(EnemyView enemyView, Mover mover, Transform target)
         {
-            _meleeEnemy = meleeEnemy;
+            _mover = mover;
+            _enemyView = enemyView;
             _target = target;
         }
         public override void Enter()
@@ -20,13 +23,13 @@ namespace Entities.Enemies.EnemyStateMachine.States
         public override void Tick()
         {
             var position = _target.position;
-            _meleeEnemy.MoveTo(position);
-            _meleeEnemy.LookToTarget(position);
+            _mover.MoveTo(position);
+            _enemyView.LookTo(position);
         }
 
         public override void Exit()
         {
-            _meleeEnemy.Stop();
+            _mover.Stop();
         }
     }
 }
