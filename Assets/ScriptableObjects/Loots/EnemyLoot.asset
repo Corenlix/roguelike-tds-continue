@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3c60fac3b5e6d4993f5963bcf5305c, type: 3}
   m_Name: EnemyLoot
   m_EditorClassIdentifier: 
-  _lootChances:
-  - Item: {fileID: 2610176599535660847, guid: 37217a5585208234c976861830bfd829, type: 3}
-    Chance: 10
+  _lootId: 2
+  _lootWeights:
+    _weights: []
