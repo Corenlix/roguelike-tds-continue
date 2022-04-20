@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5889805687535835000}
   - component: {fileID: 1405585930953551964}
   - component: {fileID: -5628367019246151861}
+  - component: {fileID: 5545470047467574046}
   m_Layer: 0
   m_Name: AmmoChest
   m_TagString: Untagged
@@ -122,3 +123,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.875}
   m_EdgeRadius: 0
+--- !u!114 &5545470047467574046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977079164472751354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab1a93487194aa4b9f276cc8a011681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

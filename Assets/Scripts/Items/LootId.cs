@@ -5,5 +5,6 @@
         None,
         WeaponLoot,
         AmmoLoot,
+        EnemyLoot,
     }
 }

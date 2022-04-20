@@ -36,11 +36,11 @@ namespace Entities.Enemies
 
                 overlapHitBox.TryHit(_hitData, transform, _targetTypes);
                 _damagedHitBox.Add(overlapHitBox);
-                StartCoroutine(ReloadForEnemy(overlapHitBox, _reload));
+                StartCoroutine(ReloadForHitBox(overlapHitBox, _reload));
             }
         }
 
-        private IEnumerator ReloadForEnemy(HitBox hitBox, float time)
+        private IEnumerator ReloadForHitBox(HitBox hitBox, float time)
         {
             yield return new WaitForSeconds(time);
             _damagedHitBox.Remove(hitBox);
@@ -48,12 +48,14 @@ namespace Entities.Enemies
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent(out HitBox hitBox)) _overlapHitBoxes.Add(hitBox);
+            if (other.TryGetComponent(out HitBox hitBox)) 
+                _overlapHitBoxes.Add(hitBox);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.TryGetComponent(out HitBox hitBox)) _overlapHitBoxes.Remove(hitBox);
+            if (other.TryGetComponent(out HitBox hitBox)) 
+                _overlapHitBoxes.Remove(hitBox);
         }
     }
 }

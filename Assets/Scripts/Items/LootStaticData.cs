@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Items
@@ -8,8 +9,13 @@ namespace Items
         public LootId LootId => _lootId;
 
         [SerializeField] private LootId _lootId;
-        [SerializeField] private WeightsRandom<ItemId> _lootWeights;
+        [SerializeField] private List<WeightsRandom<ItemId>> _lootWeights;
 
-        public ItemId Get() => _lootWeights.Get(ItemId.None);
+        public List<ItemId> Get()
+        {
+            var result = new List<ItemId>();
+            _lootWeights.ForEach(loot=>result.Add(loot.Get(ItemId.None)));
+            return result;
+        }
     }
 }

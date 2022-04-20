@@ -30,9 +30,7 @@ public class Chest : MonoBehaviour, IInteractable
     
     public void Interact()
     {
-        var loot = _staticDataService.ForLoot(_chestStaticData.LootId);
-        var itemId = loot.Get();
-        _gameFactory.CreateItem(itemId, transform.position);
+        _gameFactory.CreateItemsForLoot(_chestStaticData.LootId, transform.position);
         Destroy(gameObject);
     }
 }

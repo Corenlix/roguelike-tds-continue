@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Spider
   m_EditorClassIdentifier: 
   Id: 2
+  LootId: 3
   MoveSpeed: 4
   HitData:
     Damage: 15

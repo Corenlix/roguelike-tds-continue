@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class AttractorAmmo : MonoBehaviour
+public class Attractor : MonoBehaviour
 {
     [SerializeField] private float _speedAttract;
     private readonly List<IAttractable> _attractables = new List<IAttractable>();
@@ -16,7 +16,7 @@ public class AttractorAmmo : MonoBehaviour
 
     private void Update()
     {
-      MoveItem();
+        MoveItem();
     }
 
     private void MoveItem()
@@ -25,13 +25,12 @@ public class AttractorAmmo : MonoBehaviour
         {
             if (!_attractables[i].MonoBehaviour)
                 _attractables.Remove(_attractables[i]);
-            
             else
-                AttractTo(_attractables[i].MonoBehaviour);
+                Attract(_attractables[i].MonoBehaviour);
         }
     }
     
-    private void AttractTo(MonoBehaviour monoBehaviour)     
+    private void Attract(MonoBehaviour monoBehaviour)     
     {
         monoBehaviour.transform.position = Vector3.Lerp(monoBehaviour.transform.position, transform.position, _speedAttract * Time.deltaTime);
     }

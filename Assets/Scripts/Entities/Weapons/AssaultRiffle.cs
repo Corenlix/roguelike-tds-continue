@@ -6,8 +6,8 @@ namespace Entities.Weapons
 {
     public class AssaultRiffle : Weapon
     {
-        private const float TimeBetweenShootsInBurst = 0.05f;
-        private const float DeltaAngle = 0.5f;
+        private const float TimeBetweenShootsInBurst = 0.1f;
+        private const float DeltaAngle = 5f;
     
         protected override WeaponStaticData StaticData => _assaultRifleStaticData;
 

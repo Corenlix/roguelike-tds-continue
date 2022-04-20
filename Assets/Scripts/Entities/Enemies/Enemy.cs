@@ -22,12 +22,14 @@ namespace Entities.Enemies
         private EnemyStaticData _enemyStaticData;
         private Player _player;
         private StateMachine _stateMachine;
+        private IGameFactory _gameFactory;
 
 
         [Inject]
-        private void Construct(Player player)
+        private void Construct(Player player, IGameFactory gameFactory)
         {
             _player = player;
+            _gameFactory = gameFactory;
         }
 
         public void Init(EnemyStaticData staticData)
@@ -57,8 +59,11 @@ namespace Entities.Enemies
         private void OnDie()
         {
             _health.Died -= OnDie;
+            SpawnLoot();
             Destroy(gameObject);
         }
+
+        private void SpawnLoot() => _gameFactory.CreateItemsForLoot(_enemyStaticData.LootId, transform.position);
 
         private void OnDisable()
         {

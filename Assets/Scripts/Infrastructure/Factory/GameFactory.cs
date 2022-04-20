@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using System.Collections.Generic;
+using Entities;
 using Entities.Enemies;
 using Entities.Weapons;
 using Infrastructure.AssetProvider;
@@ -102,6 +103,18 @@ namespace Infrastructure.Factory
                         var item = _diContainer.InstantiatePrefabForComponent<Item>(itemData.Prefab, position,
                                 Quaternion.identity, null);
                         return item;
+                }
+                
+                public List<Item> CreateItemsForLoot(LootId id, Vector3 position)
+                {
+                        if (id == LootId.None)
+                                return null;
+
+                        var loot = _staticDataService.ForLoot(id);
+                        var itemIds = loot.Get();
+                        var result = new List<Item>();
+                        itemIds.ForEach(id=>result.Add(CreateItem(id, position)));
+                        return result;
                 }
 
                 public Chest CreateChest(ChestId id, Vector3 position)

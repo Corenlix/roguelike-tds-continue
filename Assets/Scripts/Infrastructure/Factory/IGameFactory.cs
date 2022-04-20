@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Entities;
 using Entities.Enemies;
 using Entities.Weapons;
@@ -21,5 +22,6 @@ namespace Infrastructure.Factory
         Chest CreateChest(ChestId id, Vector3 position);
         Level CreateLevel(LevelId id);
         EnemiesSpawner CreateEnemySpawner(EnemySpawnerId id);
+        List<Item> CreateItemsForLoot(LootId id, Vector3 position);
     }
 }

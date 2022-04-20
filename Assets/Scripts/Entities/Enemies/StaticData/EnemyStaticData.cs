@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Entities.HitBoxes;
+using Items;
 using UnityEngine;
 
 namespace Entities.Enemies.StaticData
@@ -8,7 +10,8 @@ namespace Entities.Enemies.StaticData
         public abstract Enemy Prefab { get; }
 
         public EnemyId Id;
-        public float MoveSpeed; 
+        public LootId LootId;
+        public float MoveSpeed;
         public HitData HitData;
     }
 }

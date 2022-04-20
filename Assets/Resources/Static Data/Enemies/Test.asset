@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   Id: 1
+  LootId: 3
   MoveSpeed: 8
   HitData:
     Damage: 5
     KnockBack: 5
-  BulletSpeed: 5
-  ShootDelay: 0.5
   RandomWalkDistance: 5
   RandomWalkPeriod: 2
   ChaseToIdleDistance: 8
@@ -26,3 +25,5 @@ MonoBehaviour:
   WalkToChaseDistance: 14
   ChaseToWalkDistance: 15
   _prefab: {fileID: 7367941044288361908, guid: 74480140befbc2b429ae98074bd6ed2f, type: 3}
+  BulletSpeed: 5
+  ShootDelay: 0.5
