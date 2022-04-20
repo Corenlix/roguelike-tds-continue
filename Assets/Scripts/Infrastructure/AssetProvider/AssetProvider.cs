@@ -33,5 +33,7 @@ namespace Infrastructure.AssetProvider
         {
             return Instantiate(path, Vector3.zero);
         }
+
+        public T Load<T>(string path) where T : Object => Resources.Load<T>(path);
     }
 }

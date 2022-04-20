@@ -13,7 +13,7 @@ namespace LevelGeneration
         private Tilemap _floorsTilemap;
         private Tilemap _wallsTilemap;
 
-        public void DrawLevel(CellType[,] level)
+        public void DrawLevel(CellType[,] level, Material wallsMaterial)
         {
             _floorTile = Resources.Load<RuleTile>("FloorTile");
             _wallTile = Resources.Load<RuleTile>("WallTile");
@@ -21,7 +21,7 @@ namespace LevelGeneration
             _tilemapsParent = new GameObject("Grid");
             _tilemapsParent.AddComponent<Grid>();
             _floorsTilemap = CreateTilemap("Floors Tilemap", _tilemapsParent, -1);
-            _wallsTilemap = CreateTilemapWithCollider("Walls Tilemap", _tilemapsParent, 0);
+            _wallsTilemap = CreateTilemapWithCollider("Walls Tilemap", _tilemapsParent, 0, wallsMaterial);
 
             DrawLayer(level, GetTilemapFromCellType(CellType.Wall), CellType.Wall);
             DrawLayer(level, GetTilemapFromCellType(CellType.Floor), CellType.Floor);
@@ -32,21 +32,23 @@ namespace LevelGeneration
             Object.Destroy(_tilemapsParent);
         }
         
-        private Tilemap CreateTilemap(string tilemapName, GameObject parent, int sortingOrder)
+        private Tilemap CreateTilemap(string tilemapName, GameObject parent, int sortingOrder, Material material = null)
         {
             var go = new GameObject(tilemapName);
             go.transform.parent = parent.transform;
             var tm = go.AddComponent<Tilemap>();
             var tr = go.AddComponent<TilemapRenderer>();
             tr.sortingOrder = sortingOrder;
+            if (material)
+                tr.material = material;
             tm.tileAnchor = new Vector3(0, 0, 0);
 
             return tm;
         }
 
-        private Tilemap CreateTilemapWithCollider(string tilemapName, GameObject parent, int sortingOrder)
+        private Tilemap CreateTilemapWithCollider(string tilemapName, GameObject parent, int sortingOrder, Material material = null)
         {
-            var tilemap = CreateTilemap(tilemapName, parent, sortingOrder);
+            var tilemap = CreateTilemap(tilemapName, parent, sortingOrder, material);
             var wallsRigidbody2D = tilemap.gameObject.AddComponent<Rigidbody2D>();
             wallsRigidbody2D.bodyType = RigidbodyType2D.Static;
             var wallsCollider = tilemap.gameObject.AddComponent<TilemapCollider2D>();

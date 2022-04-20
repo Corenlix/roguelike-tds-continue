@@ -15,4 +15,64 @@ MonoBehaviour:
   m_DefaultSprite: {fileID: 21300000, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 0
-  m_TilingRules: []
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: 199249360466117110, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -4880280114624847625, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -8760255559057331400, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 1706119114420486083, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -8800800135064143610, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 5413850237332849526, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -4416756212120593824, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -4416756212120593824, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -4416756212120593824, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -4416756212120593824, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 199249360466117110, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 199249360466117110, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -4416756212120593824, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 3227120792165100839, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 5619165966657897192, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -6898485715014378537, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -13061129504367088, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 9083392959312964389, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 1080754219818092620, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 5619165966657897192, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -13061129504367088, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -6898485715014378537, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 9083392959312964389, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 1080754219818092620, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: -8800800135064143610, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 199249360466117110, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 199249360466117110, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    - {fileID: 8586074191503405527, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.86
+    m_Output: 1
+    m_ColliderType: 0
+    m_RandomTransform: 0
+    m_Neighbors: 
+    m_NeighborPositions:
+    - {x: -1, y: 1, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 1, y: 1, z: 0}
+    - {x: -1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    m_RuleTransform: 0

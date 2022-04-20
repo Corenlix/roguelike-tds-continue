@@ -134,7 +134,7 @@ namespace Infrastructure.Factory
                         var levelStaticData = _staticDataService.ForLevel(LevelId.FirstLevel);
                         var level = levelStaticData.Generate();
                         _diContainer.Bind<Level>().FromInstance(level).AsSingle();
-                        new LevelDrawer().DrawLevel(level.LevelTable);
+                        new LevelDrawer().DrawLevel(level.LevelTable, _assetProvider.Load<Material>(AssetPath.WallsMaterial));
                         CreatePathfinder(level);
                         return level;
                 }
