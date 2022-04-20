@@ -14,7 +14,7 @@ namespace Entities.Weapons
 
         protected override void OnShoot()
         {
-            InstantiateBullet();
+            CreateBullet();
         }
     }
 }

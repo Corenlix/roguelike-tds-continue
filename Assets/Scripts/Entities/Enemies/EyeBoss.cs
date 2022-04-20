@@ -8,7 +8,6 @@ namespace Entities.Enemies
 {
     public class EyeBoss : Enemy
     {
-        protected override EnemyView View => _view;
         [SerializeField] private HitByTrigger _hitByTrigger;
         [SerializeField] private EyeView _view;
         [SerializeField] private RigidbodyMover _mover;

@@ -1,4 +1,5 @@
 using Entities;
+using Entities.Weapons;
 using Infrastructure;
 using UnityEngine;
 using Zenject;
@@ -12,9 +13,9 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private CameraFollow _follow;
 
     [Inject]
-    private void Construct(Player player)
+    private void Construct(Player player, PlayerWeapons playerWeapons)
     {
         _follow.Follow(player.transform);
-        player.Shot += weapon => _shaker.Shake(weapon.ShakeIntensity, -weapon.transform.DirectionWithFlip(weapon.transform.right));
+        playerWeapons.Shot += weapon => _shaker.Shake(weapon.ShakeIntensity, -weapon.transform.DirectionWithFlip(weapon.transform.right));
     }
 }

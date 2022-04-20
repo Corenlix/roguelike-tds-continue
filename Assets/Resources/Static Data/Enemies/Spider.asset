@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   LootId: 3
+  Health: 20
   MoveSpeed: 4
   HitData:
     Damage: 15

@@ -6,20 +6,25 @@ namespace Entities
     public class Health : MonoBehaviour
     {
         public event Action HealthChanged;
-        public event Action Damaged;
+        public event Action TookDamage;
         public event Action Died;
 
         public int MaxHealth => _maxHealth;
         public int CurrentHealth => _health;
         
-        [SerializeField] private int _maxHealth;
+        private int _maxHealth;
         private int _health;
-     
-        public void DealDamage(int damage)
+
+        public void Init(int maxHealth)
+        {
+            _maxHealth = _health = maxHealth;
+        }
+        
+        public void TakeDamage(int damage)
         {
             _health -= damage;
         
-            Damaged?.Invoke();
+            TookDamage?.Invoke();
             HealthChanged?.Invoke();
         
             if(_health <= 0)

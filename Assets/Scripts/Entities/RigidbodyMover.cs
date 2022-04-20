@@ -6,9 +6,9 @@ namespace Entities
     public class RigidbodyMover : Mover
     {
         [SerializeField] private EntityView _view;
-        [SerializeField] private float _speed;
         private  Rigidbody2D _rigidbody;
         private Vector2 _moveDirection;
+        private float _speed;
 
         private KnockBackForces _knockBackForces = new KnockBackForces();
 

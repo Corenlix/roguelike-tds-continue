@@ -28,8 +28,8 @@ namespace Infrastructure.Factory
 
                 public Player CreatePlayer(Vector3 at)
                 {
-                        _diContainer.Bind<PlayerWeapons>().AsSingle();
                         _diContainer.Bind<PlayerAmmoBelt>().AsSingle();
+                        _diContainer.Bind<PlayerWeapons>().AsSingle();
                         var player = _assetProvider.Instantiate<Player>(AssetPath.Player, at);
                         _diContainer.Bind<Player>().FromInstance(player).AsSingle();
                         return player;
@@ -144,6 +144,20 @@ namespace Infrastructure.Factory
                         var spawner = _diContainer.InstantiateComponentOnNewGameObject<EnemiesSpawner>();
                         spawner.Init(_staticDataService.ForEnemySpawner(id));
                         return spawner;
+                }
+
+                public GameObject CreateCorpse(Sprite corpseSprite, Vector3 position)
+                {
+                        var corpse = new GameObject("Corpse")
+                        {
+                                transform =
+                                {
+                                        position = position
+                                }
+                        };
+                        var spriteRenderer = corpse.AddComponent<SpriteRenderer>();
+                        spriteRenderer.sprite = corpseSprite;
+                        return corpse;
                 }
         }
 }

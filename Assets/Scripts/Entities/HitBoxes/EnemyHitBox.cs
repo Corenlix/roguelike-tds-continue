@@ -20,7 +20,7 @@ namespace Entities.HitBoxes
         
         protected override void Hit(HitData hitData, Transform bullet, GameObject sparkles = null)
         {
-            _health.DealDamage(hitData.Damage);
+            _health.TakeDamage(hitData.Damage);
             _rigidbodyMover.AddForce(new Force(hitData.KnockBack, bullet.right));
             _popupSpawner.SpawnPopup(PopupType.Damage, transform.position, hitData.Damage.ToString());
         }

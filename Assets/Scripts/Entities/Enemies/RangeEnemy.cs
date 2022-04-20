@@ -9,7 +9,6 @@ namespace Entities.Enemies
 {
     public class RangeEnemy : Enemy
     {
-        protected override EnemyView View => _view;
         [SerializeField] private EnemyView _view;
         [SerializeField] private EnemyShootWeapon _enemyWeapon;
         [SerializeField] private Mover _mover;
@@ -18,6 +17,7 @@ namespace Entities.Enemies
         {
             var data = (RangeEnemyStaticData)staticData;
             _enemyWeapon.Init(data.HitData, data.BulletSpeed, data.ShootDelay);
+            _mover.SetSpeed(staticData.MoveSpeed);
             
             var weaponAttackState = new ShootState(_view, _enemyWeapon, Target);
             var chaseState = new ChaseState(_view, _mover, Target);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Entities.Weapons.StaticData;
 using Infrastructure;
 using Infrastructure.Factory;
 using UnityEngine;
@@ -9,17 +10,32 @@ namespace Entities.Weapons
 {
     public class PlayerWeapons
     {
-        public Weapon SelectedWeapon => _activeWeapons[_selectedWeaponIndex];
+        public event Action<Weapon> Shot;
+        
+        private Weapon SelectedWeapon => _activeWeapons[_selectedWeaponIndex];
         public Transform WeaponsContainer;
         private int _maxWeaponsCount = 3;
         private readonly List<Weapon> _activeWeapons = new List<Weapon>();
         private int _selectedWeaponIndex;
-        private IGameFactory _gameFactory;
+        private readonly IGameFactory _gameFactory;
+        private readonly PlayerAmmoBelt _ammoBelt;
 
-        public PlayerWeapons(IGameFactory gameFactory)
+        public PlayerWeapons(IGameFactory gameFactory, PlayerAmmoBelt ammoBelt)
         {
+            _ammoBelt = ammoBelt;
             _gameFactory = gameFactory;
         }
+
+        public void TryShoot()
+        {
+            if (SelectedWeapon.IsReadyToShoot && _ammoBelt.TryTakeAmmo(SelectedWeapon.AmmoType, SelectedWeapon.AmmoPerShoot))
+            {
+                SelectedWeapon.Shoot();
+                Shot?.Invoke(SelectedWeapon);
+            }
+        }
+
+        public void AimTo(Vector3 position) => SelectedWeapon.AimTo(position);
         
         public bool TryAddWeapon(WeaponId id)
         {

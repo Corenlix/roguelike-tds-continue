@@ -15,7 +15,6 @@ namespace Entities.Enemies
     public abstract class Enemy : MonoBehaviour
     {
         protected static List<HitBoxType> DefaultTargetTypes => new List<HitBoxType> { HitBoxType.Player, HitBoxType.Wall };
-        protected abstract EnemyView View { get; }
         protected Transform Target;
 
         [SerializeField] private Health _health;
@@ -39,13 +38,14 @@ namespace Entities.Enemies
         
         private void Start()
         {
+            _health.Init(_enemyStaticData.Health);
+            
             Target = _player.transform;
             _stateMachine = InitStateMachine(_enemyStaticData);
         }
 
         private void OnEnable()
         {
-            _health.Damaged += View.OnTakeDamage;
             _health.Died += OnDie;
         }
 
@@ -58,9 +58,7 @@ namespace Entities.Enemies
 
         private void OnDie()
         {
-            _health.Died -= OnDie;
             SpawnLoot();
-            Destroy(gameObject);
         }
 
         private void SpawnLoot() => _gameFactory.CreateItemsForLoot(_enemyStaticData.LootId, transform.position);
@@ -68,7 +66,6 @@ namespace Entities.Enemies
         private void OnDisable()
         {
             _health.Died -= OnDie;
-            _health.Damaged -= View.OnTakeDamage;
         }
     }
 }

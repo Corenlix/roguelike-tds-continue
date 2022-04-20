@@ -14,7 +14,7 @@ namespace Entities.HitBoxes
         protected override void Hit(HitData hitData, Transform bullet, GameObject sparkles)
         {
             _rigidbodyMover.AddForce(new Force(hitData.KnockBack, bullet.right));
-            _health.DealDamage(hitData.Damage);
+            _health.TakeDamage(hitData.Damage);
         }
     }
 }

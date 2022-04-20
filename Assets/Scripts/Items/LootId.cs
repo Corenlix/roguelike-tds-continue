@@ -6,5 +6,6 @@
         WeaponLoot,
         AmmoLoot,
         EnemyLoot,
+        EyeLoot,
     }
 }

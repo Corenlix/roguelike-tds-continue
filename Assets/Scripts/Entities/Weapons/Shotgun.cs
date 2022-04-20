@@ -19,7 +19,7 @@ namespace Entities.Weapons
             for (int i = 0; i < _shotgunStaticData.BulletsCount; i++)
             {
                 float angle = -_shotgunStaticData.MaxDeviationAngle + i * angleBetweenNeighborBullets;
-                InstantiateBullet(angle);
+                CreateBullet(angle);
             }
         }
     }

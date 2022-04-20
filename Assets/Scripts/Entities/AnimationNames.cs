@@ -6,5 +6,6 @@
         Run,
         PrepareAttack,
         Attack,
+        Death,
     }
 }

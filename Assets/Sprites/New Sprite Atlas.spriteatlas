@@ -62,6 +62,7 @@ SpriteAtlas:
   - {fileID: 7148013115713942494, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: 21300000, guid: 38841c21ffa50a94dab3361da23ad1c1, type: 3}
   - {fileID: -7287732061954022656, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: 8981936914580345446, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: -3990983241478422898, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: 4959321751987732891, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: -8997556237901668778, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
@@ -70,7 +71,16 @@ SpriteAtlas:
   - {fileID: -512265628096823119, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: 1986394952384275652, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
   - {fileID: 1494582489817834251, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
-  - {fileID: 21300000, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
+  - {fileID: 8769808008909884183, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: 6455118844699336651, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: -18656395955223399, guid: 27e77532b106169498dcc1330436a4d3, type: 3}
+  - {fileID: -442341752940268532, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
+  - {fileID: -2349984115157023182, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
+  - {fileID: -6142054920583471853, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
+  - {fileID: -5107513159873658722, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
+  - {fileID: 7315816897645413476, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
+  - {fileID: -3266966713591013501, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
+  - {fileID: 4941028306516552774, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
   m_PackedSpriteNamesToIndex:
   - WallSet_4
   - WallSet_5
@@ -82,6 +92,7 @@ SpriteAtlas:
   - WallSet_3
   - Floor
   - Crocoman_8
+  - Crocoman_9
   - Crocoman_2
   - Crocoman_3
   - Crocoman_0
@@ -90,7 +101,16 @@ SpriteAtlas:
   - Crocoman_7
   - Crocoman_4
   - Crocoman_5
-  - eye boss
+  - Crocoman_11
+  - Crocoman_10
+  - Crocoman_12
+  - eye boss_0
+  - eye boss_1
+  - eye boss_2
+  - eye boss_3
+  - eye boss_4
+  - eye boss_5
+  - eye boss_6
   m_RenderDataMap: {}
   m_Tag: New Sprite Atlas
   m_IsVariant: 0

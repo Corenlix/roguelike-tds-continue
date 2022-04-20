@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Eye Boss
   m_EditorClassIdentifier: 
   Id: 100
-  LootId: 3
+  LootId: 4
+  Health: 250
   MoveSpeed: 4
   HitData:
     Damage: 10

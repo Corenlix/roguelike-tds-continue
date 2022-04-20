@@ -11,6 +11,7 @@ namespace Entities.Enemies.StaticData
 
         public EnemyId Id;
         public LootId LootId;
+        public int Health;
         public float MoveSpeed;
         public HitData HitData;
     }

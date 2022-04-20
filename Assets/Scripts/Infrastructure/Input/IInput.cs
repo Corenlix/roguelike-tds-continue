@@ -7,7 +7,7 @@ namespace Infrastructure.Input
         Vector2 MoveAxis { get; }
         Vector2 LookPoint { get; }
         bool ShootButton { get; }
-        bool PickButtonDown { get; }
+        bool InteractButtonDown { get; }
         bool SwitchWeaponButtonDown { get; }
     }
 }

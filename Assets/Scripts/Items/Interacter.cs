@@ -9,7 +9,7 @@ namespace Items
         [SerializeField] private InteractTip _tip;
         private readonly List<IInteractable> _activeInteractables = new List<IInteractable>();
 
-        public void Pick()
+        public void Interact()
         {
             if (_activeInteractables.Count == 0) return;
             IInteractable itemToPick = _activeInteractables[0];

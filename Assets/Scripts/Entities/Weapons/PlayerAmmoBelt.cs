@@ -31,13 +31,14 @@ namespace Entities.Weapons
     
         public int GetAmmoCount(AmmoType ammoType) => _ammoCounts[ammoType];
 
-        public void SubtractAmmo(AmmoType ammoType, int count = 1)
+        public bool TryTakeAmmo(AmmoType ammoType, int count = 1)
         {
             if (_ammoCounts[ammoType] < count)
-                throw new InvalidOperationException();
+                return false;
         
             _ammoCounts[ammoType] -= count;
             AmmoCountChanged?.Invoke();
+            return true;
         }
     }
 }

@@ -8,7 +8,6 @@ namespace Entities.Enemies
 {
     public sealed class Spider : Enemy
     {
-        protected override EnemyView View => _view;
         [SerializeField] private EnemyView _view;
         [SerializeField] private HitByTrigger _hitByTrigger;
         [SerializeField] private Mover _mover;

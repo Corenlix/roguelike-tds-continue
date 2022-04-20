@@ -29,7 +29,7 @@ namespace Entities.Weapons
         private IEnumerator ShootCoroutine(float time)
         {
             yield return new WaitForSeconds(time);
-            InstantiateBullet(Random.Range(-DeltaAngle, DeltaAngle));
+            CreateBullet(Random.Range(-DeltaAngle, DeltaAngle));
         }
     }
 }

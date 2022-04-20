@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 5493118515211408907}
+  _health: {fileID: -9209503217736586922}
+  _corpse: {fileID: 5493173293714230964, guid: 05f3125522d103c40b2ae9001936f39c, type: 3}
 --- !u!114 &-9209503217736586922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,8 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31bff4cd7c6cd2428198365b31e32b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _view: {fileID: 9156551597417716317}
   _health: {fileID: -9209503217736586922}
+  _view: {fileID: 9156551597417716317}
   _hitByTrigger: {fileID: 8820606800236532631}
   _mover: {fileID: -6568135447267477722}
   _attackMover: {fileID: -5417638672722708770}
