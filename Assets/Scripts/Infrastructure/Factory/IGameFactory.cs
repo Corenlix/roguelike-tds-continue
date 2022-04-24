@@ -5,6 +5,7 @@ using Entities.Weapons;
 using Items;
 using LevelGeneration;
 using Pathfinding;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Infrastructure.Factory
@@ -23,5 +24,6 @@ namespace Infrastructure.Factory
         Level CreateLevel(LevelId id);
         EnemiesSpawner CreateEnemySpawner(EnemySpawnerId id);
         List<Item> CreateItemsForLoot(LootId id, Vector3 position);
+        Pillar CreatePillar(EnemyId id, Vector3 position);
     }
 }

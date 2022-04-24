@@ -159,5 +159,15 @@ namespace Infrastructure.Factory
                         spriteRenderer.sprite = corpseSprite;
                         return corpse;
                 }
+                
+                public Pillar CreatePillar(EnemyId id, Vector3 position)
+                {
+                        if (id == EnemyId.None)
+                                return null;
+                        
+                        var pillar = _assetProvider.Instantiate<Pillar>(AssetPath.Pillar, position);
+                        pillar.Init(id);
+                        return pillar;
+                }
         }
 }

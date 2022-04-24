@@ -13,7 +13,7 @@ namespace Entities
         [SerializeField] protected Animator _animator;
         [SerializeField] private Health _health;
         [SerializeField] private GameObject _corpse;
-
+    
         private static readonly int Run = Animator.StringToHash("Run");
         private static readonly int TakeDamage = Animator.StringToHash("TakeDamage");
 

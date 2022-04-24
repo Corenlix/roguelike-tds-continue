@@ -37,13 +37,14 @@ namespace GameState
             var floorPoints = level.GetFloorPoints();
             _gameFactory.CreatePlayer(floorPoints[0]);
             _gameFactory.CreateEnemySpawner(EnemySpawnerId.FirstLevelSpawner);
-            _gameFactory.CreateEnemy(EnemyId.EyeBoss, floorPoints[105]);
             _gameFactory.CreateItem(ItemId.PistolAmmoMediumPack, floorPoints[1]);
             _gameFactory.CreateChest(ChestId.AmmoChest, floorPoints[50]);
             _gameFactory.CreateChest(ChestId.AmmoChest, floorPoints[10]);
             _gameFactory.CreateChest(ChestId.AmmoChest, floorPoints[130]);
             _gameFactory.CreateChest(ChestId.WeaponChest, floorPoints[80]);
             _gameFactory.CreateChest(ChestId.WeaponChest, floorPoints[100]);
+
+            _gameFactory.CreatePillar(EnemyId.EyeBoss, floorPoints[200]);
 
             _gameStateMachine.Enter<GameLoopState>();
         }

@@ -36,7 +36,7 @@ namespace Items
             {
                 _tip.HideTip();
                 _activeInteractables.Remove(interactable);
-                
+
                 if(_activeInteractables.Count > 0)
                     _tip.ShowTip(_activeInteractables[0]);
             }
