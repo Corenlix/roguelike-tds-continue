@@ -6,6 +6,7 @@ using Infrastructure;
 using Infrastructure.Factory;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Entities.Weapons
 {
@@ -13,7 +14,7 @@ namespace Entities.Weapons
     {
         public event Action<Weapon> Shot;
         
-        private Weapon SelectedWeapon => _activeWeapons[_selectedWeaponIndex];
+        private Weapon SelectedWeapon => _activeWeapons[_selectedWeaponIndex % _activeWeapons.Count];
         public Transform WeaponsContainer;
         private int _maxWeaponsCount = 3;
         private readonly List<Weapon> _activeWeapons = new List<Weapon>();
@@ -38,30 +39,33 @@ namespace Entities.Weapons
 
         public void AimTo(Vector3 position) => SelectedWeapon.AimTo(position);
         
-        public bool TryAddWeapon(WeaponId id)
+        public void TryAddWeapon(WeaponId id)
         {
-            if(_activeWeapons.Exists(x => x.StaticData.WeaponId == id) || _activeWeapons.Count >= _maxWeaponsCount)
-                RemoveSelectedWeapon();
+            var duplicate = _activeWeapons.FirstOrDefault(x => x.StaticData.WeaponId == id);
+            if(duplicate != null)
+                DropWeapon(duplicate);
+            else if(_activeWeapons.Count >= _maxWeaponsCount)
+                DropWeapon(SelectedWeapon);
+            
+            InstantiateWeapon(id);
+            SwitchWeapon();
+        }
 
+        private Weapon InstantiateWeapon(WeaponId id)
+        {
             var weaponInstance = _gameFactory.CreateWeapon(id, WeaponsContainer, WeaponsContainer.transform.position);
             var weaponScale = weaponInstance.transform.localScale;
             weaponScale.x = Mathf.Abs(weaponScale.x);
             weaponInstance.transform.localScale = weaponScale;
             _activeWeapons.Add(weaponInstance);
-
-            if (_activeWeapons.Count > 1)
-                weaponInstance.Disable();
-            else SelectWeapon(0);
-
-            return true;
+            return weaponInstance;
         }
 
-        public void RemoveSelectedWeapon()
+        private void DropWeapon(Weapon weapon)
         {
-            _gameFactory.CreateItem(SelectedWeapon.StaticData.WeaponId, WeaponsContainer.position);
-            SelectedWeapon.transform.parent = null;
-            _activeWeapons.Remove(SelectedWeapon);
-            SelectWeapon(_selectedWeaponIndex);
+            _gameFactory.CreateItem(weapon.StaticData.WeaponId, WeaponsContainer.position);
+            Object.Destroy(weapon.gameObject);
+            _activeWeapons.Remove(weapon);
         }
 
         public void SwitchWeapon()
