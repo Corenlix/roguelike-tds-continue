@@ -40,8 +40,8 @@ namespace Entities.Weapons
         
         public bool TryAddWeapon(WeaponId id)
         {
-            if (_activeWeapons.Count >= _maxWeaponsCount || _activeWeapons.Exists(x => x.StaticData.WeaponId == id))
-                return false;
+            if(_activeWeapons.Exists(x => x.StaticData.WeaponId == id) || _activeWeapons.Count >= _maxWeaponsCount)
+                RemoveSelectedWeapon();
 
             var weaponInstance = _gameFactory.CreateWeapon(id, WeaponsContainer, WeaponsContainer.transform.position);
             var weaponScale = weaponInstance.transform.localScale;
@@ -58,6 +58,7 @@ namespace Entities.Weapons
 
         public void RemoveSelectedWeapon()
         {
+            _gameFactory.CreateItem(SelectedWeapon.StaticData.WeaponId, WeaponsContainer.position);
             SelectedWeapon.transform.parent = null;
             _activeWeapons.Remove(SelectedWeapon);
             SelectWeapon(_selectedWeaponIndex);

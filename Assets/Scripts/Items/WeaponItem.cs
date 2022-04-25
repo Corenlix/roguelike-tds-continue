@@ -13,19 +13,16 @@ namespace Items
 
         [SerializeField] private WeaponId _weaponId;
         private PlayerWeapons _playerWeapons;
-        private IGameFactory _gameFactory;
 
         [Inject]
-        private void Construct(PlayerWeapons playerWeapons, IGameFactory gameFactory)
+        private void Construct(PlayerWeapons playerWeapons)
         {
-            _gameFactory = gameFactory;
             _playerWeapons = playerWeapons;
         }
         
         protected override void OnInteract()
         {
-            if (!_playerWeapons.TryAddWeapon(_weaponId))
-                _gameFactory.CreateItem(_weaponId, transform.position);
+            _playerWeapons.TryAddWeapon(_weaponId);
         }
     }
 }
