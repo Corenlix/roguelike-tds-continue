@@ -25,6 +25,7 @@ namespace Infrastructure.StaticData
         private Dictionary<WeaponId, WeaponStaticData> _weapons;
         private Dictionary<BulletId, BulletStaticData> _bullets;
         private Dictionary<ItemId, ItemStaticData> _items;
+        private Dictionary<WeaponId, ItemStaticData> _weaponItems;
         private Dictionary<LootId, LootStaticData> _loots;
         private Dictionary<ChestId, ChestStaticData> _chests;
         private Dictionary<EnemySpawnerId, EnemySpawnerStaticData> _enemySpawners;
@@ -55,6 +56,9 @@ namespace Infrastructure.StaticData
             _items = Resources
                 .LoadAll<ItemStaticData>(ItemsDataPath)
                 .ToDictionary(x => x.Id, x => x);
+
+            _weaponItems = _items.Where(x => x.Value.Prefab is WeaponItem)
+                .ToDictionary(x => ((WeaponItem) x.Value.Prefab).WeaponId, x => x.Value);
             
             _loots = Resources
                 .LoadAll<LootStaticData>(LootsDataPath)
@@ -78,6 +82,8 @@ namespace Infrastructure.StaticData
         public BulletStaticData ForBullet(BulletId id) => _bullets[id];
 
         public ItemStaticData ForItem(ItemId id) => _items[id];
+        
+        public ItemStaticData ForItem(WeaponId id) => _weaponItems[id];
         
         public LootStaticData ForLoot(LootId id) => _loots[id];
         

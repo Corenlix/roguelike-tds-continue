@@ -10,11 +10,8 @@ namespace Entities.Weapons
     public abstract class Weapon : MonoBehaviour
     {
         public bool IsReadyToShoot => _timeRemainToShoot <= 0;
-        public AmmoType AmmoType => StaticData.AmmoType;
-        public int AmmoPerShoot => StaticData.AmmoPerShoot;
-        public float ShakeIntensity => StaticData.ShakeIntensity;
 
-        protected abstract WeaponStaticData StaticData { get; }
+        public abstract WeaponStaticData StaticData { get; }
 
         [SerializeField] protected Transform _shootPoint;
         private float _timeRemainToShoot;

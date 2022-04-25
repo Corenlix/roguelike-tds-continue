@@ -6,7 +6,7 @@ namespace Entities.Weapons
     {
         private ShotgunStaticData _shotgunStaticData;
 
-        protected override WeaponStaticData StaticData => _shotgunStaticData;
+        public override WeaponStaticData StaticData => _shotgunStaticData;
         
         public override void Init(WeaponStaticData weaponStaticData)
         {

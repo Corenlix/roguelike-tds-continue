@@ -17,5 +17,6 @@ namespace Infrastructure.StaticData
         ChestStaticData ForChest(ChestId id);
         LevelStaticData ForLevel(LevelId id);
         EnemySpawnerStaticData ForEnemySpawner(EnemySpawnerId id);
+        ItemStaticData ForItem(WeaponId id);
     }
 }

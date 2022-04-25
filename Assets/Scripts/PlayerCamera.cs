@@ -16,6 +16,6 @@ public class PlayerCamera : MonoBehaviour
     private void Construct(Player player, PlayerWeapons playerWeapons)
     {
         _follow.Follow(player.transform);
-        playerWeapons.Shot += weapon => _shaker.Shake(weapon.ShakeIntensity, -weapon.transform.DirectionWithFlip(weapon.transform.right));
+        playerWeapons.Shot += weapon => _shaker.Shake(weapon.StaticData.ShakeIntensity, -weapon.transform.DirectionWithFlip(weapon.transform.right));
     }
 }

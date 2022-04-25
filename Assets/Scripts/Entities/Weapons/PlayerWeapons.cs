@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Entities.Weapons.StaticData;
 using Infrastructure;
 using Infrastructure.Factory;
@@ -28,7 +29,7 @@ namespace Entities.Weapons
 
         public void TryShoot()
         {
-            if (SelectedWeapon.IsReadyToShoot && _ammoBelt.TryTakeAmmo(SelectedWeapon.AmmoType, SelectedWeapon.AmmoPerShoot))
+            if (SelectedWeapon.IsReadyToShoot && _ammoBelt.TryTakeAmmo(SelectedWeapon.StaticData.AmmoType, SelectedWeapon.StaticData.AmmoPerShoot))
             {
                 SelectedWeapon.Shoot();
                 Shot?.Invoke(SelectedWeapon);
@@ -39,7 +40,7 @@ namespace Entities.Weapons
         
         public bool TryAddWeapon(WeaponId id)
         {
-            if (_activeWeapons.Count >= _maxWeaponsCount)
+            if (_activeWeapons.Count >= _maxWeaponsCount || _activeWeapons.Exists(x => x.StaticData.WeaponId == id))
                 return false;
 
             var weaponInstance = _gameFactory.CreateWeapon(id, WeaponsContainer, WeaponsContainer.transform.position);

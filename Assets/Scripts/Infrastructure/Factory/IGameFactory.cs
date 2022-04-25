@@ -25,5 +25,6 @@ namespace Infrastructure.Factory
         EnemiesSpawner CreateEnemySpawner(EnemySpawnerId id);
         List<Item> CreateItemsForLoot(LootId id, Vector3 position);
         Pillar CreatePillar(EnemyId id, Vector3 position);
+        Item CreateItem(WeaponId id, Vector3 position);
     }
 }

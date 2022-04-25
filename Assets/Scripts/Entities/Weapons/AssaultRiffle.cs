@@ -9,7 +9,7 @@ namespace Entities.Weapons
         private const float TimeBetweenShootsInBurst = 0.1f;
         private const float DeltaAngle = 5f;
     
-        protected override WeaponStaticData StaticData => _assaultRifleStaticData;
+        public override WeaponStaticData StaticData => _assaultRifleStaticData;
 
         private AssaultRifleStaticData _assaultRifleStaticData;
     

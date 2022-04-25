@@ -4,7 +4,7 @@ namespace Entities.Weapons
 {
     public class Pistol : Weapon
     {
-        protected override WeaponStaticData StaticData => _weaponStaticData;
+        public override WeaponStaticData StaticData => _weaponStaticData;
         private PistolStaticData _weaponStaticData;
 
         public override void Init(WeaponStaticData weaponStaticData)

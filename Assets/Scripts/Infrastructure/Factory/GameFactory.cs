@@ -105,6 +105,17 @@ namespace Infrastructure.Factory
                         return item;
                 }
                 
+                public Item CreateItem(WeaponId id, Vector3 position)
+                {
+                        if (id == WeaponId.None)
+                                return null;
+
+                        var itemData = _staticDataService.ForItem(id);
+                        var item = _diContainer.InstantiatePrefabForComponent<Item>(itemData.Prefab, position,
+                                Quaternion.identity, null);
+                        return item;
+                }
+                
                 public List<Item> CreateItemsForLoot(LootId id, Vector3 position)
                 {
                         if (id == LootId.None)
@@ -146,20 +157,6 @@ namespace Infrastructure.Factory
                         return spawner;
                 }
 
-                public GameObject CreateCorpse(Sprite corpseSprite, Vector3 position)
-                {
-                        var corpse = new GameObject("Corpse")
-                        {
-                                transform =
-                                {
-                                        position = position
-                                }
-                        };
-                        var spriteRenderer = corpse.AddComponent<SpriteRenderer>();
-                        spriteRenderer.sprite = corpseSprite;
-                        return corpse;
-                }
-                
                 public Pillar CreatePillar(EnemyId id, Vector3 position)
                 {
                         if (id == EnemyId.None)
