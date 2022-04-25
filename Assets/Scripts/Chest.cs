@@ -9,19 +9,18 @@ using Zenject;
 
 public class Chest : MonoBehaviour, IInteractable
 {
+    public event Action<IInteractable> Destroyed;
     public Vector3 Position => transform.position;
     public bool NeedPressInteractButton => true;
     public string InteractText => "Open Chest";
     
     private ChestStaticData _chestStaticData;
-    private IStaticDataService _staticDataService;
     private IGameFactory _gameFactory;
 
     [Inject]
-    private void Construct(IStaticDataService staticDataService, IGameFactory gameFactory)
+    private void Construct(IGameFactory gameFactory)
     {
         _gameFactory = gameFactory;
-        _staticDataService = staticDataService;
     }
     public void Init(ChestStaticData chestStaticData)
     {
@@ -32,5 +31,10 @@ public class Chest : MonoBehaviour, IInteractable
     {
         _gameFactory.CreateItemsForLoot(_chestStaticData.LootId, transform.position);
         Destroy(gameObject);
+    }
+    
+    private void OnDestroy()
+    {
+        Destroyed?.Invoke(this);
     }
 }

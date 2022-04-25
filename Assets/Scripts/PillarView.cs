@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PillarView : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    private static readonly int IsBroke = Animator.StringToHash("IsBroke");
+    private static readonly int IsBroken = Animator.StringToHash("IsBroken");
     
     public void BrokePillar()
     {
-        _animator.SetBool(IsBroke, true);
+        _animator.SetBool(IsBroken, true);
     }
 }

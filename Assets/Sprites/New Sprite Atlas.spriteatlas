@@ -53,7 +53,6 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 9058822660989661298, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
-  - {fileID: 1670679116868395324, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: -1400070130308293167, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: -906021573413111463, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
   - {fileID: -7626348988197198589, guid: 7a9b8d1032352354b84ff781a24ace9a, type: 3}
@@ -102,7 +101,6 @@ SpriteAtlas:
   - {fileID: 4941028306516552774, guid: 3dabff1550852fd408dd4a8bb6f5c9fe, type: 3}
   m_PackedSpriteNamesToIndex:
   - WallSet_4
-  - WallSet_5
   - WallSet_6
   - WallSet_0
   - WallSet_1

@@ -15,31 +15,39 @@ namespace Items
             IInteractable itemToPick = _activeInteractables[0];
             itemToPick.Interact();
         }
-        
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out IInteractable interactable))
+                AddInteractableToActive(interactable);
+        }
+
+        private void AddInteractableToActive(IInteractable interactable)
+        {
+            if (interactable.NeedPressInteractButton)
             {
-                if (interactable.NeedPressInteractButton)
-                {
-                    if (interactable.NeedPressInteractButton && _activeInteractables.Count == 0)
-                        _tip.ShowTip(interactable);
-                    _activeInteractables.Add(interactable);
-                }
-                else interactable.Interact();
+                if (interactable.NeedPressInteractButton && _activeInteractables.Count == 0)
+                    _tip.ShowTip(interactable);
+                _activeInteractables.Add(interactable);
+                interactable.Destroyed += RemoveInteractableFromActive;
             }
+            else interactable.Interact();
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.TryGetComponent(out IInteractable interactable))
-            {
-                _tip.HideTip();
-                _activeInteractables.Remove(interactable);
+                RemoveInteractableFromActive(interactable);
+        }
 
-                if(_activeInteractables.Count > 0)
-                    _tip.ShowTip(_activeInteractables[0]);
-            }
+        private void RemoveInteractableFromActive(IInteractable interactable)
+        {
+            _tip.HideTip();
+            _activeInteractables.Remove(interactable);
+            interactable.Destroyed -= RemoveInteractableFromActive;
+
+            if(_activeInteractables.Count > 0)
+                _tip.ShowTip(_activeInteractables[0]);
         }
     }
 }

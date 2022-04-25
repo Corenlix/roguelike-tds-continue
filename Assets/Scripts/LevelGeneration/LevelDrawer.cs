@@ -24,7 +24,7 @@ namespace LevelGeneration
             _wallsTilemap = CreateTilemapWithCollider("Walls Tilemap", _tilemapsParent, 0, wallsMaterial);
 
             DrawLayer(level, GetTilemapFromCellType(CellType.Wall), CellType.Wall);
-            DrawLayer(level, GetTilemapFromCellType(CellType.Floor), CellType.Floor);
+            FillAllMap(level, GetTilemapFromCellType(CellType.Floor), CellType.Floor);
         }
 
         public void Clear()
@@ -71,6 +71,24 @@ namespace LevelGeneration
                 {
                     var currentCell = level[i, j];
                     if (currentCell != type) continue;
+                    vectors[j + i * level.GetLength(1)] = new Vector3Int(i, j, 0);
+                    tiles[j + i * level.GetLength(1)] = tile;
+                }    
+            }
+            map.ClearAllTiles();
+            map.SetTiles(vectors, tiles);
+        }
+
+        private void FillAllMap(CellType[,] level, Tilemap map, CellType type)
+        {
+            var vectors = new Vector3Int[level.GetLength(0) * level.GetLength(1)];
+            var tiles = new RuleTile[level.GetLength(0) * level.GetLength(1)];
+            var tile = GetTileFromCellType(type);
+            
+            for (int i = 0; i < level.GetLength(0); i++)
+            {
+                for (int j = 0; j < level.GetLength(1); j++)
+                {
                     vectors[j + i * level.GetLength(1)] = new Vector3Int(i, j, 0);
                     tiles[j + i * level.GetLength(1)] = tile;
                 }    

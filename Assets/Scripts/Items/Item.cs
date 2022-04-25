@@ -1,3 +1,4 @@
+using System;
 using Infrastructure.Popup;
 using UnityEngine;
 using Zenject;
@@ -6,6 +7,7 @@ namespace Items
 {
     public abstract class Item : MonoBehaviour, IInteractable
     {
+        public event Action<IInteractable> Destroyed;
         public string Name;
         public Vector3 Position => transform.position;
         public abstract bool NeedPressInteractButton { get; }
@@ -28,5 +30,10 @@ namespace Items
         }
         
         protected abstract void OnInteract();
+        
+        private void OnDestroy()
+        {
+            Destroyed?.Invoke(this);
+        }
     }
 }

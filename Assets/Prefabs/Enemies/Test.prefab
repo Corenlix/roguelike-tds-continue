@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2578372973353572080}
   - component: {fileID: 6717755191943573010}
   - component: {fileID: 8430513864126818090}
+  - component: {fileID: 7005282146355413430}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -52,7 +53,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc91cb693162a58429c1d39b1aec101b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 30
 --- !u!114 &7367941044288361908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 8430513864126818090}
-  _speed: 0
 --- !u!114 &8430513864126818090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +171,17 @@ MonoBehaviour:
   _animator: {fileID: 7367941044494058737}
   _health: {fileID: 7367941044288361911}
   _corpse: {fileID: 4118791705643366589, guid: 1ee83042d28569245bad045977bffbb7, type: 3}
+--- !u!210 &7005282146355413430
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367941044288361899}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &7367941044494058742
 GameObject:
   m_ObjectHideFlags: 0
