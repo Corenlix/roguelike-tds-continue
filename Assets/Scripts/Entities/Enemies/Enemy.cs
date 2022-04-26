@@ -14,6 +14,7 @@ namespace Entities.Enemies
 {
     public abstract class Enemy : MonoBehaviour
     {
+        public event Action<Enemy> Died;
         protected static List<HitBoxType> DefaultTargetTypes => new List<HitBoxType> { HitBoxType.Player, HitBoxType.Wall };
         protected Transform Target;
 
@@ -39,7 +40,7 @@ namespace Entities.Enemies
         private void Start()
         {
             _health.Init(_enemyStaticData.Health);
-            
+
             Target = _player.transform;
             _stateMachine = InitStateMachine(_enemyStaticData);
         }
@@ -59,6 +60,7 @@ namespace Entities.Enemies
         private void OnDie()
         {
             SpawnLoot();
+            Died?.Invoke(this);
         }
 
         private void SpawnLoot() => _gameFactory.CreateItemsForLoot(_enemyStaticData.LootId, transform.position);

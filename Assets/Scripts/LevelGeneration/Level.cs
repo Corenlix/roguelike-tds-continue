@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 
 namespace LevelGeneration
@@ -6,11 +7,30 @@ namespace LevelGeneration
     public class Level
     {
         public CellType[,] LevelTable;
+        public Pathfinder Pathfinder;
         private List<Vector2> _floorPoints;
 
         public Level(CellType[,] levelTable)
         {
             LevelTable = levelTable;
+            Pathfinder = new Pathfinder(this);
+        }
+
+        public void SetWallCell(Vector2 position)
+        {
+            LevelTable[Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)] = CellType.Wall;
+            Pathfinder.UpdateNode(position, true);
+            _floorPoints.RemoveAll(x => x == position);
+        }
+        
+        public void SetFloorCell(Vector2 position)
+        {
+            LevelTable[Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)] = CellType.Floor;
+            if (LevelTable[Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)] == CellType.Wall)
+            {
+                _floorPoints.Add(new Vector2(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)));
+                Pathfinder.UpdateNode(position, false);
+            }
         }
         
         public List<Vector2> GetFloorPoints()

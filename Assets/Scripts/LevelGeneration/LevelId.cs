@@ -2,7 +2,8 @@
 {
     public enum LevelId
     {
-        FirstLevel,
-        SecondLevel,
+        None = 0,
+        FirstLevel = 1,
+        SecondLevel = 2,
     }
 }

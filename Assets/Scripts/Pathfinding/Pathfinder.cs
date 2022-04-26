@@ -10,15 +10,20 @@ namespace Pathfinding
         private const int StraightMovingCost = 10;
         private const int DiagonalMovingCost = 14;
 
-        private readonly Level level;
+        private readonly Level _level;
         private Node[,] _nodes;
         private List<Node> _openedNodes;
         private Vector2Int _endPoint;
         
         public Pathfinder(Level level)
         {
-            this.level = level;
+            _level = level;
             GenerateNodesFromLevel();
+        }
+
+        public void UpdateNode(Vector2 position, bool isWall)
+        {
+            _nodes[Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)].Wall = isWall;
         }
         
         public List<Vector2> FindPath(Vector2 pointA, Vector2 pointB)
@@ -89,7 +94,7 @@ namespace Pathfinding
         
         private void CheckNodesAroundNode(Node node)
         {
-            var levelCells = level.LevelTable;
+            var levelCells = _level.LevelTable;
             for (int i = -1; i <= 1; i++)
             {
                 for (int j = -1; j <= 1; j++)
@@ -136,7 +141,7 @@ namespace Pathfinding
         
         private void GenerateNodesFromLevel()
         {
-            var levelCells = level.LevelTable;
+            var levelCells = _level.LevelTable;
             _nodes = new Node[levelCells.GetLength(0),levelCells.GetLength(1)];
             for(int i = 0; i < levelCells.GetLength(0); i++)
             {

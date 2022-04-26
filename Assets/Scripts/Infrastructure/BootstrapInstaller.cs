@@ -1,4 +1,7 @@
+using Infrastructure.AssetProvider;
 using Infrastructure.Input;
+using Infrastructure.SaveLoad;
+using UnityEngine;
 using Zenject;
 
 namespace Infrastructure
@@ -8,6 +11,7 @@ namespace Infrastructure
         public override void InstallBindings()
         {
             BindInput();
+            BindSaveLoadService();
         }
 
         private void BindInput()
@@ -17,5 +21,12 @@ namespace Infrastructure
                 To<StandaloneInput>().
                 AsSingle();
         }
+
+        private void BindSaveLoadService()
+        {
+            Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
+            Container.Resolve<ISaveLoadService>().Clear();
+        }
+
     }
 }

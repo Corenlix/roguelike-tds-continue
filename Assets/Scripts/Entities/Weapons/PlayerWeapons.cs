@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entities.Weapons.StaticData;
-using Infrastructure;
 using Infrastructure.Factory;
+using Infrastructure.Progress;
+using Infrastructure.SaveLoad;
 using UnityEngine;
-using Zenject;
 using Object = UnityEngine.Object;
 
 namespace Entities.Weapons
 {
-    public class PlayerWeapons
+    public class PlayerWeapons : IProgressClient
     {
         public event Action<Weapon> Shot;
         
@@ -19,8 +18,8 @@ namespace Entities.Weapons
         private int _maxWeaponsCount = 3;
         private readonly List<Weapon> _activeWeapons = new List<Weapon>();
         private int _selectedWeaponIndex;
-        private readonly IGameFactory _gameFactory;
         private readonly PlayerAmmoBelt _ammoBelt;
+        private readonly IGameFactory _gameFactory;
 
         public PlayerWeapons(IGameFactory gameFactory, PlayerAmmoBelt ammoBelt)
         {
@@ -78,6 +77,30 @@ namespace Entities.Weapons
             SelectedWeapon.Disable();
             _selectedWeaponIndex = index % _activeWeapons.Count;
             SelectedWeapon.Enable();
+        }
+
+        public void Save(ISaveLoadService saveLoadService)
+        {
+            var weaponIds = _activeWeapons.Select(x => x.StaticData.WeaponId).ToList();
+            saveLoadService.SetValue(weaponIds, SaveLoadKey.PlayerWeapons);
+        }
+
+        public void Load(ISaveLoadService saveLoadService)
+        {
+            Clear();
+            
+            var defaultWeapons = new List<WeaponId>() {WeaponId.Pistol};
+            var weaponIds = saveLoadService.GetValue(SaveLoadKey.PlayerWeapons, defaultWeapons);
+            weaponIds.ForEach(TryAddWeapon);
+        }
+
+        private void Clear()
+        {
+            while (_activeWeapons.Count > 0)
+            {
+                Object.Destroy(_activeWeapons[0]);
+                _activeWeapons.RemoveAt(0);
+            }
         }
     }
 }

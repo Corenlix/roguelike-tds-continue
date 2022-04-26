@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Infrastructure.Factory;
 using Infrastructure.StaticData;
 using Items;
+using LevelGeneration;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using Zenject;
@@ -16,10 +17,12 @@ public class Chest : MonoBehaviour, IInteractable
     
     private ChestStaticData _chestStaticData;
     private IGameFactory _gameFactory;
+    private Level _level;
 
     [Inject]
-    private void Construct(IGameFactory gameFactory)
+    private void Construct(IGameFactory gameFactory, Level level)
     {
+        _level = level;
         _gameFactory = gameFactory;
     }
     public void Init(ChestStaticData chestStaticData)
@@ -36,5 +39,6 @@ public class Chest : MonoBehaviour, IInteractable
     private void OnDestroy()
     {
         Destroyed?.Invoke(this);
+        _level.SetFloorCell(transform.position);
     }
 }

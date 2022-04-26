@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
@@ -19,6 +20,7 @@ namespace LevelGeneration
             }
 
             level.LevelTable = table;
+            level.Pathfinder = new Pathfinder(level);
         }
 
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using LevelGeneration;
 using Pathfinding;
 using UnityEngine;
 using Zenject;
@@ -8,13 +9,13 @@ namespace Entities
     public class PathfindMover : Mover
     {
         [SerializeField] private RigidbodyMover _rigidbodyMover;
-        private Pathfinder _pathfinder;
+        private Level _level;
         private List<Vector2> _pathPoints;
 
         [Inject]
-        private void Construct(Pathfinder pathfinder)
+        private void Construct(Level level)
         {
-            _pathfinder = pathfinder;
+            _level = level;
         }
 
         private void FixedUpdate()
@@ -32,7 +33,7 @@ namespace Entities
 
         public override void MoveTo(Vector2 position)
         {
-            _pathPoints = _pathfinder.FindPath(transform.position, position);
+            _pathPoints = _level.Pathfinder.FindPath(transform.position, position);
             if(_pathPoints == null)
                 Stop();
             else _rigidbodyMover.MoveByDirection(GetMoveDirection());

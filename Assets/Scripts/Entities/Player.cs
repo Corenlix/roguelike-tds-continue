@@ -33,7 +33,6 @@ namespace Entities
         {
             _mover.SetSpeed(8);
             _health.Init(100);
-            _weapons.TryAddWeapon(WeaponId.Pistol);
         }
         
         private void Update()

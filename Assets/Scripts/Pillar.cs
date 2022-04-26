@@ -7,6 +7,7 @@ using Zenject;
 
 public class Pillar : MonoBehaviour, IInteractable
 {
+    public event Action<Pillar, Enemy> BossSpawned;
     public event Action<IInteractable> Destroyed;
     public Vector3 Position => transform.position;
     public bool NeedPressInteractButton => true;
@@ -37,12 +38,14 @@ public class Pillar : MonoBehaviour, IInteractable
     public void Interact()
     {
         _pillarView.BrokePillar();
-        _gameFactory.CreateEnemy(_id, _level.GetFloorPoints()[300]);
+        var boss = _gameFactory.CreateEnemy(_id, _level.GetFloorPoints()[300]);
+        BossSpawned?.Invoke(this, boss);
         Destroy(this);
     }
 
     private void OnDestroy()
     {
         Destroyed?.Invoke(this);
+        _level.SetFloorCell(transform.position);
     }
 }

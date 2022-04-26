@@ -3,6 +3,7 @@ using Entities;
 using Entities.Enemies;
 using Entities.Weapons;
 using Infrastructure.AssetProvider;
+using Infrastructure.Progress;
 using Infrastructure.StaticData;
 using Items;
 using LevelGeneration;
@@ -17,21 +18,25 @@ namespace Infrastructure.Factory
                 private readonly DiContainer _diContainer;
                 private readonly IStaticDataService _staticDataService;
                 private readonly IAssetProvider _assetProvider;
+                private readonly IProgressService _progressService;
 
                 public GameFactory(DiContainer container, IStaticDataService staticDataService,
-                        IAssetProvider assetProvider)
+                        IAssetProvider assetProvider, IProgressService progressService)
                 {
+                        _progressService = progressService;
                         _assetProvider = assetProvider;
                         _diContainer = container;
                         _staticDataService = staticDataService;
                 }
 
-                public Player CreatePlayer(Vector3 at)
+                public Player CreatePlayer(Vector2 at)
                 {
                         _diContainer.Bind<PlayerAmmoBelt>().AsSingle();
                         _diContainer.Bind<PlayerWeapons>().AsSingle();
                         var player = _assetProvider.Instantiate<Player>(AssetPath.Player, at);
                         _diContainer.Bind<Player>().FromInstance(player).AsSingle();
+                        _progressService.AddClient(_diContainer.Resolve<PlayerAmmoBelt>());
+                        _progressService.AddClient(_diContainer.Resolve<PlayerWeapons>());
                         return player;
                 }
 
@@ -49,7 +54,7 @@ namespace Infrastructure.Factory
                         return hud;
                 }
 
-                public Enemy CreateEnemy(EnemyId id, Vector3 at)
+                public Enemy CreateEnemy(EnemyId id, Vector2 at)
                 {
                         if (id == EnemyId.None)
                                 return null;
@@ -61,14 +66,7 @@ namespace Infrastructure.Factory
                         return enemy;
                 }
 
-                public Pathfinder CreatePathfinder(Level level)
-                {
-                        var pathfinder = new Pathfinder(level);
-                        _diContainer.Bind<Pathfinder>().FromInstance(pathfinder).AsSingle();
-                        return pathfinder;
-                }
-
-                public Weapon CreateWeapon(WeaponId id, Transform parent, Vector3 position)
+                public Weapon CreateWeapon(WeaponId id, Transform parent, Vector2 position)
                 {
                         if (id == WeaponId.None)
                                 return null;
@@ -81,7 +79,7 @@ namespace Infrastructure.Factory
                         return weapon;
                 }
 
-                public Bullet CreateBullet(BulletId id, Vector3 position, Quaternion rotation)
+                public Bullet CreateBullet(BulletId id, Vector2 position, Quaternion rotation)
                 {
                         if (id == BulletId.None)
                                 return null;
@@ -94,7 +92,7 @@ namespace Infrastructure.Factory
                         return bullet;
                 }
 
-                public Item CreateItem(ItemId id, Vector3 position)
+                public Item CreateItem(ItemId id, Vector2 position)
                 {
                         if (id == ItemId.None)
                                 return null;
@@ -105,7 +103,7 @@ namespace Infrastructure.Factory
                         return item;
                 }
                 
-                public Item CreateItem(WeaponId id, Vector3 position)
+                public Item CreateItem(WeaponId id, Vector2 position)
                 {
                         if (id == WeaponId.None)
                                 return null;
@@ -128,7 +126,7 @@ namespace Infrastructure.Factory
                         return result;
                 }
 
-                public Chest CreateChest(ChestId id, Vector3 position)
+                public Chest CreateChest(ChestId id, Vector2 position)
                 {
                         if (id == ChestId.None)
                                 return null;
@@ -137,6 +135,8 @@ namespace Infrastructure.Factory
                         var chest = _diContainer.InstantiatePrefabForComponent<Chest>(chestData.Prefab, position,
                                 Quaternion.identity, null);
                         chest.Init(chestData);
+                        _diContainer.Resolve<Level>().SetWallCell(position);
+                        
                         return chest;
                 }
 
@@ -146,7 +146,6 @@ namespace Infrastructure.Factory
                         var level = levelStaticData.Generate();
                         _diContainer.Bind<Level>().FromInstance(level).AsSingle();
                         new LevelDrawer().DrawLevel(level.LevelTable, _assetProvider.Load<Material>(AssetPath.WallsMaterial));
-                        CreatePathfinder(level);
                         return level;
                 }
 
@@ -157,13 +156,15 @@ namespace Infrastructure.Factory
                         return spawner;
                 }
 
-                public Pillar CreatePillar(EnemyId id, Vector3 position)
+                public Pillar CreatePillar(EnemyId id, Vector2 position)
                 {
                         if (id == EnemyId.None)
                                 return null;
                         
                         var pillar = _assetProvider.Instantiate<Pillar>(AssetPath.Pillar, position);
                         pillar.Init(id);
+                        _diContainer.Resolve<Level>().SetWallCell(position);
+                        
                         return pillar;
                 }
         }

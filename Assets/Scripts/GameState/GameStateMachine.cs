@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Infrastructure;
 using Infrastructure.Factory;
+using Infrastructure.Progress;
+using Infrastructure.SaveLoad;
 using Infrastructure.StaticData;
 
 namespace GameState
@@ -11,12 +13,13 @@ namespace GameState
         private readonly Dictionary<Type, IState> _states;
         private IState _activeState;
 
-        public GameStateMachine(IGameFactory gameFactory)
+        public GameStateMachine(IGameFactory gameFactory, IProgressService progressService, ISaveLoadService saveLoadService)
         {
             _states = new Dictionary<Type, IState>()
             {
-                {typeof(LoadLevelState), new LoadLevelState(this, gameFactory)},
-                {typeof(GameLoopState), new GameLoopState(this)}
+                {typeof(LoadLevelState), new LoadLevelState(this, gameFactory, progressService, saveLoadService)},
+                {typeof(LoadNextLevelState), new LoadNextLevelState(this, saveLoadService, progressService)},
+                {typeof(LooseState), new LooseState(this, saveLoadService)}
             };
 
             Enter<LoadLevelState>();

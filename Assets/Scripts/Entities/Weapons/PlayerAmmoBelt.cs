@@ -1,30 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Infrastructure.Progress;
+using Infrastructure.SaveLoad;
 using UnityEngine;
 
 namespace Entities.Weapons
 {
-    public class PlayerAmmoBelt
+    public class PlayerAmmoBelt : IProgressClient
     {
         public event Action AmmoCountChanged;
-    
-        private readonly Dictionary<AmmoType, int> _ammoCounts = new Dictionary<AmmoType, int>();
-
-        public PlayerAmmoBelt()
-        {
-            InitAmmoCounts();
-        }
-
-        private void InitAmmoCounts()
-        {
-            foreach (AmmoType ammoType in Enum.GetValues(typeof(AmmoType)))
-            {
-                _ammoCounts.Add(ammoType, 0);
-            }
-        }
+        private Dictionary<AmmoType, int> _ammoCounts = new Dictionary<AmmoType, int>();
 
         public void AddAmmo(AmmoType ammoType, int count)
         {
+            if(!_ammoCounts.ContainsKey(ammoType))
+                _ammoCounts.Add(ammoType, 0);
+            
             _ammoCounts[ammoType] += count;
             AmmoCountChanged?.Invoke();
         }
@@ -39,6 +31,17 @@ namespace Entities.Weapons
             _ammoCounts[ammoType] -= count;
             AmmoCountChanged?.Invoke();
             return true;
+        }
+
+        public void Save(ISaveLoadService saveLoadService)
+        {
+            saveLoadService.SetValue(_ammoCounts, SaveLoadKey.PlayerAmmo);
+        }
+
+        public void Load(ISaveLoadService saveLoadService)
+        {
+            var defaultAmmoCounts = ((AmmoType[]) Enum.GetValues(typeof(AmmoType))).ToDictionary(x => x, x => 20);
+            _ammoCounts = saveLoadService.GetValue<Dictionary<AmmoType, int>>(SaveLoadKey.PlayerAmmo, defaultAmmoCounts);
         }
     }
 }
