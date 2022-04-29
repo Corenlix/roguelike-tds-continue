@@ -1,4 +1,5 @@
 using System;
+using Entities;
 using Entities.Weapons;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -18,9 +19,9 @@ namespace Items
 
 
         [Inject]
-        private void Construct(PlayerAmmoBelt ammoBelt)
+        private void Construct(Player player)
         {
-            _ammoBelt = ammoBelt;
+            _ammoBelt = player.AmmoBelt;
         }
 
         protected override void OnInteract()

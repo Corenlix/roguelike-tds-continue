@@ -31,12 +31,13 @@ namespace Infrastructure.Factory
 
                 public Player CreatePlayer(Vector2 at)
                 {
-                        _diContainer.Bind<PlayerAmmoBelt>().AsSingle();
-                        _diContainer.Bind<PlayerWeapons>().AsSingle();
                         var player = _assetProvider.Instantiate<Player>(AssetPath.Player, at);
+                        var ammoBelt = new PlayerAmmoBelt();
+                        var weapons = new PlayerWeapons(this, ammoBelt);
+                        player.Init(weapons, ammoBelt);
                         _diContainer.Bind<Player>().FromInstance(player).AsSingle();
-                        _progressService.AddClient(_diContainer.Resolve<PlayerAmmoBelt>());
-                        _progressService.AddClient(_diContainer.Resolve<PlayerWeapons>());
+                        _progressService.AddClient(ammoBelt);
+                        _progressService.AddClient(weapons);
                         return player;
                 }
 
@@ -44,7 +45,7 @@ namespace Infrastructure.Factory
                 {
                         var camera =
                                 _assetProvider.Instantiate<PlayerCamera>(AssetPath.PlayerCamera);
-                        _diContainer.Bind<CameraShaker>().FromInstance(camera.Shaker).AsSingle();
+                        _diContainer.Bind<PlayerCamera>().FromInstance(camera).AsSingle();
                         return camera;
                 }
 

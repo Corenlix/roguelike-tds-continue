@@ -24,8 +24,9 @@ namespace Infrastructure
 
         private void BindSaveLoadService()
         {
-            Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
-            Container.Resolve<ISaveLoadService>().Clear();
+            var saveLoadService = new SaveLoadService();
+            Container.BindInstance<ISaveLoadService>(saveLoadService).AsSingle();
+            saveLoadService.Clear();
         }
 
     }

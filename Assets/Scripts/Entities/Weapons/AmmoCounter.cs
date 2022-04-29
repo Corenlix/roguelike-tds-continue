@@ -7,14 +7,20 @@ namespace Entities.Weapons
 {
     public class AmmoCounter : MonoBehaviour
     {
-        [SerializeField] private AmmoType _ammoType;
         [SerializeField] private TextMeshProUGUI _ammoText;
+        private AmmoType _ammoType;
         private PlayerAmmoBelt _playerAmmoBelt;
 
         [Inject]
-        private void Construct(PlayerAmmoBelt playerAmmoBelt)
+        private void Construct(Player player)
         {
-            _playerAmmoBelt = playerAmmoBelt;
+            _playerAmmoBelt = player.AmmoBelt;
+        }
+
+        public void ChangeAmmoType(AmmoType type)
+        {
+            _ammoType = type;
+            UpdateCounter();
         }
         
         private void OnEnable()

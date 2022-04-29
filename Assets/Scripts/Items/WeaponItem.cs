@@ -1,3 +1,4 @@
+using Entities;
 using Entities.Weapons;
 using Infrastructure.Factory;
 using UnityEngine;
@@ -15,9 +16,9 @@ namespace Items
         private PlayerWeapons _playerWeapons;
 
         [Inject]
-        private void Construct(PlayerWeapons playerWeapons)
+        private void Construct(Player player)
         {
-            _playerWeapons = playerWeapons;
+            _playerWeapons = player.Weapons;
         }
         
         protected override void OnInteract()

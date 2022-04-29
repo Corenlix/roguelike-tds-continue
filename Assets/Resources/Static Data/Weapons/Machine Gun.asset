@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
   WeaponId: 4
+  WeaponIcon: {fileID: 21300000, guid: 5395f5cafabbe764d8a00267b1d6c2b5, type: 3}
   BulletId: 1
   AmmoType: 2
   AmmoPerShoot: 1

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Assault Riffle
   m_EditorClassIdentifier: 
   WeaponId: 3
+  WeaponIcon: {fileID: 21300000, guid: f00c4105eb175284f8e585d6b222bc19, type: 3}
   BulletId: 1
   AmmoType: 2
   AmmoPerShoot: 4

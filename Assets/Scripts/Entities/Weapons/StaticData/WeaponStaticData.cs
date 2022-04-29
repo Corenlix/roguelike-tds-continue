@@ -6,6 +6,7 @@ namespace Entities.Weapons.StaticData
     {
         public abstract Weapon Prefab { get; }
         public WeaponId WeaponId;
+        public Sprite WeaponIcon;
         public BulletId BulletId;
         public AmmoType AmmoType;
         public int AmmoPerShoot = 1;
