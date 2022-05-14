@@ -11,10 +11,18 @@ namespace Entities.Weapons
 {
     public class PlayerWeapons : IProgressClient
     {
+ 
         public event Action<Weapon> Shot;   
         
         private Weapon SelectedWeapon => _activeWeapons[_selectedWeaponIndex % _activeWeapons.Count];
+
+        public event Action<Weapon> Shot;
+        public event Action<Weapon> WeaponSwitched;
+        public Weapon SelectedWeapon => _activeWeapons[_selectedWeaponIndex % _activeWeapons.Count];
+
+
         public Transform WeaponsContainer;
+        
         private int _maxWeaponsCount = 3;
         private readonly List<Weapon> _activeWeapons = new List<Weapon>();
         private int _selectedWeaponIndex;
@@ -77,6 +85,7 @@ namespace Entities.Weapons
             SelectedWeapon.Disable();
             _selectedWeaponIndex = index % _activeWeapons.Count;
             SelectedWeapon.Enable();
+            WeaponSwitched?.Invoke(SelectedWeapon);
         }
 
         public void Save(ISaveLoadService saveLoadService)

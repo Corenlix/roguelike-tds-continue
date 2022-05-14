@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   WeaponId: 1
+  WeaponIcon: {fileID: 21300000, guid: 78014df55ad7aa041a2a30af4cb6a524, type: 3}
   BulletId: 1
   AmmoType: 0
   AmmoPerShoot: 1
