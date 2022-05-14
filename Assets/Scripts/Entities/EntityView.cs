@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Infrastructure.Factory;
 using UnityEngine;
 using Zenject;
@@ -55,8 +56,9 @@ namespace Entities
             var corpse = Instantiate(_corpse, transform.position, Quaternion.identity);
             corpse.transform.localScale = transform.lossyScale;
             Destroy(gameObject);
+            Destroy(corpse);
         }
-
+        
         private void OnDisable()
         {
             var stateReporter = _animator.GetBehaviour<AnimatorStateReporter>();

@@ -11,6 +11,7 @@ namespace Entities
 {
     public class Player : MonoBehaviour
     {
+        public RigidbodyMover RigidbodyMover => _mover;
         public Health Health => _health;
 
         [SerializeField] private Transform _weaponsContainer;

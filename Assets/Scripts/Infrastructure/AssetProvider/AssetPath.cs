@@ -7,5 +7,6 @@
         public const string Hud = "Hud";
         public const string WallsMaterial = "WallsMaterial";
         public const string Pillar = "Pillar";
+        public const string WormHole = "WormHole";
     }
 }

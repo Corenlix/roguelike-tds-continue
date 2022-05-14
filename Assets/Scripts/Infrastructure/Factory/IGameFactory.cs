@@ -25,5 +25,6 @@ namespace Infrastructure.Factory
         List<Item> CreateItemsForLoot(LootId id, Vector3 position);
         Pillar CreatePillar(EnemyId id, Vector2 position);
         Item CreateItem(WeaponId id, Vector2 position);
+        WormHole CreateWormHole(Enemy enemy, Vector2 position);
     }
 }

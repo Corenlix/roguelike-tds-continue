@@ -11,7 +11,7 @@ namespace Entities.Weapons
 {
     public class PlayerWeapons : IProgressClient
     {
-        public event Action<Weapon> Shot;
+        public event Action<Weapon> Shot;   
         
         private Weapon SelectedWeapon => _activeWeapons[_selectedWeaponIndex % _activeWeapons.Count];
         public Transform WeaponsContainer;

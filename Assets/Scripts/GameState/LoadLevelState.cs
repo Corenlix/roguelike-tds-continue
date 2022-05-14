@@ -1,10 +1,14 @@
-﻿using Entities;
+﻿using System.Collections.Generic;
+using Entities;
 using Entities.Enemies;
 using Infrastructure.Factory;
 using Infrastructure.Progress;
 using Infrastructure.SaveLoad;
 using LevelGeneration;
+using UnityEditor.SearchService;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameState
 {
@@ -17,6 +21,7 @@ namespace GameState
         private Pillar _pillar;
         private Enemy _boss;
         private Player _player;
+        private WormHole _wormHole;
 
         public LoadLevelState(GameStateMachine gameStateMachine, IGameFactory gameFactory, IProgressService progressService, ISaveLoadService saveLoadService)
         {
@@ -33,7 +38,7 @@ namespace GameState
             _gameFactory.CreatePlayerCamera();
             _gameFactory.CreateHud();
         }
-
+        
         private void GenerateLevel()
         {
             var levelId = _saveLoadService.GetValue(SaveLoadKey.Level, LevelId.FirstLevel);
@@ -44,6 +49,7 @@ namespace GameState
         private void SpawnEntities(Level level)
         {
             var floorPoints = level.GetFloorPoints();
+
             _player = _gameFactory.CreatePlayer(floorPoints[0]);
             _player.Health.Died += OnPlayerDied;
             _gameFactory.CreateEnemySpawner(EnemySpawnerId.FirstLevelSpawner);
@@ -69,9 +75,16 @@ namespace GameState
         private void OnBossDied(Enemy boss)
         {
             boss.Died -= OnBossDied;
-            _gameStateMachine.Enter<LoadNextLevelState>();
+            _wormHole = _gameFactory.CreateWormHole(_boss, _boss.transform.position);
+            _wormHole.TransitionNextLevel += TransitNextLevel;
         }
 
+        private void TransitNextLevel()
+        {
+            _gameStateMachine.Enter<LoadNextLevelState>();
+            _wormHole.TransitionNextLevel -= TransitNextLevel;
+        }
+        
         private void OnPlayerDied()
         {
             _player.Health.Died -= OnPlayerDied;

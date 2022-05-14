@@ -113,7 +113,7 @@ namespace Infrastructure.Factory
                                 Quaternion.identity, null);
                         return item;
                 }
-                
+
                 public List<Item> CreateItemsForLoot(LootId id, Vector3 position)
                 {
                         if (id == LootId.None)
@@ -166,6 +166,12 @@ namespace Infrastructure.Factory
                         _diContainer.Resolve<Level>().SetWallCell(position);
                         
                         return pillar;
+                }
+
+                public WormHole CreateWormHole(Enemy enemy, Vector2 position)
+                {
+                        var wormhole = _assetProvider.Instantiate<WormHole>(AssetPath.WormHole, position);
+                        return wormhole;
                 }
         }
 }

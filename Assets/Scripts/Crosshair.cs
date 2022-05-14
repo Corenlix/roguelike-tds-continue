@@ -14,7 +14,7 @@ public class Crosshair : MonoBehaviour
     }
 
     void Update()
-    {
+    { 
         transform.position = _input.LookPoint;
     }
 }
